@@ -8,7 +8,7 @@ export async function generateStaticParams() {
   return services.map((service) => ({ slug: service.slug }));
 }
 
-export default function ServiceDetailPage({
+export default async function ServiceDetailPage({
   params,
 }: {
   params: { slug: string };

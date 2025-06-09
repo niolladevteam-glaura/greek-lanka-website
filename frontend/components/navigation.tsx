@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { Button } from "@/components/ui/button"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Menu, LogIn } from "lucide-react"
-import Image from "next/image"
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Menu, LogIn } from "lucide-react";
+import Image from "next/image";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -16,20 +16,21 @@ const navigation = [
   { name: "Ports", href: "/ports" },
   { name: "Accreditation", href: "/accreditation" },
   { name: "Contact", href: "/contact" },
-]
+  { name: "Journey", href: "/contact" },
+];
 
 export function Navigation() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const pathname = usePathname()
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <motion.header
@@ -43,25 +44,43 @@ export function Navigation() {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center">
-            {isScrolled ? (
-              <Image
-                src="/greek-lanka-logo.png"
-                alt="Greek Lanka Maritime Services"
-                width={200}
-                height={60}
-                className="h-16 w-auto"
-              />
-            ) : (
-              <Image
-                src="/greek-lanka-logo.png"
-                alt="Greek Lanka Maritime Services"
-                width={200}
-                height={80}
-                className="h-16 w-auto filter brightness-0 invert"
-              />
+          <div className="flex items-center space-x-4">
+            <Link href="/" className="flex items-center">
+              {isScrolled ? (
+                <Image
+                  src="/greek-lanka-logo.png"
+                  alt="Greek Lanka Maritime Services"
+                  width={200}
+                  height={60}
+                  className="h-16 w-auto"
+                />
+              ) : (
+                <Image
+                  src="/greek-lanka-logo.png"
+                  alt="Greek Lanka Maritime Services"
+                  width={200}
+                  height={80}
+                  className="h-16 w-auto filter brightness-0 invert"
+                />
+              )}
+            </Link>
+            {isScrolled && (
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                <Image
+                  src="/iso-9001-min-150x145.png"
+                  alt="ISO 9001 Certified"
+                  width={60}
+                  height={60}
+                  className="h-12 w-auto"
+                />
+              </motion.div>
             )}
-          </Link>
+          </div>
+
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
             {navigation.map((item) => (
@@ -74,8 +93,8 @@ export function Navigation() {
                       ? "text-maritime-blue"
                       : "text-maritime-gold"
                     : isScrolled
-                      ? "text-gray-700 hover:text-maritime-blue"
-                      : "text-white hover:text-maritime-gold"
+                    ? "text-gray-700 hover:text-maritime-blue"
+                    : "text-white hover:text-maritime-gold"
                 }`}
               >
                 {item.name}
@@ -102,7 +121,7 @@ export function Navigation() {
               }`}
             >
               <LogIn className="mr-2 h-4 w-4" />
-              Login to PCM
+              Login to GLAURA
             </Button>
           </div>
 
@@ -112,7 +131,9 @@ export function Navigation() {
               <Button
                 variant="ghost"
                 size="sm"
-                className={`lg:hidden ${isScrolled ? "text-maritime-navy" : "text-white"}`}
+                className={`lg:hidden ${
+                  isScrolled ? "text-maritime-navy" : "text-white"
+                }`}
               >
                 <Menu className="h-6 w-6" />
               </Button>
@@ -137,7 +158,9 @@ export function Navigation() {
                         href={item.href}
                         onClick={() => setIsMobileMenuOpen(false)}
                         className={`block px-4 py-3 text-lg font-medium rounded-lg transition-colors ${
-                          pathname === item.href ? "bg-maritime-blue text-white" : "text-gray-700 hover:bg-gray-100"
+                          pathname === item.href
+                            ? "bg-maritime-blue text-white"
+                            : "text-gray-700 hover:bg-gray-100"
                         }`}
                       >
                         {item.name}
@@ -149,7 +172,7 @@ export function Navigation() {
                 <div className="mt-8">
                   <Button className="w-full bg-maritime-blue hover:bg-maritime-blue/90">
                     <LogIn className="mr-2 h-4 w-4" />
-                    Login to PCM
+                    Login to GLAURA
                   </Button>
                 </div>
               </div>
@@ -158,5 +181,5 @@ export function Navigation() {
         </div>
       </nav>
     </motion.header>
-  )
+  );
 }
