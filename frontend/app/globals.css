@@ -1,0 +1,248 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+
+    /* Maritime Color Palette */
+    --maritime-navy: 210 100% 15%;
+    --maritime-blue: 210 100% 50%;
+    --maritime-teal: 180 100% 35%;
+    --maritime-gold: 45 100% 60%;
+    --maritime-silver: 210 10% 70%;
+    --maritime-dark: 210 100% 10%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* Custom Maritime Colors */
+.text-maritime-navy {
+  color: hsl(var(--maritime-navy));
+}
+.text-maritime-blue {
+  color: hsl(var(--maritime-blue));
+}
+.text-maritime-teal {
+  color: hsl(var(--maritime-teal));
+}
+.text-maritime-gold {
+  color: hsl(var(--maritime-gold));
+}
+.text-maritime-silver {
+  color: hsl(var(--maritime-silver));
+}
+.text-maritime-dark {
+  color: hsl(var(--maritime-dark));
+}
+
+.bg-maritime-navy {
+  background-color: hsl(var(--maritime-navy));
+}
+.bg-maritime-blue {
+  background-color: hsl(var(--maritime-blue));
+}
+.bg-maritime-teal {
+  background-color: hsl(var(--maritime-teal));
+}
+.bg-maritime-gold {
+  background-color: hsl(var(--maritime-gold));
+}
+.bg-maritime-silver {
+  background-color: hsl(var(--maritime-silver));
+}
+.bg-maritime-dark {
+  background-color: hsl(var(--maritime-dark));
+}
+
+.border-maritime-navy {
+  border-color: hsl(var(--maritime-navy));
+}
+.border-maritime-blue {
+  border-color: hsl(var(--maritime-blue));
+}
+.border-maritime-teal {
+  border-color: hsl(var(--maritime-teal));
+}
+.border-maritime-gold {
+  border-color: hsl(var(--maritime-gold));
+}
+.border-maritime-silver {
+  border-color: hsl(var(--maritime-silver));
+}
+.border-maritime-dark {
+  border-color: hsl(var(--maritime-dark));
+}
+
+/* Custom cursor */
+.cursor-maritime {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23003d82' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='5' r='3'/%3E%3Cpath d='m12 22-8-5 8-11 8 11-8 5'/%3E%3Cpath d='M12 8v14'/%3E%3C/svg%3E"),
+    auto;
+}
+
+/* Hover cursor for interactive elements */
+.cursor-maritime button,
+.cursor-maritime a,
+.cursor-maritime [role="button"],
+.cursor-maritime .hover\:cursor-pointer:hover {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='%23003d82' stroke='%23ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='5' r='3'/%3E%3Cpath d='m12 22-8-5 8-11 8 11-8 5'/%3E%3Cpath d='M12 8v14'/%3E%3C/svg%3E"),
+    pointer;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom animations */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+}
+
+/* Gradient backgrounds */
+.bg-maritime-gradient {
+  background: linear-gradient(
+    135deg,
+    hsl(var(--maritime-navy)),
+    hsl(var(--maritime-blue)),
+    hsl(var(--maritime-teal))
+  );
+}
+
+.bg-maritime-gradient-gold {
+  background: linear-gradient(
+    135deg,
+    hsl(var(--maritime-gold)),
+    hsl(var(--maritime-blue))
+  );
+}
+
+/* Interactive elements */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--maritime-blue));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--maritime-navy));
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
