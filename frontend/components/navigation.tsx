@@ -15,8 +15,8 @@ const navigation = [
   { name: "Services", href: "/services" },
   { name: "Ports", href: "/ports" },
   { name: "Accreditation", href: "/accreditation" },
+  { name: "Journey", href: "/journey" },
   { name: "Contact", href: "/contact" },
-  { name: "Journey", href: "/contact" },
 ];
 
 export function Navigation() {
