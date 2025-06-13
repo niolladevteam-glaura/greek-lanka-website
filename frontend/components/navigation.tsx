@@ -6,22 +6,61 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, LogIn } from "lucide-react";
+import { Menu, LogIn, Search, X, ChevronDown } from "lucide-react";
 import Image from "next/image";
+import {
+  GB,
+  SA,
+  CN,
+  NL,
+  FR,
+  DE,
+  GR,
+  IT,
+  JP,
+  PT,
+  RU,
+  ES,
+} from "country-flag-icons/react/3x2";
 
 const navigation = [
   { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
+  {
+    name: "About",
+    href: "/about",
+    subItems: [
+      { name: "Blog", href: "/blog" },
+      { name: "Journey", href: "/journey" },
+    ],
+  },
   { name: "Services", href: "/services" },
   { name: "Ports", href: "/ports" },
   { name: "Accreditation", href: "/accreditation" },
-  { name: "Journey", href: "/journey" },
   { name: "Contact", href: "/contact" },
+];
+
+const languages = [
+  { code: "en", name: "English", Flag: GB },
+  { code: "ar", name: "Arabic", Flag: SA },
+  { code: "zh", name: "Chinese", Flag: CN },
+  { code: "nl", name: "Dutch", Flag: NL },
+  { code: "fr", name: "French", Flag: FR },
+  { code: "de", name: "German", Flag: DE },
+  { code: "el", name: "Greek", Flag: GR },
+  { code: "it", name: "Italian", Flag: IT },
+  { code: "ja", name: "Japanese", Flag: JP },
+  { code: "pt", name: "Portuguese", Flag: PT },
+  { code: "ru", name: "Russian", Flag: RU },
+  { code: "es", name: "Spanish", Flag: ES },
 ];
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
+  const [currentLanguage, setCurrentLanguage] = useState(languages[0]);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -32,6 +71,28 @@ export function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Searching for:", searchQuery);
+    setIsSearchOpen(false);
+  };
+
+  const handleLanguageChange = (langCode: string) => {
+    const selectedLang = languages.find((lang) => lang.code === langCode);
+    if (selectedLang) {
+      setCurrentLanguage(selectedLang);
+      console.log("Changing language to:", langCode);
+    }
+    setIsLanguageMenuOpen(false);
+  };
+
+  const isActive = (href: string) => {
+    return (
+      pathname === href ||
+      (href === "/about" && (pathname === "/blog" || pathname === "/journey"))
+    );
+  };
+
   return (
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -41,6 +102,37 @@ export function Navigation() {
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
     >
+      {/* Search Overlay */}
+      {isSearchOpen && (
+        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
+          <div className="w-full max-w-2xl relative">
+            <form onSubmit={handleSearch}>
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search..."
+                className="w-full p-4 text-lg rounded-lg focus:outline-none focus:ring-2 focus:ring-maritime-blue"
+                autoFocus
+              />
+              <button
+                type="submit"
+                className="absolute right-16 top-4 text-gray-500 hover:text-maritime-blue"
+              >
+                <Search size={24} />
+              </button>
+              <button
+                type="button"
+                onClick={() => setIsSearchOpen(false)}
+                className="absolute right-4 top-4 text-gray-500 hover:text-maritime-blue"
+              >
+                <X size={24} />
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
@@ -84,34 +176,121 @@ export function Navigation() {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
             {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={`relative px-3 py-2 text-sm font-medium transition-colors ${
-                  pathname === item.href
-                    ? isScrolled
-                      ? "text-maritime-blue"
-                      : "text-maritime-gold"
-                    : isScrolled
+              <div key={item.name} className="relative group">
+                <div className="flex items-center">
+                  <Link
+                    href={item.href}
+                    className={`relative px-3 py-2 text-sm font-medium transition-colors flex items-center ${
+                      isActive(item.href)
+                        ? isScrolled
+                          ? "text-maritime-blue"
+                          : "text-maritime-gold"
+                        : isScrolled
+                        ? "text-gray-700 hover:text-maritime-blue"
+                        : "text-white hover:text-maritime-gold"
+                    }`}
+                  >
+                    {item.name}
+                    {item.subItems && (
+                      <ChevronDown
+                        size={16}
+                        className="ml-1 transition-transform group-hover:rotate-180"
+                      />
+                    )}
+                    {isActive(item.href) && (
+                      <motion.div
+                        className={`absolute bottom-0 left-0 right-0 h-0.5 ${
+                          isScrolled ? "bg-maritime-blue" : "bg-maritime-gold"
+                        }`}
+                        layoutId="activeTab"
+                      />
+                    )}
+                  </Link>
+                </div>
+
+                {item.subItems && (
+                  <div className="absolute left-0 top-full invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200">
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="mt-0 w-48 origin-top-left rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-50"
+                    >
+                      <div className="py-1">
+                        {item.subItems.map((subItem) => (
+                          <Link
+                            key={subItem.name}
+                            href={subItem.href}
+                            className={`block px-4 py-2 text-sm ${
+                              pathname === subItem.href
+                                ? "bg-gray-100 text-maritime-blue"
+                                : "text-gray-700 hover:bg-gray-100"
+                            }`}
+                          >
+                            {subItem.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </motion.div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+
+          {/* Right Side Buttons */}
+          <div className="hidden lg:flex items-center space-x-4">
+            {/* Search Button */}
+            <button
+              onClick={() => setIsSearchOpen(true)}
+              className={`p-2 rounded-full ${
+                isScrolled
+                  ? "text-gray-700 hover:text-maritime-blue"
+                  : "text-white hover:text-maritime-gold"
+              }`}
+            >
+              <Search size={20} />
+            </button>
+
+            {/* Language Selector */}
+            <div className="relative group">
+              <button
+                onClick={() => setIsLanguageMenuOpen(!isLanguageMenuOpen)}
+                className={`px-3 py-2 text-sm font-medium rounded-md flex items-center ${
+                  isScrolled
                     ? "text-gray-700 hover:text-maritime-blue"
                     : "text-white hover:text-maritime-gold"
                 }`}
               >
-                {item.name}
-                {pathname === item.href && (
-                  <motion.div
-                    className={`absolute bottom-0 left-0 right-0 h-0.5 ${
-                      isScrolled ? "bg-maritime-blue" : "bg-maritime-gold"
-                    }`}
-                    layoutId="activeTab"
-                  />
-                )}
-              </Link>
-            ))}
-          </div>
+                <currentLanguage.Flag className="w-5 h-auto mr-2" />
+                {currentLanguage.code.toUpperCase()}
+                <ChevronDown
+                  size={16}
+                  className="ml-1 transition-transform group-hover:rotate-180"
+                />
+              </button>
+              <div className="absolute right-0 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200">
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-50"
+                >
+                  <div className="py-1 max-h-60 overflow-auto">
+                    {languages.map((lang) => (
+                      <button
+                        key={lang.code}
+                        onClick={() => handleLanguageChange(lang.code)}
+                        className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                      >
+                        <lang.Flag className="w-5 h-auto mr-3" />
+                        {lang.name}
+                      </button>
+                    ))}
+                  </div>
+                </motion.div>
+              </div>
+            </div>
 
-          {/* Login Button */}
-          <div className="hidden lg:flex items-center space-x-4">
+            {/* Login Button */}
             <Button
               size="sm"
               className={`${
@@ -151,25 +330,76 @@ export function Navigation() {
                 </div>
 
                 <nav className="flex-1">
-                  <div className="space-y-4">
+                  <div className="space-y-2">
                     {navigation.map((item) => (
-                      <Link
-                        key={item.name}
-                        href={item.href}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className={`block px-4 py-3 text-lg font-medium rounded-lg transition-colors ${
-                          pathname === item.href
-                            ? "bg-maritime-blue text-white"
-                            : "text-gray-700 hover:bg-gray-100"
-                        }`}
-                      >
-                        {item.name}
-                      </Link>
+                      <div key={item.name}>
+                        <Link
+                          href={item.href}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                          className={`block px-4 py-3 text-lg font-medium rounded-lg transition-colors ${
+                            isActive(item.href)
+                              ? "bg-maritime-blue text-white"
+                              : "text-gray-700 hover:bg-gray-100"
+                          }`}
+                        >
+                          {item.name}
+                        </Link>
+                        {item.subItems && (
+                          <div className="ml-4 mt-1 space-y-1">
+                            {item.subItems.map((subItem) => (
+                              <Link
+                                key={subItem.name}
+                                href={subItem.href}
+                                onClick={() => setIsMobileMenuOpen(false)}
+                                className={`block px-4 py-2 text-base font-medium rounded-lg transition-colors ${
+                                  pathname === subItem.href
+                                    ? "bg-maritime-blue/20 text-maritime-blue"
+                                    : "text-gray-600 hover:bg-gray-100"
+                                }`}
+                              >
+                                {subItem.name}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                      </div>
                     ))}
                   </div>
                 </nav>
 
-                <div className="mt-8">
+                <div className="mt-4">
+                  <button
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      setIsSearchOpen(true);
+                    }}
+                    className="w-full flex items-center justify-center px-4 py-3 mb-4 text-lg font-medium rounded-lg bg-gray-100 hover:bg-gray-200"
+                  >
+                    <Search className="mr-2 h-5 w-5" />
+                    Search
+                  </button>
+                </div>
+
+                <div className="mt-2 mb-4">
+                  <div className="relative">
+                    <select
+                      className="w-full px-4 py-3 text-lg rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-maritime-blue appearance-none"
+                      onChange={(e) => handleLanguageChange(e.target.value)}
+                      value={currentLanguage.code}
+                    >
+                      {languages.map((lang) => (
+                        <option key={lang.code} value={lang.code}>
+                          {lang.name}
+                        </option>
+                      ))}
+                    </select>
+                    <div className="absolute right-3 top-3 pointer-events-none">
+                      <ChevronDown size={20} />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-4">
                   <Button className="w-full bg-maritime-blue hover:bg-maritime-blue/90">
                     <LogIn className="mr-2 h-4 w-4" />
                     Login to GLAURA

@@ -21,7 +21,9 @@ export function HeroSection() {
       </div>
 
       {/* Navy Blue Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[rgba(0,20,73,0.9)] to-[rgba(0,42,82,0.4)]" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#010D2FE6] to-[#002A52B3]" />
+      {/* <div className="absolute inset-0 bg-gradient-to-t from-[rgba(1,13,47,0.9)] to-[rgba(0,42,82,0.4)]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[rgba(1,13,47,0.9)] to-[rgba(0,42,82,0.4)]" /> */}
 
       {/* Hero Content - Aligned with Navbar */}
       <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
