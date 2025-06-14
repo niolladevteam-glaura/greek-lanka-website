@@ -105,8 +105,8 @@ export default function HomePage() {
       <StatsSection />
       <ServicesGrid />
       <TrustSection />
-      <TestimonialsSection />
-      <ClientsSection />
+      {/* <TestimonialsSection />
+      <ClientsSection /> */}
       <BlogSection />
       <ContactSection />
     </div>
