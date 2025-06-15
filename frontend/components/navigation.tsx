@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, LogIn, Search, X, ChevronDown } from "lucide-react";
@@ -66,6 +66,7 @@ export function Navigation() {
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
   const [currentLanguage, setCurrentLanguage] = useState(languages[0]);
   const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -77,8 +78,14 @@ export function Navigation() {
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Searching for:", searchQuery);
-    setIsSearchOpen(false);
+    if (searchQuery.trim()) {
+      // Close search overlay
+      setIsSearchOpen(false);
+      // Navigate to search page with query parameter
+      router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+      // Clear the search input
+      setSearchQuery("");
+    }
   };
 
   const handleLanguageChange = (langCode: string) => {
