@@ -36,7 +36,11 @@ const navigation = [
   { name: "Services", href: "/services" },
   { name: "Ports", href: "/ports" },
   { name: "Accreditation", href: "/accreditation" },
-  { name: "Contact", href: "/contact" },
+  {
+    name: "Contact",
+    href: "/contact",
+    subItems: [{ name: "Careers", href: "/careers" }],
+  },
 ];
 
 const languages = [
@@ -165,9 +169,9 @@ export function Navigation() {
                 <Image
                   src="/iso-9001-min-150x145.png"
                   alt="ISO 9001 Certified"
-                  width={60}
-                  height={60}
-                  className="h-12 w-auto"
+                  width={200}
+                  height={80}
+                  className="h-16 w-auto"
                 />
               </motion.div>
             )}

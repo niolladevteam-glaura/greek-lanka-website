@@ -1,81 +1,179 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Phone, Mail, MapPin, Clock, VoicemailIcon as Fax, Building } from "lucide-react"
+import { motion } from "framer-motion";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardFooter,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Clock,
+  VoicemailIcon as Fax,
+  Building,
+  User,
+  Anchor,
+  Ship,
+  LifeBuoy,
+  Waves,
+} from "lucide-react";
+import Image from "next/image";
 
 const departments = [
   {
     name: "Operations Department",
     email: "operations@greeklanka.com",
     contacts: [
-      { name: "Udith Kalupahana (Mr)", phone: "+94 777 232 271", availability: "24/7" },
-      { name: "Yasith Kalupahana (Mr)", phone: "+94 777 001 855", availability: "24/7" },
-      { name: "Sajith Madushan (Mr)", phone: "+94 777 828 161", availability: "24/7" },
+      {
+        name: "Udith Kalupahana (Mr)",
+        phone: "+94 777 232 271",
+        availability: "24/7",
+      },
+      {
+        name: "Yasith Kalupahana (Mr)",
+        phone: "+94 777 001 855",
+        availability: "24/7",
+      },
+      {
+        name: "Sajith Madushan (Mr)",
+        phone: "+94 777 828 161",
+        availability: "24/7",
+      },
     ],
+    icon: <Ship className="h-6 w-6" />,
+    color: "bg-blue-500/10 text-blue-600",
   },
   {
     name: "Disbursement Department",
     email: "disbursement@greeklanka.com",
-    contacts: [{ name: "Accounts Team", phone: "+94 777 232 271", availability: "Business Hours" }],
+    contacts: [
+      {
+        name: "Accounts Team",
+        phone: "+94 777 232 271",
+        availability: "Business Hours",
+      },
+    ],
     additionalEmail: "accounts@greeklanka.com",
+    icon: <Anchor className="h-6 w-6" />,
+    color: "bg-emerald-500/10 text-emerald-600",
   },
   {
     name: "Career Opportunities",
     email: "admin@greeklanka.com",
-    contacts: [{ name: "HR Department", phone: "+94 777 232 271", availability: "Business Hours" }],
+    contacts: [
+      {
+        name: "HR Department",
+        phone: "+94 777 232 271",
+        availability: "Business Hours",
+      },
+    ],
+    icon: <User className="h-6 w-6" />,
+    color: "bg-purple-500/10 text-purple-600",
   },
-]
+];
 
 const offices = [
   {
     name: "Head Office",
-    address: "Level 5D, 46/7, Valiant Towers, Nawam Mawatha, Colombo 02, Sri Lanka. 00200",
-    phone: "+94 777 232 271 (24/7)",
-    alternatePhone: "+94 777 828 161 (24/7)",
+    address:
+      "Level 5D, 46/7, Valiant Towers, Nawam Mawatha, Colombo 02, Sri Lanka. 00200",
+    phone: "+94 777 232 271",
+    phoneLabel: "24/7",
+    alternatePhone: "+94 777 828 161",
+    alternatePhoneLabel: "24/7",
     fax: "+94 112 083 206",
     email: "operations@greeklanka.com",
+    mapUrl:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.923794885567!2d79.8475876!3d6.9188751!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25999d7df5973%3A0xde2468363e0ed0e!2sGREEK%20LANKA%20MARITIME%20SERVICES%20(PVT)%20LTD!5e0!3m2!1sen!2slk!4v1718547897291!5m2!1sen!2slk",
   },
   {
     name: "Galle and Hambantota Branch Office",
     address: "No.313, Circular Road, Magalle, Galle, Sri Lanka. 80000",
-    phone: "+94 777 001 855 (24/7)",
+    phone: "+94 777 001 855",
+    phoneLabel: "24/7",
     email: "operations@greeklanka.com",
+    mapUrl:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.073187899999!2d80.2147228!3d6.0313114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae173bb6934f7a5%3A0x3b4a1f9a5a5b5b5b!2sCircular%20Rd%2C%20Galle!5e0!3m2!1sen!2slk!4v1718548000000!5m2!1sen!2slk",
   },
   {
     name: "Trincomalee Branch Office",
     address: "Dockyard Road, Trincomalee, Sri Lanka.",
-    phone: "+94 777 001 855 (24/7)",
+    phone: "+94 777 001 855",
+    phoneLabel: "24/7",
     email: "operations@greeklanka.com",
+    mapUrl:
+      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3949.7313749999997!2d81.2286118!3d8.5641667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3afbbcb87c0d5f5f%3A0x3b4a1f9a5a5b5b5b!2sDockyard%20Rd%2C%20Trincomalee!5e0!3m2!1sen!2slk!4v1718548050000!5m2!1sen!2slk",
   },
-]
+];
+
+const teamMembers = [
+  {
+    name: "Udith Kalupahana",
+    position: "Director of Operations",
+    phone: "+94 777 232 271",
+    email: "udith@greeklanka.com",
+    image: "/team/udith.jpg",
+  },
+  {
+    name: "Yasith Kalupahana",
+    position: "Operations Manager",
+    phone: "+94 777 001 855",
+    email: "yasith@greeklanka.com",
+    image: "/team/yasith.jpg",
+  },
+  {
+    name: "Sajith Madushan",
+    position: "Port Operations Coordinator",
+    phone: "+94 777 828 161",
+    email: "sajith@greeklanka.com",
+    image: "/team/sajith.jpg",
+  },
+  {
+    name: "Nimali Perera",
+    position: "HR Manager",
+    phone: "+94 777 232 271",
+    email: "hr@greeklanka.com",
+    image: "/team/nimali.jpg",
+  },
+];
 
 export default function ContactPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-4 bg-maritime-gradient text-white">
-        <div className="max-w-7xl mx-auto">
+      <section className="relative pt-32 pb-20 px-4 bg-maritime-gradient text-white overflow-hidden">
+        <div className="absolute inset-0 bg-black/20 z-0"></div>
+        <div className="max-w-7xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">Contact Us</h1>
+            <h1 className="text-5xl md:text-7xl font-bold mb-6">
+              Connect With Us
+            </h1>
             <p className="text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed">
-              Ready to discuss your maritime service needs? Our expert team is available 24/7 to assist you.
+              Your trusted maritime partner in Sri Lanka. Our expert team is
+              available 24/7 to ensure smooth sailing for your operations.
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* Quick Contact */}
-      <section className="py-20 px-4">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-16 px-4 bg-gradient-to-b from-white to-blue-50 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-0 w-full h-full bg-[url('/wave-pattern.svg')] bg-repeat"></div>
+        </div>
+        <div className="max-w-7xl mx-auto relative">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -83,79 +181,181 @@ export default function ContactPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-maritime-navy mb-6">Get in Touch</h2>
+            <span className="inline-block px-3 py-1 text-sm font-medium rounded-full bg-blue-100 text-blue-600 mb-4">
+              Always Available
+            </span>
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">
+              Direct Lines to Our Team
+            </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Contact our expert team for immediate assistance with your maritime operations
+              Immediate access to maritime experts through multiple channels
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <Card className="text-center p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-2">
-                <CardContent className="p-0">
-                  <Phone className="h-12 w-12 text-maritime-blue mx-auto mb-4" />
-                  <h3 className="font-semibold text-maritime-navy mb-2">24/7 Operations</h3>
-                  <p className="text-gray-600">+94 777 232 271</p>
-                  <p className="text-gray-600">+94 777 191 114</p>
-                </CardContent>
-              </Card>
-            </motion.div>
+            {[
+              {
+                icon: <Phone className="h-8 w-8" />,
+                title: "24/7 Operations",
+                content: (
+                  <div className="space-y-1">
+                    <a
+                      href="tel:+94777232271"
+                      className="block hover:text-blue-600 transition-colors font-medium"
+                    >
+                      +94 777 232 271
+                    </a>
+                    <a
+                      href="tel:+94777191114"
+                      className="block hover:text-blue-600 transition-colors font-medium"
+                    >
+                      +94 777 191 114
+                    </a>
+                  </div>
+                ),
+                bg: "bg-blue-600",
+                ring: "ring-blue-100",
+              },
+              {
+                icon: <Mail className="h-8 w-8" />,
+                title: "Email Support",
+                content: (
+                  <a
+                    href="mailto:operations@greeklanka.com"
+                    className="block hover:text-blue-600 transition-colors font-medium py-3"
+                  >
+                    operations@greeklanka.com
+                  </a>
+                ),
+                bg: "bg-emerald-600",
+                ring: "ring-emerald-100",
+              },
+              {
+                icon: <Fax className="h-8 w-8" />,
+                title: "Fax",
+                content: (
+                  <span className="block py-3 font-medium">
+                    +94 112 083 206
+                  </span>
+                ),
+                bg: "bg-purple-600",
+                ring: "ring-purple-100",
+              },
+              {
+                icon: <LifeBuoy className="h-8 w-8" />,
+                title: "Emergency",
+                content: (
+                  <span className="block py-3 font-medium">24/7 Support</span>
+                ),
+                bg: "bg-red-600",
+                ring: "ring-red-100",
+              },
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="h-full"
+              >
+                <div
+                  className={`p-1 rounded-2xl ${item.ring} transition-all hover:ring-4 h-full`}
+                >
+                  {" "}
+                  <div className="h-full bg-white rounded-xl shadow-sm p-6 flex flex-col">
+                    <div
+                      className={`h-14 w-14 ${item.bg} rounded-xl flex items-center justify-center text-white mb-6`}
+                    >
+                      {item.icon}
+                    </div>
+                    <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                      {item.title}
+                    </h3>
+                    <div className="text-gray-600 text-sm mt-auto">
+                      {" "}
+                      {item.content}
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true }}
-            >
-              <Card className="text-center p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-2">
-                <CardContent className="p-0">
-                  <Mail className="h-12 w-12 text-maritime-blue mx-auto mb-4" />
-                  <h3 className="font-semibold text-maritime-navy mb-2">Email</h3>
-                  <p className="text-gray-600">operations@greeklanka.com</p>
-                </CardContent>
-              </Card>
-            </motion.div>
+      {/* Team Section */}
+      <section className="py-16 px-4 bg-gray-50">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-4xl font-bold text-maritime-navy mb-4">
+              Our Key Team Members
+            </h2>
+            <div className="w-24 h-1 bg-maritime-blue mx-auto mb-6"></div>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Meet the dedicated professionals who make it all happen
+            </p>
+          </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              <Card className="text-center p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-2">
-                <CardContent className="p-0">
-                  <Fax className="h-12 w-12 text-maritime-blue mx-auto mb-4" />
-                  <h3 className="font-semibold text-maritime-navy mb-2">Fax</h3>
-                  <p className="text-gray-600">+94 112 083 206</p>
-                </CardContent>
-              </Card>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              viewport={{ once: true }}
-            >
-              <Card className="text-center p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-2">
-                <CardContent className="p-0">
-                  <Clock className="h-12 w-12 text-maritime-blue mx-auto mb-4" />
-                  <h3 className="font-semibold text-maritime-navy mb-2">Availability</h3>
-                  <p className="text-gray-600">24/7 Emergency Support</p>
-                </CardContent>
-              </Card>
-            </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {teamMembers.map((member, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <Card className="h-full overflow-hidden transition-all duration-300 hover:shadow-lg group">
+                  <div className="relative h-64 overflow-hidden">
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <CardContent className="p-6">
+                    <h3 className="text-xl font-bold text-maritime-navy mb-1">
+                      {member.name}
+                    </h3>
+                    <p className="text-maritime-blue mb-4">{member.position}</p>
+                    <div className="space-y-2">
+                      <div className="flex items-center">
+                        <Phone className="h-4 w-4 mr-2 text-gray-500" />
+                        <a
+                          href={`tel:${member.phone}`}
+                          className="text-sm hover:text-maritime-blue"
+                        >
+                          {member.phone}
+                        </a>
+                      </div>
+                      <div className="flex items-center">
+                        <Mail className="h-4 w-4 mr-2 text-gray-500" />
+                        <a
+                          href={`mailto:${member.email}`}
+                          className="text-sm hover:text-maritime-blue"
+                        >
+                          {member.email}
+                        </a>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Departments */}
-      <section className="py-20 px-4 bg-gray-50">
+      <section className="py-16 px-4 bg-white">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -164,9 +364,14 @@ export default function ContactPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-maritime-navy mb-6">Departments</h2>
+            <span className="inline-block px-3 py-1 text-sm font-medium rounded-full bg-blue-100 text-blue-600 mb-4">
+              Specialized Teams
+            </span>
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">
+              Department Contacts
+            </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Connect with the right department for your specific needs
+              Connect directly with our specialized maritime teams
             </p>
           </motion.div>
 
@@ -179,58 +384,107 @@ export default function ContactPage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <Card className="h-full p-6 hover:shadow-xl transition-all duration-300">
-                  <CardHeader className="p-0 mb-6">
-                    <CardTitle className="text-maritime-navy">{dept.name}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="p-0">
-                    <div className="space-y-4">
-                      <div className="flex items-center">
-                        <Mail className="h-5 w-5 text-maritime-blue mr-3" />
-                        <span className="text-gray-600">{dept.email}</span>
+                <div className="h-full group relative overflow-hidden rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-all">
+                  <div className="absolute inset-0 bg-gradient-to-br from-white to-gray-50 z-0"></div>
+                  <div className="relative z-10 h-full flex flex-col">
+                    <div className="p-6">
+                      <div
+                        className={`h-12 w-12 ${dept.color} rounded-lg flex items-center justify-center mb-4`}
+                      >
+                        {dept.icon}
                       </div>
-                      {dept.additionalEmail && (
-                        <div className="flex items-center">
-                          <Mail className="h-5 w-5 text-maritime-blue mr-3" />
-                          <span className="text-gray-600">{dept.additionalEmail}</span>
+                      <h3 className="text-xl font-bold text-gray-900 mb-2">
+                        {dept.name}
+                      </h3>
+
+                      <div className="mt-6 space-y-4">
+                        <div>
+                          <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                            Email
+                          </h4>
+                          <a
+                            href={`mailto:${dept.email}`}
+                            className="text-blue-600 hover:underline flex items-center font-medium"
+                          >
+                            <Mail className="h-4 w-4 mr-2" />
+                            {dept.email}
+                          </a>
+                          {dept.additionalEmail && (
+                            <a
+                              href={`mailto:${dept.additionalEmail}`}
+                              className="text-blue-600 hover:underline flex items-center mt-1 font-medium"
+                            >
+                              <Mail className="h-4 w-4 mr-2" />
+                              {dept.additionalEmail}
+                            </a>
+                          )}
                         </div>
-                      )}
-                      {dept.contacts.map((contact, contactIndex) => (
-                        <div key={contactIndex} className="border-t pt-3">
-                          <p className="font-medium text-maritime-navy">{contact.name}</p>
-                          <div className="flex items-center mt-1">
-                            <Phone className="h-4 w-4 text-maritime-blue mr-2" />
-                            <span className="text-gray-600">{contact.phone}</span>
-                          </div>
-                          <p className="text-sm text-maritime-blue mt-1">{contact.availability}</p>
+
+                        <div>
+                          <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                            Contacts
+                          </h4>
+                          {dept.contacts.map((contact, contactIndex) => (
+                            <div key={contactIndex} className="mb-4 last:mb-0">
+                              <p className="font-medium text-gray-900">
+                                {contact.name}
+                              </p>
+                              <a
+                                href={`tel:${contact.phone.replace(/\D/g, "")}`}
+                                className="text-gray-600 hover:text-blue-600 flex items-center mt-1 font-medium"
+                              >
+                                <Phone className="h-4 w-4 mr-2" />
+                                {contact.phone}
+                              </a>
+                              <div className="flex items-center text-sm text-blue-600 mt-1">
+                                <Clock className="h-3 w-3 mr-1" />
+                                {contact.availability}
+                              </div>
+                            </div>
+                          ))}
                         </div>
-                      ))}
+                      </div>
                     </div>
-                  </CardContent>
-                </Card>
+
+                    <div className="mt-auto p-6 pt-0">
+                      {/* <Button
+                        variant="outline"
+                        className="w-full border-gray-300 hover:border-blue-300"
+                      >
+                        Contact Department
+                      </Button> */}
+                    </div>
+                  </div>
+
+                  {/* Decorative element */}
+                  {/* <div className="absolute bottom-0 right-0 h-32 w-32 bg-blue-50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-x-1/2 translate-y-1/2"></div> */}
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Office Locations */}
-      <section className="py-20 px-4">
+      {/* Office Locations with Maps */}
+      <section className="py-16 px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-12"
           >
-            <h2 className="text-4xl font-bold text-maritime-navy mb-6">Office Locations</h2>
+            <h2 className="text-4xl font-bold text-maritime-navy mb-4">
+              Our Offices
+            </h2>
+            <div className="w-24 h-1 bg-maritime-blue mx-auto mb-6"></div>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Visit us at our strategically located offices across Sri Lanka
+              Strategically located across Sri Lanka for your convenience
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="space-y-12">
             {offices.map((office, index) => (
               <motion.div
                 key={index}
@@ -238,43 +492,94 @@ export default function ContactPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
+                className="grid grid-cols-1 lg:grid-cols-2 gap-8"
               >
-                <Card className="h-full p-6 hover:shadow-xl transition-all duration-300">
-                  <CardHeader className="p-0 mb-6">
+                <Card className="h-full border border-gray-200 rounded-lg overflow-hidden">
+                  <CardHeader className="bg-maritime-navy p-4">
                     <div className="flex items-center">
-                      <Building className="h-8 w-8 text-maritime-blue mr-3" />
-                      <CardTitle className="text-maritime-navy">{office.name}</CardTitle>
+                      <Building className="h-6 w-6 text-white mr-3" />
+                      <CardTitle className="text-white">
+                        {office.name}
+                      </CardTitle>
                     </div>
                   </CardHeader>
-                  <CardContent className="p-0">
+                  <CardContent className="p-6">
                     <div className="space-y-4">
-                      <div className="flex items-start">
-                        <MapPin className="h-5 w-5 text-maritime-blue mr-3 mt-1" />
-                        <span className="text-gray-600">{office.address}</span>
+                      <div>
+                        <h4 className="text-sm font-semibold text-gray-500 mb-2">
+                          ADDRESS
+                        </h4>
+                        <a
+                          href={`https://maps.google.com/?q=${encodeURIComponent(
+                            office.address
+                          )}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-gray-600 hover:text-maritime-blue flex items-start"
+                        >
+                          <MapPin className="h-4 w-4 mr-2 mt-1" />
+                          {office.address}
+                        </a>
                       </div>
-                      <div className="flex items-center">
-                        <Phone className="h-5 w-5 text-maritime-blue mr-3" />
-                        <span className="text-gray-600">{office.phone}</span>
-                      </div>
-                      {office.alternatePhone && (
-                        <div className="flex items-center">
-                          <Phone className="h-5 w-5 text-maritime-blue mr-3" />
-                          <span className="text-gray-600">{office.alternatePhone}</span>
-                        </div>
-                      )}
-                      {office.fax && (
-                        <div className="flex items-center">
-                          <Fax className="h-5 w-5 text-maritime-blue mr-3" />
-                          <span className="text-gray-600">{office.fax}</span>
-                        </div>
-                      )}
-                      <div className="flex items-center">
-                        <Mail className="h-5 w-5 text-maritime-blue mr-3" />
-                        <span className="text-gray-600">{office.email}</span>
+
+                      <div>
+                        <h4 className="text-sm font-semibold text-gray-500 mb-2">
+                          CONTACT
+                        </h4>
+                        <a
+                          href={`tel:${office.phone.replace(/\D/g, "")}`}
+                          className="text-gray-600 hover:text-maritime-blue flex items-center"
+                        >
+                          <Phone className="h-4 w-4 mr-2" />
+                          {office.phone}{" "}
+                          <span className="text-sm ml-2">
+                            ({office.phoneLabel})
+                          </span>
+                        </a>
+                        {office.alternatePhone && (
+                          <a
+                            href={`tel:${office.alternatePhone.replace(
+                              /\D/g,
+                              ""
+                            )}`}
+                            className="text-gray-600 hover:text-maritime-blue flex items-center mt-1"
+                          >
+                            <Phone className="h-4 w-4 mr-2" />
+                            {office.alternatePhone}{" "}
+                            <span className="text-sm ml-2">
+                              ({office.alternatePhoneLabel})
+                            </span>
+                          </a>
+                        )}
+                        {office.fax && (
+                          <div className="flex items-center text-gray-600 mt-1">
+                            <Fax className="h-4 w-4 mr-2" />
+                            {office.fax}
+                          </div>
+                        )}
+                        <a
+                          href={`mailto:${office.email}`}
+                          className="text-maritime-blue hover:underline flex items-center mt-1"
+                        >
+                          <Mail className="h-4 w-4 mr-2" />
+                          {office.email}
+                        </a>
                       </div>
                     </div>
                   </CardContent>
                 </Card>
+
+                <div className="h-full rounded-lg overflow-hidden shadow-md">
+                  <iframe
+                    src={office.mapUrl}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0, minHeight: "300px" }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -282,33 +587,77 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Form */}
-      <section className="py-20 px-4 bg-gray-50">
+      <section className="py-16 px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
+              className="space-y-8"
             >
-              <h3 className="text-3xl font-bold text-maritime-navy mb-6">Send us a Message</h3>
-              <p className="text-lg text-gray-600 mb-8">
-                Have a question or need assistance? Fill out the form and our team will get back to you promptly.
-              </p>
-              <Card className="p-8">
-                <CardContent className="p-0">
-                  <form className="space-y-6">
-                    <Input placeholder="Your Name" className="h-12" />
-                    <Input placeholder="Your Email" type="email" className="h-12" />
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <Input placeholder="Phone Number" className="h-12" />
-                      <Input placeholder="Company" className="h-12" />
+              <div>
+                <h3 className="text-3xl font-bold text-maritime-navy mb-4">
+                  Get in Touch
+                </h3>
+                <div className="w-16 h-1 bg-maritime-blue mb-6"></div>
+                <p className="text-lg text-gray-600 mb-8">
+                  Have questions or need a quote? Fill out the form and our
+                  maritime experts will get back to you within 24 hours.
+                </p>
+              </div>
+
+              <div className="space-y-6">
+                {[
+                  {
+                    icon: <LifeBuoy className="h-6 w-6 text-maritime-blue" />,
+                    title: "24/7 Emergency Support",
+                    description:
+                      "Immediate assistance for urgent maritime situations",
+                  },
+                  {
+                    icon: <Ship className="h-6 w-6 text-maritime-blue" />,
+                    title: "Vessel Operations",
+                    description:
+                      "Comprehensive support for all your vessel needs",
+                  },
+                  {
+                    icon: <User className="h-6 w-6 text-maritime-blue" />,
+                    title: "Personalized Service",
+                    description: "Dedicated account managers for your business",
+                  },
+                ].map((item, index) => (
+                  <div key={index} className="flex items-start">
+                    <div className="p-2 bg-blue-50 rounded-lg mr-4">
+                      {item.icon}
                     </div>
-                    <Textarea placeholder="Your Message" rows={6} />
-                    <Button size="lg" className="w-full bg-maritime-blue hover:bg-maritime-blue/90">
-                      Send Message
-                    </Button>
-                  </form>
+                    <div>
+                      <h4 className="font-semibold text-lg text-maritime-navy">
+                        {item.title}
+                      </h4>
+                      <p className="text-gray-600">{item.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <Card className="bg-maritime-navy text-white">
+                <CardContent className="p-6">
+                  <h4 className="text-xl font-bold mb-4 text-maritime-gold">
+                    Emergency Contact
+                  </h4>
+                  <p className="mb-4">
+                    For urgent maritime assistance that can't wait, contact our
+                    24/7 emergency hotline:
+                  </p>
+                  <a
+                    href="tel:+94777232271"
+                    className="flex items-center text-xl font-semibold hover:text-maritime-gold transition-colors"
+                  >
+                    <Phone className="h-6 w-6 mr-3" />
+                    +94 777 232 271
+                  </a>
                 </CardContent>
               </Card>
             </motion.div>
@@ -318,52 +667,104 @@ export default function ContactPage() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="space-y-8"
             >
-              <div>
-                <h3 className="text-3xl font-bold text-maritime-navy mb-6">Why Choose Us?</h3>
-                <div className="space-y-4">
-                  <div className="flex items-start">
-                    <div className="w-2 h-2 bg-maritime-blue rounded-full mt-3 mr-4"></div>
-                    <div>
-                      <h4 className="font-semibold text-maritime-navy mb-1">24/7 Availability</h4>
-                      <p className="text-gray-600">
-                        Round-the-clock support for all maritime emergencies and operations
-                      </p>
+              <Card className="border-0 shadow-xl">
+                <CardContent className="p-8">
+                  <form className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label
+                          htmlFor="name"
+                          className="block text-sm font-medium text-gray-700 mb-1"
+                        >
+                          Full Name
+                        </label>
+                        <Input
+                          id="name"
+                          placeholder="Your Name"
+                          className="h-12"
+                        />
+                      </div>
+                      <div>
+                        <label
+                          htmlFor="email"
+                          className="block text-sm font-medium text-gray-700 mb-1"
+                        >
+                          Email
+                        </label>
+                        <Input
+                          id="email"
+                          placeholder="Your Email"
+                          type="email"
+                          className="h-12"
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div className="flex items-start">
-                    <div className="w-2 h-2 bg-maritime-blue rounded-full mt-3 mr-4"></div>
-                    <div>
-                      <h4 className="font-semibold text-maritime-navy mb-1">Expert Team</h4>
-                      <p className="text-gray-600">Experienced maritime professionals with deep local knowledge</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <div className="w-2 h-2 bg-maritime-blue rounded-full mt-3 mr-4"></div>
-                    <div>
-                      <h4 className="font-semibold text-maritime-navy mb-1">Comprehensive Services</h4>
-                      <p className="text-gray-600">Full range of maritime services under one roof</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <div className="w-2 h-2 bg-maritime-blue rounded-full mt-3 mr-4"></div>
-                    <div>
-                      <h4 className="font-semibold text-maritime-navy mb-1">Strategic Locations</h4>
-                      <p className="text-gray-600">Offices at all major Sri Lankan ports for immediate support</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
 
-              <Card className="p-6 bg-maritime-navy text-white">
-                <CardContent className="p-0">
-                  <h4 className="text-xl font-bold mb-4 text-maritime-gold">Emergency Contact</h4>
-                  <p className="mb-4">For urgent maritime assistance, contact our 24/7 emergency hotline:</p>
-                  <div className="flex items-center text-lg font-semibold">
-                    <Phone className="h-5 w-5 mr-2" />
-                    +94 777 232 271
-                  </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label
+                          htmlFor="phone"
+                          className="block text-sm font-medium text-gray-700 mb-1"
+                        >
+                          Phone
+                        </label>
+                        <Input
+                          id="phone"
+                          placeholder="Phone Number"
+                          className="h-12"
+                        />
+                      </div>
+                      <div>
+                        <label
+                          htmlFor="company"
+                          className="block text-sm font-medium text-gray-700 mb-1"
+                        >
+                          Company
+                        </label>
+                        <Input
+                          id="company"
+                          placeholder="Your Company"
+                          className="h-12"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="subject"
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Subject
+                      </label>
+                      <Input
+                        id="subject"
+                        placeholder="Subject"
+                        className="h-12"
+                      />
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="message"
+                        className="block text-sm font-medium text-gray-700 mb-1"
+                      >
+                        Message
+                      </label>
+                      <Textarea
+                        id="message"
+                        placeholder="Your Message"
+                        rows={5}
+                      />
+                    </div>
+
+                    <Button
+                      size="lg"
+                      className="w-full bg-maritime-blue hover:bg-maritime-blue/90 text-white"
+                    >
+                      Send Message
+                    </Button>
+                  </form>
                 </CardContent>
               </Card>
             </motion.div>
@@ -371,5 +772,5 @@ export default function ContactPage() {
         </div>
       </section>
     </div>
-  )
+  );
 }

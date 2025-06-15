@@ -1,19 +1,19 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Card, CardContent } from "@/components/ui/card"
-import { Ship, Users, Globe, Award } from "lucide-react"
+import { motion } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import { Ship, Users, Globe, Award } from "lucide-react";
 
 const stats = [
   {
     icon: Ship,
-    value: "500+",
+    value: "1300+",
     label: "Vessels Served",
     description: "Successfully handled vessels across all Sri Lankan ports",
   },
   {
     icon: Users,
-    value: "50+",
+    value: "25+",
     label: "Expert Team",
     description: "Experienced maritime professionals at your service",
   },
@@ -25,11 +25,11 @@ const stats = [
   },
   {
     icon: Award,
-    value: "15+",
-    label: "Years Experience",
+    value: "12+",
+    label: "Industry Knowledge",
     description: "Proven track record in maritime services",
   },
-]
+];
 
 export function StatsSection() {
   return (
@@ -42,9 +42,12 @@ export function StatsSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-maritime-navy mb-6">Our Impact in Numbers</h2>
+          <h2 className="text-4xl font-bold text-maritime-navy mb-6">
+            Our Impact in Numbers
+          </h2>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Delivering excellence across Sri Lanka's maritime industry with measurable results
+            Delivering excellence across Sri Lanka's maritime industry with
+            measurable results
           </p>
         </motion.div>
 
@@ -69,8 +72,12 @@ export function StatsSection() {
                   >
                     {stat.value}
                   </motion.div>
-                  <h3 className="text-xl font-semibold text-maritime-navy mb-3">{stat.label}</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">{stat.description}</p>
+                  <h3 className="text-xl font-semibold text-maritime-navy mb-3">
+                    {stat.label}
+                  </h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    {stat.description}
+                  </p>
                 </CardContent>
               </Card>
             </motion.div>
@@ -78,5 +85,5 @@ export function StatsSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

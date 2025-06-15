@@ -1,7 +1,22 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Ship, Globe, Shield, Users, Phone } from "lucide-react";
+import {
+  ArrowRight,
+  Ship,
+  Globe,
+  Shield,
+  Users,
+  Phone,
+  Clock,
+  MapPin,
+  CheckCircle2,
+  Globe2,
+  ShieldCheck,
+  Anchor,
+  Zap,
+  Briefcase,
+} from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -72,18 +87,26 @@ export default function HomePage() {
           className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16"
         >
           {[
-            { icon: Ship, label: "24/7 Service", value: "Always Available" },
             {
-              icon: Globe,
-              label: "Global Network",
-              value: "Worldwide Coverage",
+              icon: Clock,
+              label: "24/7 Service",
+              value: "Always available, anytime you need us.",
             },
             {
-              icon: Shield,
-              label: "Trusted Partner",
-              value: "Reliable Service",
+              icon: MapPin,
+              label: "Island-Wide Coverage",
+              value: "All Sri Lankan ports handled.",
             },
-            { icon: Users, label: "Expert Team", value: "Professional Staff" },
+            {
+              icon: Ship,
+              label: "Complete Solutions",
+              value: "One-stop agency for all vessel needs.",
+            },
+            {
+              icon: Globe2,
+              label: "Trusted Worldwide",
+              value: "Proven by global shipping companies.",
+            },
           ].map((item, index) => (
             <Card
               key={index}

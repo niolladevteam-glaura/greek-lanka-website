@@ -142,11 +142,12 @@ export default function PortsPage() {
             className="text-center"
           >
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              Sri Lanka's Strategic Ports
+              Which Sri Lankan port best suits your vessel’s operational
+              requirements?
             </h1>
             <p className="text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed">
-              Gateway to the Indian Ocean - Connecting East and West through
-              world-class maritime infrastructure
+              From deep-water container terminals to energy logistics hubs and
+              OPL support points, our nationwide port network delivers.
             </p>
           </motion.div>
         </div>

@@ -55,9 +55,11 @@ export function HeroSection() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              The Most Trusted Long-Term Partner Providing
-              <br className="hidden md:block" /> Services to The Global Maritime
-              Industry
+              <span className="inline-block md:whitespace-nowrap">
+                Fast. Reliable. Unstoppable. Sri Lanka's #1 Ship Agent is here
+              </span>
+              <br className="hidden md:block" />
+              Let's get things moving!
             </motion.p>
 
             <motion.div

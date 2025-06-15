@@ -85,8 +85,9 @@ export function Footer() {
               />
             </div>
             <p className="text-gray-300 mb-6 leading-relaxed">
-              The Most Trusted Long-Term Partner Providing Services to The
-              Global Maritime Industry
+              Fast. Reliable. Unstoppable. <br />
+              Sri Lanka’s #1 Ship Agent is here <br />
+              Let’s get things moving!
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social) => (
