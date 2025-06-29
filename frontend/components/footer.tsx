@@ -103,6 +103,11 @@ export function Footer() {
                 </Link>
               ))}
             </div>
+            <Link href={"/careers"}>
+              <Button className="mt-4 bg-maritime-gold hover:bg-maritime-gold/90 text-maritime-navy">
+                Careers
+              </Button>
+            </Link>
           </motion.div>
 
           {/* Quick Links */}

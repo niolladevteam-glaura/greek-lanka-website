@@ -30,16 +30,38 @@ const navigation = [
     href: "/about",
     subItems: [
       { name: "Blog", href: "/blog" },
-      { name: "Journey", href: "/journey" },
+      //{ name: "Journey", href: "/journey" },
     ],
   },
-  { name: "Services", href: "/services" },
+  {
+    name: "Services",
+    href: "/services",
+    subItems: [
+      { name: "Port Agency Services", href: "/services" },
+      { name: "Crew Change Services", href: "/services/crew-change-services" },
+      { name: "Port Agency Services", href: "/services" },
+      { name: "Ship Chandling Services", href: "/services" },
+      { name: "Cargo Handling Operations", href: "/services" },
+      { name: "Owner's Protective Agency services", href: "/services" },
+      { name: "Bunker Brokering", href: "/services" },
+      { name: "Yacht/Cruise Agency", href: "/services" },
+      {
+        name: "Foreign Naval Ships Agency",
+        href: "/services/foreign-naval-ships-agency-services",
+      },
+      { name: "Dry Dock Management", href: "/services" },
+      { name: "Marine Pest Control", href: "/services" },
+      { name: "Maritime Security", href: "/services" },
+      { name: "Offshore Support", href: "/services" },
+      { name: "Documentation Services", href: "/services" },
+      { name: "Emergency Services", href: "/services" },
+    ],
+  },
   { name: "Ports", href: "/ports" },
   { name: "Accreditation", href: "/accreditation" },
   {
     name: "Contact",
     href: "/contact",
-    subItems: [{ name: "Careers", href: "/careers" }],
   },
 ];
 
