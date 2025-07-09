@@ -268,7 +268,7 @@ export function Navigation() {
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-80">
-              <div className="flex flex-col h-full">
+              <div className="flex flex-col h-full overflow-y-auto">
                 <div className="flex items-center justify-between mb-8">
                   <Image
                     src="/greek-lanka-logo.png"

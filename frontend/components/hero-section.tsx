@@ -102,7 +102,7 @@ export function HeroSection() {
   }, [mousePosition]);
 
   return (
-    <section className="relative h-screen w-full flex items-center overflow-hidden">
+    <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
@@ -121,7 +121,7 @@ export function HeroSection() {
         className="absolute inset-0 z-10 pointer-events-none"
         style={{ mixBlendMode: "screen" }}
       />
-      Animated Grid Pattern Overlay
+      {/* Animated Grid Pattern Overlay */}
       <div className="absolute inset-0 z-10 opacity-20">
         <div className="absolute inset-0 bg-gradient-to-br from-transparent via-maritime-gold/5 to-transparent animate-pulse" />
         <div
@@ -160,83 +160,102 @@ export function HeroSection() {
         ))}
       </div> */}
       {/* Hero Content */}
-      <div className="relative z-20 w-full px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
-        <div className="ml-0">
+      <div
+        className="
+    relative z-20 w-full px-4 sm:px-6 lg:px-8 max-w-7xl
+    flex flex-col items-start justify-center
+    text-left
+  "
+      >
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="max-w-2xl w-full flex flex-col items-start"
+        >
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="max-w-2xl"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.5 }}
+            className="relative flex items-center"
           >
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.5 }}
-              className="relative"
-            >
-              <div className="absolute -inset-4 bg-maritime-gold/20 rounded-full blur-xl animate-pulse" />
-              <Anchor className="relative h-12 w-12 mb-6 text-maritime-gold drop-shadow-lg" />
-            </motion.div>
+            <div className="absolute -inset-4 bg-maritime-gold/20 rounded-full blur-xl animate-pulse" />
+            <Anchor className="relative h-12 w-12 mb-6 text-maritime-gold drop-shadow-lg" />
+          </motion.div>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-              <motion.span
-                className="block text-white drop-shadow-2xl"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-              >
-                Greek Lanka
-              </motion.span>
-              <motion.span
-                className="block text-maritime-gold mt-2 drop-shadow-2xl"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-              >
-                Maritime Services
-              </motion.span>
-            </h1>
-
-            <motion.p
-              className="text-lg md:text-xl lg:text-2xl mb-8 leading-relaxed text-white drop-shadow-lg"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.7 }}
-            >
-              <span className="inline-block md:whitespace-nowrap">
-                Fast. Reliable. Unstoppable. Sri Lanka's #1 Ship Agent is here
-              </span>
-              <br className="hidden md:block" />
-              Let's get things moving!
-            </motion.p>
-
-            <motion.div
-              className="flex flex-col sm:flex-row gap-4"
+          <h1
+            className="
+        font-bold mb-6 leading-tight
+        text-4xl sm:text-5xl md:text-6xl lg:text-7xl
+        text-left
+      "
+          >
+            <motion.span
+              className="block text-white drop-shadow-2xl"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.9 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
             >
-              <Button
-                asChild
-                size="lg"
-                className="bg-maritime-gold hover:bg-maritime-gold/90 text-maritime-navy font-semibold shadow-2xl hover:shadow-maritime-gold/25 transition-all duration-300 hover:scale-105"
-              >
-                <Link href="/services" className="flex items-center">
-                  Our Services
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-              </Button>
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-                className="border-white text-white hover:bg-white/10 hover:text-white font-semibold backdrop-blur-sm shadow-2xl transition-all duration-300 hover:scale-105 bg-transparent"
-              >
-                <Link href="/contact">Get in Touch</Link>
-              </Button>
-            </motion.div>
+              Greek Lanka
+            </motion.span>
+            <motion.span
+              className="block text-maritime-gold mt-2 drop-shadow-2xl"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+            >
+              Maritime Services
+            </motion.span>
+          </h1>
+
+          <motion.p
+            className="text-lg md:text-xl lg:text-2xl mb-8 leading-relaxed text-white drop-shadow-lg text-left"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
+          >
+            <span className="inline-block md:whitespace-nowrap">
+              Fast. Reliable. Unstoppable. Sri Lanka's #1 Ship Agent is here
+            </span>
+            <br className="hidden md:block" />
+            Let's get things moving!
+          </motion.p>
+
+          <motion.div
+            className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-start items-start"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.9 }}
+          >
+            <Button
+              asChild
+              size="lg"
+              className="
+          w-full sm:w-auto
+          bg-maritime-gold hover:bg-maritime-gold/90 text-maritime-navy
+          font-semibold shadow-2xl hover:shadow-maritime-gold/25
+          transition-all duration-300 hover:scale-105
+        "
+            >
+              <Link href="/services" className="flex items-center">
+                Our Services
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Link>
+            </Button>
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
+              className="
+          w-full sm:w-auto
+          border-white text-white hover:bg-white/10 hover:text-white font-semibold
+          backdrop-blur-sm shadow-2xl transition-all duration-300 hover:scale-105 bg-transparent
+        "
+            >
+              <Link href="/contact">Get in Touch</Link>
+            </Button>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
       {/* Scroll Indicator */}
       <motion.div
