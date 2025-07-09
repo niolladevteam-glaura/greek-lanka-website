@@ -1,7 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import {
   FaFacebookF,
   FaInstagram,
@@ -12,7 +14,6 @@ import {
 import { MdPhone, MdEmail, MdLocationOn } from "react-icons/md";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import Image from "next/image";
 
 const quickLinks = [
   { name: "Home", href: "/" },
@@ -64,6 +65,102 @@ const socialLinks = [
 ];
 
 export function Footer() {
+  // Newsletter form state & handler
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
+  const [message, setMessage] = useState<string | null>(null);
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("loading");
+    setMessage(null);
+
+    // Simple email regex for validation
+    const isValidEmail = (email: string) =>
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    const handleSubscribe = async (e: React.FormEvent) => {
+      e.preventDefault();
+      setStatus("idle");
+      setMessage(null);
+
+      if (!email) {
+        setStatus("error");
+        setMessage("Please enter your email.");
+        return;
+      }
+      if (!isValidEmail(email)) {
+        setStatus("error");
+        setMessage("Please enter a valid email address.");
+        return;
+      }
+
+      setStatus("loading");
+
+      try {
+        const res = await fetch(
+          "http://localhost:4000/api/newsletter/subscribe",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email }),
+          }
+        );
+
+        let data;
+        try {
+          data = await res.json();
+        } catch {
+          data = null;
+        }
+
+        if (res.ok) {
+          setStatus("success");
+          setMessage("Thank you for subscribing!");
+          setEmail("");
+        } else {
+          setStatus("error");
+          // Attempt to show backend error message, fallback to status text or generic message
+          setMessage(
+            data?.error ||
+              data?.message ||
+              res.statusText ||
+              "Subscription failed. Please try again."
+          );
+        }
+      } catch (e: any) {
+        setStatus("error");
+        setMessage("Network error. Please try again.");
+      }
+    };
+
+    try {
+      const res = await fetch(
+        "http://localhost:4000/api/newsletter/subscribe",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        }
+      );
+
+      if (res.ok) {
+        setStatus("success");
+        setMessage("Thank you for subscribing!");
+        setEmail("");
+      } else {
+        const data = await res.json();
+        setStatus("error");
+        setMessage(data?.error || "Subscription failed. Please try again.");
+      }
+    } catch {
+      setStatus("error");
+      setMessage("Something went wrong. Please try again.");
+    }
+  };
+
   return (
     <footer className="bg-maritime-navy text-white">
       {/* Main Footer Content */}
@@ -237,15 +334,43 @@ export function Footer() {
             <p className="text-gray-300 mb-6">
               Get the latest maritime industry news and updates
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+            <form
+              className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto"
+              onSubmit={handleSubscribe}
+              noValidate
+            >
               <Input
                 placeholder="Enter your email"
                 className="bg-white/10 border-gray-600 text-white placeholder:text-gray-400"
+                value={email}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setEmail(e.target.value)
+                }
+                type="email"
+                required
+                disabled={status === "loading"}
               />
-              <Button className="bg-maritime-gold hover:bg-maritime-gold/90 text-maritime-navy">
-                Subscribe
+              <Button
+                className="bg-maritime-gold hover:bg-maritime-gold/90 text-maritime-navy"
+                type="submit"
+                disabled={status === "loading"}
+              >
+                {status === "loading" ? "Subscribing..." : "Subscribe"}
               </Button>
-            </div>
+            </form>
+            {message && (
+              <div
+                className={`mt-4 text-sm ${
+                  status === "success"
+                    ? "text-green-400"
+                    : status === "error"
+                    ? "text-red-400"
+                    : ""
+                }`}
+              >
+                {message}
+              </div>
+            )}
           </motion.div>
         </div>
       </div>

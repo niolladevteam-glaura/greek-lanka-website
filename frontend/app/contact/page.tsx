@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   Card,
@@ -144,7 +145,105 @@ const teamMembers = [
   },
 ];
 
+// Utility: Split full name to first/last name (very simple)
+function splitName(fullName: string) {
+  const parts = fullName.trim().split(" ");
+  if (parts.length < 2) return { firstName: fullName, lastName: "" };
+  return {
+    firstName: parts.slice(0, -1).join(" "),
+    lastName: parts.at(-1) || "",
+  };
+}
+
 export default function ContactPage() {
+  // ---- State for form fields ----
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    company: "",
+    subject: "",
+    message: "",
+    subscribeNewsletter: false,
+  });
+  const [submitting, setSubmitting] = useState(false);
+  const [success, setSuccess] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  // ---- Handle input for all fields ----
+  function handleChange(
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) {
+    const target = e.target as HTMLInputElement | HTMLTextAreaElement;
+    const { name, value, type } = target;
+    setForm((f) => ({
+      ...f,
+      [name]:
+        type === "checkbox" && "checked" in target
+          ? (target as HTMLInputElement).checked
+          : value,
+    }));
+  }
+
+  // ---- Form Submit Handler ----
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setSubmitting(true);
+    setSuccess(null);
+    setError(null);
+
+    // Split name
+    const { firstName, lastName } = splitName(form.name);
+
+    // Prepare contact body
+    const contactBody = {
+      firstName,
+      lastName,
+      email: form.email,
+      subject: form.subject,
+      phone: form.phone,
+      company: form.company,
+      message: form.message,
+    };
+
+    try {
+      // Send contact message
+      const res = await fetch("http://localhost:4000/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(contactBody),
+      });
+      if (!res.ok) throw new Error("Failed to send message");
+
+      // Optionally subscribe to newsletter
+      if (form.subscribeNewsletter && form.email) {
+        await fetch("http://localhost:4000/api/newsletter/subscribe", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: form.email }),
+        });
+      }
+
+      setSuccess(
+        "Thank you for contacting us! Our maritime experts will get back to you within 24 hours."
+      );
+      setForm({
+        name: "",
+        email: "",
+        phone: "",
+        company: "",
+        subject: "",
+        message: "",
+        subscribeNewsletter: false,
+      });
+    } catch (err: any) {
+      setError(
+        "Sorry, there was a problem sending your message. Please try again or contact us via phone/email."
+      );
+    } finally {
+      setSubmitting(false);
+    }
+  }
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       {/* Hero Section */}
@@ -662,6 +761,7 @@ export default function ContactPage() {
               </Card>
             </motion.div>
 
+            {/* ---- Updated Contact Form ---- */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -670,7 +770,11 @@ export default function ContactPage() {
             >
               <Card className="border-0 shadow-xl">
                 <CardContent className="p-8">
-                  <form className="space-y-6">
+                  <form
+                    className="space-y-6"
+                    onSubmit={handleSubmit}
+                    autoComplete="off"
+                  >
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <label
@@ -681,8 +785,13 @@ export default function ContactPage() {
                         </label>
                         <Input
                           id="name"
+                          name="name"
                           placeholder="Your Name"
                           className="h-12"
+                          value={form.name}
+                          onChange={handleChange}
+                          required
+                          disabled={submitting}
                         />
                       </div>
                       <div>
@@ -694,9 +803,14 @@ export default function ContactPage() {
                         </label>
                         <Input
                           id="email"
+                          name="email"
                           placeholder="Your Email"
                           type="email"
                           className="h-12"
+                          value={form.email}
+                          onChange={handleChange}
+                          required
+                          disabled={submitting}
                         />
                       </div>
                     </div>
@@ -711,8 +825,12 @@ export default function ContactPage() {
                         </label>
                         <Input
                           id="phone"
+                          name="phone"
                           placeholder="Phone Number"
                           className="h-12"
+                          value={form.phone}
+                          onChange={handleChange}
+                          disabled={submitting}
                         />
                       </div>
                       <div>
@@ -724,8 +842,12 @@ export default function ContactPage() {
                         </label>
                         <Input
                           id="company"
+                          name="company"
                           placeholder="Your Company"
                           className="h-12"
+                          value={form.company}
+                          onChange={handleChange}
+                          disabled={submitting}
                         />
                       </div>
                     </div>
@@ -739,8 +861,13 @@ export default function ContactPage() {
                       </label>
                       <Input
                         id="subject"
+                        name="subject"
                         placeholder="Subject"
                         className="h-12"
+                        value={form.subject}
+                        onChange={handleChange}
+                        required
+                        disabled={submitting}
                       />
                     </div>
 
@@ -753,16 +880,52 @@ export default function ContactPage() {
                       </label>
                       <Textarea
                         id="message"
+                        name="message"
                         placeholder="Your Message"
                         rows={5}
+                        value={form.message}
+                        onChange={handleChange}
+                        required
+                        disabled={submitting}
                       />
                     </div>
+
+                    <div className="flex items-center">
+                      <input
+                        type="checkbox"
+                        id="subscribeNewsletter"
+                        name="subscribeNewsletter"
+                        className="mr-2"
+                        checked={form.subscribeNewsletter}
+                        onChange={handleChange}
+                        disabled={submitting}
+                      />
+                      <label
+                        htmlFor="subscribeNewsletter"
+                        className="text-sm text-gray-700"
+                      >
+                        Subscribe to our newsletter
+                      </label>
+                    </div>
+
+                    {success && (
+                      <div className="p-3 bg-green-100 text-green-800 rounded-md text-sm text-center">
+                        {success}
+                      </div>
+                    )}
+                    {error && (
+                      <div className="p-3 bg-red-100 text-red-800 rounded-md text-sm text-center">
+                        {error}
+                      </div>
+                    )}
 
                     <Button
                       size="lg"
                       className="w-full bg-maritime-blue hover:bg-maritime-blue/90 text-white"
+                      disabled={submitting}
+                      type="submit"
                     >
-                      Send Message
+                      {submitting ? "Sending..." : "Send Message"}
                     </Button>
                   </form>
                 </CardContent>
