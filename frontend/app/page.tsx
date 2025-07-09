@@ -13,10 +13,12 @@ import { ContactSection } from "@/components/contact-section";
 import { SriLankaMap } from "@/components/sri-lanka-map";
 import { StatsSection } from "@/components/stats-section";
 import { TestimonialsSection } from "@/components/testimonials-section";
+import { PrivacyPolicyBar } from "@/components/PrivacyPolicyBar";
 
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-slate-50 to-white cursor-maritime">
+      <PrivacyPolicyBar />
       <HeroSection />
 
       {/* Who We Are Section */}

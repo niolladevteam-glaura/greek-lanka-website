@@ -182,11 +182,11 @@ export default function PortsPage() {
               </div>
               <div className="relative">
                 <Image
-                  src="/images/ports/srilanka_ports2.jpg"
+                  src="/images/ports/srilanka_ports2.gif"
                   alt="Sri Lanka Strategic Location"
                   width={200}
                   height={100}
-                  className="w-full h-auto rounded-lg shadow-lg"
+                  className="w-full h-auto"
                 />
               </div>
             </div>
