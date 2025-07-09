@@ -6,6 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import { Anchor } from "lucide-react";
 import { useState } from "react";
 
+import { CameraFlightScene } from "@/components/CameraFlightScene";
+
 const ports = [
   {
     name: "Colombo",
@@ -248,10 +250,11 @@ export function SriLankaMap() {
             className="flex justify-center"
           >
             <img
-              src="/images/sri-lanka-map-white.png"
+              src="/images/Sri_lankan_ports_animation.gif"
               alt="Sri Lanka Map"
-              className="max-h-[600px]"
+              className="w-[600px] h-[600px]"
             />
+            {/* <CameraFlightScene /> */}
           </motion.div>
         </div>
       </div>

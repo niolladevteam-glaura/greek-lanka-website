@@ -8,20 +8,6 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, LogIn, Search, X, ChevronDown } from "lucide-react";
 import Image from "next/image";
-import {
-  GB,
-  SA,
-  CN,
-  NL,
-  FR,
-  DE,
-  GR,
-  IT,
-  JP,
-  PT,
-  RU,
-  ES,
-} from "country-flag-icons/react/3x2";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -39,7 +25,6 @@ const navigation = [
     subItems: [
       { name: "Port Agency Services", href: "/services" },
       { name: "Crew Change Services", href: "/services/crew-change-services" },
-      { name: "Port Agency Services", href: "/services" },
       { name: "Ship Chandling Services", href: "/services" },
       { name: "Cargo Handling Operations", href: "/services" },
       { name: "Owner's Protective Agency services", href: "/services" },
@@ -65,28 +50,11 @@ const navigation = [
   },
 ];
 
-const languages = [
-  { code: "en", name: "English", Flag: GB },
-  { code: "ar", name: "Arabic", Flag: SA },
-  { code: "zh", name: "Chinese", Flag: CN },
-  { code: "nl", name: "Dutch", Flag: NL },
-  { code: "fr", name: "French", Flag: FR },
-  { code: "de", name: "German", Flag: DE },
-  { code: "el", name: "Greek", Flag: GR },
-  { code: "it", name: "Italian", Flag: IT },
-  { code: "ja", name: "Japanese", Flag: JP },
-  { code: "pt", name: "Portuguese", Flag: PT },
-  { code: "ru", name: "Russian", Flag: RU },
-  { code: "es", name: "Spanish", Flag: ES },
-];
-
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
-  const [currentLanguage, setCurrentLanguage] = useState(languages[0]);
   const pathname = usePathname();
   const router = useRouter();
 
@@ -101,22 +69,10 @@ export function Navigation() {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      // Close search overlay
       setIsSearchOpen(false);
-      // Navigate to search page with query parameter
       router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
-      // Clear the search input
       setSearchQuery("");
     }
-  };
-
-  const handleLanguageChange = (langCode: string) => {
-    const selectedLang = languages.find((lang) => lang.code === langCode);
-    if (selectedLang) {
-      setCurrentLanguage(selectedLang);
-      console.log("Changing language to:", langCode);
-    }
-    setIsLanguageMenuOpen(false);
   };
 
   const isActive = (href: string) => {
@@ -249,9 +205,9 @@ export function Navigation() {
                       className="mt-0 w-48 origin-top-left rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-50"
                     >
                       <div className="py-1">
-                        {item.subItems.map((subItem) => (
+                        {item.subItems.map((subItem, idx) => (
                           <Link
-                            key={subItem.name}
+                            key={`${subItem.name}-${subItem.href}-${idx}`}
                             href={subItem.href}
                             className={`block px-4 py-2 text-sm ${
                               pathname === subItem.href
@@ -283,45 +239,6 @@ export function Navigation() {
             >
               <Search size={20} />
             </button>
-
-            {/* Language Selector */}
-            <div className="relative group">
-              <button
-                onClick={() => setIsLanguageMenuOpen(!isLanguageMenuOpen)}
-                className={`px-3 py-2 text-sm font-medium rounded-md flex items-center ${
-                  isScrolled
-                    ? "text-gray-700 hover:text-maritime-blue"
-                    : "text-white hover:text-maritime-gold"
-                }`}
-              >
-                <currentLanguage.Flag className="w-5 h-auto mr-2" />
-                {currentLanguage.code.toUpperCase()}
-                <ChevronDown
-                  size={16}
-                  className="ml-1 transition-transform group-hover:rotate-180"
-                />
-              </button>
-              <div className="absolute right-0 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200">
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-50"
-                >
-                  <div className="py-1 max-h-60 overflow-auto">
-                    {languages.map((lang) => (
-                      <button
-                        key={lang.code}
-                        onClick={() => handleLanguageChange(lang.code)}
-                        className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
-                      >
-                        <lang.Flag className="w-5 h-auto mr-3" />
-                        {lang.name}
-                      </button>
-                    ))}
-                  </div>
-                </motion.div>
-              </div>
-            </div>
 
             {/* Login Button */}
             <Button
@@ -379,9 +296,9 @@ export function Navigation() {
                         </Link>
                         {item.subItems && (
                           <div className="ml-4 mt-1 space-y-1">
-                            {item.subItems.map((subItem) => (
+                            {item.subItems.map((subItem, idx) => (
                               <Link
-                                key={subItem.name}
+                                key={`${subItem.name}-${subItem.href}-${idx}`}
                                 href={subItem.href}
                                 onClick={() => setIsMobileMenuOpen(false)}
                                 className={`block px-4 py-2 text-base font-medium rounded-lg transition-colors ${
@@ -411,25 +328,6 @@ export function Navigation() {
                     <Search className="mr-2 h-5 w-5" />
                     Search
                   </button>
-                </div>
-
-                <div className="mt-2 mb-4">
-                  <div className="relative">
-                    <select
-                      className="w-full px-4 py-3 text-lg rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-maritime-blue appearance-none"
-                      onChange={(e) => handleLanguageChange(e.target.value)}
-                      value={currentLanguage.code}
-                    >
-                      {languages.map((lang) => (
-                        <option key={lang.code} value={lang.code}>
-                          {lang.name}
-                        </option>
-                      ))}
-                    </select>
-                    <div className="absolute right-3 top-3 pointer-events-none">
-                      <ChevronDown size={20} />
-                    </div>
-                  </div>
                 </div>
 
                 <div className="mt-4">

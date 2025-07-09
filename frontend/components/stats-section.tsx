@@ -3,29 +3,34 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Ship, Users, Globe, Award } from "lucide-react";
+import { CountUpOnView } from "@/components/CountUpOnView";
 
 const stats = [
   {
     icon: Ship,
-    value: "1300+",
+    value: 1300,
+    valueSuffix: "+",
     label: "Vessels Served",
     description: "Successfully handled vessels across all Sri Lankan ports",
   },
   {
     icon: Users,
-    value: "25+",
+    value: 25,
+    valueSuffix: "+",
     label: "Expert Team",
     description: "Experienced maritime professionals at your service",
   },
   {
     icon: Globe,
-    value: "24/7",
+    value: 24,
+    valueSuffix: "/7",
     label: "Operations",
     description: "Round-the-clock support for all maritime needs",
   },
   {
     icon: Award,
-    value: "12+",
+    value: 12,
+    valueSuffix: "+",
     label: "Industry Knowledge",
     description: "Proven track record in maritime services",
   },
@@ -63,15 +68,13 @@ export function StatsSection() {
               <Card className="text-center p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group border-2 border-transparent hover:border-maritime-blue/20">
                 <CardContent className="p-0">
                   <stat.icon className="h-16 w-16 text-maritime-blue mx-auto mb-4 group-hover:scale-110 transition-transform" />
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    transition={{ duration: 0.8, delay: index * 0.1 + 0.3 }}
-                    viewport={{ once: true }}
-                    className="text-4xl font-bold text-maritime-navy mb-2"
-                  >
-                    {stat.value}
-                  </motion.div>
+                  <div className="text-4xl font-bold text-maritime-navy mb-2">
+                    <CountUpOnView
+                      target={stat.value}
+                      duration={1.2}
+                      suffix={stat.valueSuffix}
+                    />
+                  </div>
                   <h3 className="text-xl font-semibold text-maritime-navy mb-3">
                     {stat.label}
                   </h3>

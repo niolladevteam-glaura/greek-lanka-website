@@ -56,7 +56,7 @@ const services = [
     ],
   },
   {
-    slug: "crew-change-services",
+    slug: "ship-spares-logistics",
     icon: Package,
     title: "Ship Spares Logistics",
     description:
@@ -71,7 +71,7 @@ const services = [
     ],
   },
   {
-    slug: "crew-change-services",
+    slug: "ship-chandling-services",
     icon: ShoppingCart,
     title: "Ship Chandling Services",
     description:
@@ -86,7 +86,7 @@ const services = [
     ],
   },
   {
-    slug: "crew-change-services",
+    slug: "cargo-handling-operations",
     icon: Container,
     title: "Cargo Handling Operations",
     description:
@@ -101,7 +101,7 @@ const services = [
     ],
   },
   {
-    slug: "crew-change-services",
+    slug: "owners-protective-agency",
     icon: Shield,
     title: "Owner's Protective Agency services",
     description:
@@ -115,7 +115,7 @@ const services = [
     ],
   },
   {
-    slug: "crew-change-services",
+    slug: "husbandry-services",
     icon: Wrench,
     title: "Husbandry Services",
     description:
@@ -129,7 +129,7 @@ const services = [
     ],
   },
   {
-    slug: "crew-change-services",
+    slug: "bunker-brokering-supply",
     icon: Fuel,
     title: "Bunker Brokering",
     description:
@@ -143,7 +143,7 @@ const services = [
     ],
   },
   {
-    slug: "crew-change-services",
+    slug: "yacht-cruise-agency",
     icon: Plane,
     title: "Yacht/Cruise Agency",
     description:
@@ -173,7 +173,7 @@ const services = [
     ],
   },
   {
-    slug: "crew-change-services",
+    slug: "dry-dock-technical-services",
     icon: Anchor,
     title: "Dry Dock Management",
     description:
@@ -188,7 +188,7 @@ const services = [
     ],
   },
   {
-    slug: "crew-change-services",
+    slug: "marine-pest-fumigation",
     icon: Bug,
     title: "Marine Pest Control",
     description:
@@ -202,7 +202,7 @@ const services = [
     ],
   },
   {
-    slug: "crew-change-services",
+    slug: "maritime-security-services",
     icon: Lock,
     title: "Maritime Security",
     description:
@@ -216,7 +216,7 @@ const services = [
     ],
   },
   {
-    slug: "crew-change-services",
+    slug: "offshore-support-services",
     icon: Waves,
     title: "Offshore Support",
     description:
@@ -231,7 +231,7 @@ const services = [
     ],
   },
   {
-    slug: "crew-change-services",
+    slug: "documentation-compliance-services",
     icon: FileText,
     title: "Documentation Services",
     description:
@@ -245,7 +245,7 @@ const services = [
     ],
   },
   {
-    slug: "crew-change-services",
+    slug: "emergency-contingency-services",
     icon: AlertTriangle,
     title: "Emergency Services",
     description:

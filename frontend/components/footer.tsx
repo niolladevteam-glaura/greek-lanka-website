@@ -21,6 +21,7 @@ const quickLinks = [
   { name: "Services", href: "/services" },
   { name: "Ports", href: "/ports" },
   { name: "Contact us", href: "/contact" },
+  { name: "Privacy Policy", href: "/privacyPolicy" },
 ];
 
 const importantLinks = [
@@ -254,7 +255,7 @@ export function Footer() {
         <div className="max-w-7xl mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
-              © 2024 Greek Lanka Maritime Services. All rights reserved
+              © 2025 Greek Lanka Maritime Services. All rights reserved
             </p>
             <p className="text-gray-400 text-sm mt-2 md:mt-0">
               Designed with excellence for maritime industry
