@@ -13,7 +13,6 @@ export function PrivacyPolicyBar() {
     const dismissed = localStorage.getItem("privacy-policy-dismissed");
     if (!dismissed) {
       setVisible(true);
-      // Allow rendering before starting animation
       setTimeout(() => setAnimate(true), 50);
     }
   }, []);
@@ -21,7 +20,7 @@ export function PrivacyPolicyBar() {
   const handleDismiss = () => {
     localStorage.setItem("privacy-policy-dismissed", "true");
     setAnimate(false);
-    setTimeout(() => setVisible(false), 300); // match transition duration
+    setTimeout(() => setVisible(false), 300);
   };
 
   if (!visible) return null;
@@ -34,18 +33,37 @@ export function PrivacyPolicyBar() {
         ${animate ? "translate-y-0" : "translate-y-full"}
       `}
     >
-      <Card className="w-full max-w-3xl mx-auto flex flex-row items-center justify-between bg-maritime-blue py-3 px-4 shadow-lg rounded-t-xl border border-maritime-blue">
-        <div className="flex items-center gap-1 text-white text-base">
-          We value your privacy. Please review our&nbsp;
-          <Link
-            href="/privacyPolicy"
-            className="underline hover:text-maritime-navy font-semibold"
-          >
-            Privacy Policy
-          </Link>
-          .
+      <Card
+        className="
+        w-full
+        max-w-full
+        sm:max-w-2xl
+        md:max-w-3xl
+        mx-auto
+        flex flex-col md:flex-row
+        items-start md:items-center
+        justify-between
+        gap-4 md:gap-0
+        bg-maritime-blue
+        py-4 px-3 sm:px-6
+        shadow-lg
+        rounded-t-xl
+        border border-maritime-blue
+      "
+      >
+        <div className="flex-1 flex items-center text-white text-sm sm:text-base leading-snug">
+          <span>
+            We value your privacy. Please review our{" "}
+            <Link
+              href="/privacyPolicy"
+              className="underline hover:text-maritime-gold font-semibold"
+            >
+              Privacy Policy
+            </Link>
+            .
+          </span>
         </div>
-        <div className="flex items-center gap-2 ml-4">
+        <div className="flex flex-row flex-wrap gap-2 md:ml-4">
           <Button
             asChild
             size="sm"

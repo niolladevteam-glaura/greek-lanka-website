@@ -195,7 +195,7 @@ export default function PortsPage() {
       </section>
 
       {/* Ports Details */}
-      <section className="py-20 px-4 bg-gray-50">
+      <section className="px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="space-y-20">
             {ports.map((port, index) => (

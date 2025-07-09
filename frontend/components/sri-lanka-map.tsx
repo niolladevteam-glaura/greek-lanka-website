@@ -9,6 +9,7 @@ import { useState } from "react";
 import { CameraFlightScene } from "@/components/CameraFlightScene";
 
 const ports = [
+  // ... unchanged port data ...
   {
     name: "Colombo",
     position: { x: 310.9, y: 740.3 },
@@ -88,24 +89,24 @@ export function SriLankaMap() {
   const [activePort, setActivePort] = useState<string | null>(null);
 
   return (
-    <section className="py-20 px-4 bg-gradient-to-br from-maritime-navy to-maritime-blue text-white">
+    <section className="py-10 px-2 sm:py-20 sm:px-4 bg-gradient-to-br from-maritime-navy to-maritime-blue text-white">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-16"
         >
-          <h2 className="text-4xl font-bold mb-6">
+          <h2 className="text-2xl sm:text-4xl font-bold mb-4 sm:mb-6">
             The World Is Shifting East
           </h2>
-          <p className="text-xl text-maritime-gold max-w-3xl mx-auto">
+          <p className="text-base sm:text-xl text-maritime-gold max-w-3xl mx-auto">
             and Sri Lanka Is at the Heart of It.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center">
           {/* Text Content */}
           <div className="relative">
             <motion.div
@@ -113,14 +114,14 @@ export function SriLankaMap() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="space-y-6"
+              className="space-y-4 sm:space-y-6"
             >
-              <p className="text-lg leading-relaxed">
+              <p className="text-base sm:text-lg leading-relaxed">
                 As global trade continues to flow toward Asia, Sri Lanka's
                 strategic location places it firmly on the fast track to
                 becoming a true powerhouse in maritime services.
               </p>
-              <p className="text-lg leading-relaxed">
+              <p className="text-base sm:text-lg leading-relaxed">
                 From the world-class transshipment hub of Colombo to the safe
                 and strategic OPL of Galle, and the key ports of Trincomalee and
                 Hambantota, our ports aren't just transit points; they are vital
@@ -129,7 +130,7 @@ export function SriLankaMap() {
                 reliability, and opportunity for global shipping.
               </p>
 
-              <div className="grid grid-cols-2 gap-4 mt-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mt-4 sm:mt-8">
                 {ports.map((port, index) => (
                   <motion.div
                     key={port.name}
@@ -141,15 +142,16 @@ export function SriLankaMap() {
                     <Card
                       className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-all duration-300 cursor-pointer h-full"
                       onMouseEnter={() => setActivePort(port.name)}
+                      onClick={() => setActivePort(port.name)} // Support click for mobile
                     >
-                      <CardContent className="p-4">
-                        <div className="flex items-center mb-2">
+                      <CardContent className="p-3 sm:p-4">
+                        <div className="flex items-center mb-1 sm:mb-2">
                           <Anchor className="h-5 w-5 text-maritime-gold mr-2" />
-                          <h3 className="font-semibold text-white">
+                          <h3 className="font-semibold text-white text-base sm:text-lg">
                             {port.name}
                           </h3>
                         </div>
-                        <p className="text-sm text-gray-200 mb-3">
+                        <p className="text-xs sm:text-sm text-gray-200 mb-2 sm:mb-3">
                           {port.description}
                         </p>
                         <div className="flex flex-wrap gap-1">
@@ -157,7 +159,7 @@ export function SriLankaMap() {
                             <Badge
                               key={feature}
                               variant="secondary"
-                              className="text-xs bg-maritime-gold/20 text-maritime-gold"
+                              className="text-[10px] sm:text-xs bg-maritime-gold/20 text-maritime-gold"
                             >
                               {feature}
                             </Badge>
@@ -173,7 +175,7 @@ export function SriLankaMap() {
             {/* Centered Popup Overlay */}
             <AnimatePresence>
               {activePort && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4">
                   {/* Backdrop */}
                   <motion.div
                     initial={{ opacity: 0 }}
@@ -189,23 +191,23 @@ export function SriLankaMap() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 20 }}
                     transition={{ duration: 0.3 }}
-                    className="relative z-10 w-full max-w-2xl bg-maritime-navy rounded-lg border border-maritime-gold/30 shadow-xl"
+                    className="relative z-10 w-full max-w-md sm:max-w-2xl bg-maritime-navy rounded-lg border border-maritime-gold/30 shadow-xl max-h-[90vh] overflow-y-auto"
                   >
                     {ports.map(
                       (port) =>
                         port.name === activePort && (
                           <div key={port.name}>
-                            <div className="p-6">
-                              <div className="flex items-center mb-4">
-                                <Anchor className="h-8 w-8 text-maritime-gold mr-3" />
-                                <h3 className="text-2xl font-bold text-maritime-gold">
+                            <div className="p-4 sm:p-6">
+                              <div className="flex items-center mb-3 sm:mb-4">
+                                <Anchor className="h-7 w-7 sm:h-8 sm:w-8 text-maritime-gold mr-2 sm:mr-3" />
+                                <h3 className="text-xl sm:text-2xl font-bold text-maritime-gold">
                                   Port of {port.name}
                                 </h3>
                               </div>
-                              <h4 className="text-lg font-semibold mb-4 text-white">
+                              <h4 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-white">
                                 {port.details.title}
                               </h4>
-                              <ul className="space-y-3 max-h-[60vh] overflow-y-auto pr-4">
+                              <ul className="space-y-2 sm:space-y-3 max-h-[60vh] overflow-y-auto pr-2 sm:pr-4">
                                 {port.details.services.map((service, index) => (
                                   <motion.li
                                     key={index}
@@ -217,17 +219,17 @@ export function SriLankaMap() {
                                     <span className="text-maritime-gold mr-2 mt-1">
                                       •
                                     </span>
-                                    <span className="text-gray-200">
+                                    <span className="text-gray-200 text-sm sm:text-base">
                                       {service}
                                     </span>
                                   </motion.li>
                                 ))}
                               </ul>
                             </div>
-                            <div className="px-6 py-4 bg-maritime-navy/80 border-t border-maritime-gold/10 flex justify-end">
+                            <div className="px-4 py-3 sm:px-6 sm:py-4 bg-maritime-navy/80 border-t border-maritime-gold/10 flex justify-end">
                               <button
                                 onClick={() => setActivePort(null)}
-                                className="px-4 py-2 bg-maritime-gold/20 text-maritime-gold rounded-md hover:bg-maritime-gold/30 transition-colors"
+                                className="px-3 py-2 sm:px-4 sm:py-2 bg-maritime-gold/20 text-maritime-gold rounded-md hover:bg-maritime-gold/30 transition-colors text-sm sm:text-base"
                               >
                                 Close
                               </button>
@@ -252,7 +254,8 @@ export function SriLankaMap() {
             <img
               src="/images/Sri_lankan_ports_animation.gif"
               alt="Sri Lanka Map"
-              className="w-[600px] h-[600px]"
+              className="w-full h-auto max-w-xs sm:max-w-md md:max-w-lg lg:max-w-[600px] aspect-square object-contain"
+              // aspect-square ensures image stays square on all screens
             />
             {/* <CameraFlightScene /> */}
           </motion.div>
