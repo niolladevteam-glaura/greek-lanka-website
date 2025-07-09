@@ -113,18 +113,15 @@ export function HeroSection() {
           priority
         />
       </div>
-
       {/* Navy Blue Overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-[#010D2FE6] to-[#002A52B3]" />
-
       {/* Interactive Grid Canvas */}
       <canvas
         ref={canvasRef}
         className="absolute inset-0 z-10 pointer-events-none"
         style={{ mixBlendMode: "screen" }}
       />
-
-      {/* Animated Grid Pattern Overlay */}
+      Animated Grid Pattern Overlay
       <div className="absolute inset-0 z-10 opacity-20">
         <div className="absolute inset-0 bg-gradient-to-br from-transparent via-maritime-gold/5 to-transparent animate-pulse" />
         <div
@@ -139,8 +136,7 @@ export function HeroSection() {
           }}
         />
       </div>
-
-      {/* Floating Particles */}
+      {/* Floating Particles
       <div className="absolute inset-0 z-10">
         {[...Array(20)].map((_, i) => (
           <motion.div
@@ -162,8 +158,7 @@ export function HeroSection() {
             }}
           />
         ))}
-      </div>
-
+      </div> */}
       {/* Hero Content */}
       <div className="relative z-20 w-full px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
         <div className="ml-0">
@@ -243,7 +238,6 @@ export function HeroSection() {
           </motion.div>
         </div>
       </div>
-
       {/* Scroll Indicator */}
       <motion.div
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
