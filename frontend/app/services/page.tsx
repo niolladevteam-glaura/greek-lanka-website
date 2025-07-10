@@ -88,7 +88,7 @@ const services = [
   {
     slug: "cargo-handling-operations",
     icon: Container,
-    title: "Cargo Handling Operations",
+    title: "Port Agency for Cargo Operations",
     description:
       "Professional cargo handling and operations services ensuring safe and efficient loading and unloading of vessels.",
     image:
@@ -131,7 +131,7 @@ const services = [
   {
     slug: "bunker-brokering-supply",
     icon: Fuel,
-    title: "Bunker Brokering",
+    title: "Port Agency for Bunker Vessels",
     description:
       "Comprehensive bunker brokerage and supply coordination services ensuring optimal fuel solutions for your fleet.",
     image: "/images/services/Bunker-Quantity-768x768.jpg?height=250&width=400",
@@ -175,7 +175,7 @@ const services = [
   {
     slug: "dry-dock-technical-services",
     icon: Anchor,
-    title: "Dry Dock Management",
+    title: "Port Agency for Dry Dock /Afloat Repairs",
     description:
       "Comprehensive dry dock ship management and technical services for all vessel maintenance and repair needs.",
     image:
