@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Award, Shield, CheckCircle, Target, Users, Leaf } from "lucide-react";
+import Image from "next/image";
 
 const qualityObjectives = [
   {
@@ -107,7 +108,7 @@ export default function AccreditationPage() {
       </section>
 
       {/* ISO 9001 Certification */}
-      <section className="py-20 px-4 bg-gray-50">
+      <section className=" px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -121,11 +122,12 @@ export default function AccreditationPage() {
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Our commitment to quality management is validated through ISO 9001
-              certification
+              certification issued by Scandinavian Business Certification AB
             </p>
           </motion.div>
 
-          <div className="flex justify-center">
+          <div className="flex flex-col lg:flex-row justify-center items-center gap-8">
+            {/* Certificate Card */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -157,13 +159,43 @@ export default function AccreditationPage() {
                   </p>
                   <div className="bg-maritime-blue/10 p-4 rounded-lg border border-maritime-blue/20">
                     <p className="text-sm text-maritime-blue font-semibold">
-                      Issued by: International Organization for Standardization
+                      Issued by: Scandinavian Business Certification AB
                     </p>
                     <p className="text-xs text-maritime-blue/80 mt-1">
-                      Certification Number: [ISO Certification Number]
+                      Certification Number: LKPV 00223630
                     </p>
                     <p className="text-xs text-maritime-blue/80">
-                      Valid Until: [Expiration Date]
+                      Valid Until: 04/09/2026
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Certificate Image */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="w-full max-w-2xl"
+            >
+              <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border-maritime-blue/20 overflow-hidden">
+                <CardContent className="p-0">
+                  <div className="relative w-full aspect-[1/1.414]">
+                    {" "}
+                    {/* A4 aspect ratio */}
+                    <Image
+                      src="/iso.jpg" // Update this path
+                      alt="ISO 9001:2015 Certificate"
+                      fill
+                      className="object-contain"
+                      quality={100}
+                    />
+                  </div>
+                  <div className="p-4 text-center">
+                    <p className="text-sm text-gray-600">
+                      Official ISO 9001:2015 Certification
                     </p>
                   </div>
                 </CardContent>

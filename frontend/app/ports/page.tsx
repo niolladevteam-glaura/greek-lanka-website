@@ -403,7 +403,7 @@ export default function PortsPage() {
                 <Card className="bg-white/10 backdrop-blur-sm border-white/20 text-center p-6 hover:bg-white/20 transition-all duration-300">
                   <CardContent className="p-0">
                     <service.icon className="h-16 w-16 text-maritime-gold mx-auto mb-4" />
-                    <h3 className="text-xl font-semibold mb-3">
+                    <h3 className="text-xl font-semibold mb-3 text-white">
                       {service.title}
                     </h3>
                     <p className="text-gray-300">{service.description}</p>

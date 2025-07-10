@@ -411,16 +411,8 @@ export default function ContactPage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <Card className="h-full overflow-hidden transition-all duration-300 hover:shadow-lg group">
-                  <div className="relative h-64 overflow-hidden">
-                    <Image
-                      src={member.image}
-                      alt={member.name}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                  <CardContent className="p-6">
+                <Card className="h-full transition-all duration-300 hover:shadow-lg p-6">
+                  <CardContent className="p-0">
                     <h3 className="text-xl font-bold text-maritime-navy mb-1">
                       {member.name}
                     </h3>
