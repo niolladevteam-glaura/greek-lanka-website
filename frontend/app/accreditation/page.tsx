@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Award, Shield, CheckCircle, Target, Users, Leaf } from "lucide-react";
 import Image from "next/image";
+import { CertificateDownloadButton } from "@/components/CertificateDownloadButton";
 
 const qualityObjectives = [
   {
@@ -186,7 +187,7 @@ export default function AccreditationPage() {
                     {" "}
                     {/* A4 aspect ratio */}
                     <Image
-                      src="/iso.jpg" // Update this path
+                      src="/iso.jpg"
                       alt="ISO 9001:2015 Certificate"
                       fill
                       className="object-contain"
@@ -194,9 +195,10 @@ export default function AccreditationPage() {
                     />
                   </div>
                   <div className="p-4 text-center">
-                    <p className="text-sm text-gray-600">
+                    {/* <p className="text-sm text-gray-600">
                       Official ISO 9001:2015 Certification
-                    </p>
+                    </p> */}
+                    <CertificateDownloadButton />
                   </div>
                 </CardContent>
               </Card>

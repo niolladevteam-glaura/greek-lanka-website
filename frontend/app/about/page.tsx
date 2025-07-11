@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import ReactPlayer from "react-player";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Target,
@@ -76,6 +77,18 @@ export default function AboutPage() {
             </p>
           </motion.div>
         </div>
+      </section>
+
+      {/* YouTube Video Section */}
+      <section className="py-10 px-4 flex justify-center bg-white">
+        <ReactPlayer
+          src="https://www.youtube.com/watch?v=BY7mbrxpNEM"
+          playing={true}
+          controls={true}
+          width="100%"
+          height="480px"
+          className="max-w-3xl mx-auto rounded-lg shadow-lg"
+        />
       </section>
 
       {/* Company Overview */}
