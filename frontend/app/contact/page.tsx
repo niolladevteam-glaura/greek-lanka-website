@@ -30,7 +30,7 @@ import Image from "next/image";
 const departments = [
   {
     name: "Operations Department",
-    email: "operations@greeklanka.com",
+    //email: "operations@greeklanka.com",
     contacts: [
       {
         name: "Udith Kalupahana (Mr)",
@@ -53,12 +53,12 @@ const departments = [
   },
   {
     name: "Disbursement Department",
-    email: "disbursement@greeklanka.com",
+    //email: "disbursement@greeklanka.com",
     contacts: [
       {
-        name: "Accounts Team",
-        phone: "+94 777 232 271",
-        availability: "Business Hours",
+        name: "Yasith Kalupahana (Mr)",
+        phone: "+94 703 310 992",
+        availability: "24/7",
       },
     ],
     additionalEmail: "accounts@greeklanka.com",
@@ -67,11 +67,11 @@ const departments = [
   },
   {
     name: "Career Opportunities",
-    email: "admin@greeklanka.com",
+    //email: "admin@greeklanka.com",
     contacts: [
       {
-        name: "HR Department",
-        phone: "+94 777 232 271",
+        name: "Amal Pathirana (Mr)",
+        phone: "+94 777 844 214",
         availability: "Business Hours",
       },
     ],
@@ -117,30 +117,30 @@ const offices = [
 const teamMembers = [
   {
     name: "Udith Kalupahana",
-    position: "Director of Operations",
-    phone: "+94 777 232 271",
-    email: "udith@greeklanka.com",
+    position: "Managing Director",
+    phone: "+94 77 723 2271",
+    //email: "udith@greeklanka.com",
     image: "/team/udith.jpg",
   },
   {
     name: "Yasith Kalupahana",
-    position: "Operations Manager",
-    phone: "+94 777 001 855",
-    email: "yasith@greeklanka.com",
+    position: "Asst.Manager - Business Development",
+    phone: "+94 70 331 0992",
+    //email: "yasith@greeklanka.com",
     image: "/team/yasith.jpg",
   },
   {
     name: "Sajith Madushan",
-    position: "Port Operations Coordinator",
+    position: "Asst.Manager - Operations",
     phone: "+94 777 828 161",
-    email: "sajith@greeklanka.com",
+    //email: "sajith@greeklanka.com",
     image: "/team/sajith.jpg",
   },
   {
-    name: "Nimali Perera",
-    position: "HR Manager",
-    phone: "+94 777 232 271",
-    email: "hr@greeklanka.com",
+    name: "Amal Pathirana",
+    position: "Financial Controller",
+    phone: "+94 777 844 214",
+    //email: "amal@greeklanka.com",
     image: "/team/nimali.jpg",
   },
 ];
@@ -427,7 +427,7 @@ export default function ContactPage() {
                           {member.phone}
                         </a>
                       </div>
-                      <div className="flex items-center">
+                      {/* <div className="flex items-center">
                         <Mail className="h-4 w-4 mr-2 text-gray-500" />
                         <a
                           href={`mailto:${member.email}`}
@@ -435,7 +435,7 @@ export default function ContactPage() {
                         >
                           {member.email}
                         </a>
-                      </div>
+                      </div> */}
                     </div>
                   </CardContent>
                 </Card>
@@ -490,7 +490,7 @@ export default function ContactPage() {
 
                       <div className="mt-6 space-y-4">
                         <div>
-                          <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                          {/* <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
                             Email
                           </h4>
                           <a
@@ -499,8 +499,8 @@ export default function ContactPage() {
                           >
                             <Mail className="h-4 w-4 mr-2" />
                             {dept.email}
-                          </a>
-                          {dept.additionalEmail && (
+                          </a> */}
+                          {/* {dept.additionalEmail && (
                             <a
                               href={`mailto:${dept.additionalEmail}`}
                               className="text-blue-600 hover:underline flex items-center mt-1 font-medium"
@@ -508,7 +508,7 @@ export default function ContactPage() {
                               <Mail className="h-4 w-4 mr-2" />
                               {dept.additionalEmail}
                             </a>
-                          )}
+                          )} */}
                         </div>
 
                         <div>

@@ -152,7 +152,7 @@ export function Navigation() {
                 transition={{ delay: 0.2 }}
               >
                 <Image
-                  src="/iso-9001-min-150x145.png"
+                  src="/iso-9001-min-150x145.jpg"
                   alt="ISO 9001 Certified"
                   width={200}
                   height={80}

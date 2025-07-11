@@ -31,8 +31,8 @@ With Greek Lanka Maritime Services, you gain a trusted partner dedicated to seam
   ],
   imageGallery: [
     "/images/services/port-agency1.jpg",
-    "/images/services/port-agency2.jpg",
-    "/images/services/port-agency3.jpg",
+    //"/images/services/port-agency2.jpg",
+    //"/images/services/port-agency3.jpg",
   ]
 },
 
@@ -110,6 +110,8 @@ With our local expertise and commitment to efficiency, Greek Lanka Maritime Serv
     "/images/services/ship-spares1.jpg",
     "/images/services/ship-spares2.jpg",
     "/images/services/ship-spares3.jpg",
+    "/images/services/ship-spares4.jpg",
+    "/images/services/ship-spares5.jpg",
   ]
 },
 
@@ -147,9 +149,11 @@ Trust Greek Lanka Maritime Services for dependable and efficient Ship Chandling 
     "Cost-Effective Supply Solutions"
   ],
   imageGallery: [
-    "/images/services/ship-chandling1.jpg",
-    "/images/services/ship-chandling2.jpg",
-    "/images/services/ship-chandling3.jpg"
+    "/images/services/chandling1.jpg",
+    "/images/services/chandling2.jpg",
+    "/images/services/chandling3.jpg",
+    "/images/services/chandling4.jpg",
+    "/images/services/chandling5.jpg",
   ]
 }
 ,
@@ -189,7 +193,6 @@ Trust Greek Lanka Maritime Services for your next shipment to or from Sri Lanka�
   imageGallery: [
     "/images/services/cargo-handling1.jpg",
     "/images/services/cargo-handling2.jpg",
-    "/images/services/cargo-handling3.jpg"
   ]
 }
 ,
@@ -227,8 +230,6 @@ Contact us today to learn how our OPA services can protect your vessel and optim
   ],
   imageGallery: [
     "/images/services/owners-agency1.jpg",
-    "/images/services/owners-agency2.jpg",
-    "/images/services/owners-agency3.jpg"
   ]
 }
 ,
@@ -265,7 +266,12 @@ Explore more about our Husbandry Services by visiting our website or contacting 
   imageGallery: [
     "/images/services/husbandry1.jpg",
     "/images/services/husbandry2.jpg",
-    "/images/services/husbandry3.jpg"
+    "/images/services/husbandry3.jpg",
+    "/images/services/husbandry4.jpg",
+    "/images/services/husbandry5.jpg",
+    "/images/services/husbandry6.jpg",
+    "/images/services/husbandry7.jpg",
+    "/images/services/husbandry8.jpg",
   ]
 }
 ,
@@ -306,7 +312,10 @@ Partner with Greek Lanka Maritime Services for your bunker brokering and supply 
   imageGallery: [
     "/images/services/bunker1.jpg",
     "/images/services/bunker2.jpg",
-    "/images/services/bunker3.jpg"
+    "/images/services/bunker3.jpg",
+    "/images/services/bunker4.jpg",
+    "/images/services/bunker5.jpg",
+    "/images/services/bunker6.jpg",
   ]
 }
 ,
@@ -344,9 +353,9 @@ Choose Greek Lanka Maritime Services for a truly exceptional maritime journey—
     "24/7 On-Call Support"
   ],
   imageGallery: [
-    "/images/services/yacht-cruise1.jpg",
-    "/images/services/yacht-cruise2.jpg",
-    "/images/services/yacht-cruise3.jpg"
+    "/images/services/cruise1.jpg",
+    "/images/services/cruise2.jpg",
+    "/images/services/cruise3.jpg"
   ]
 }
 ,
@@ -383,7 +392,8 @@ With Greek Lanka Maritime Services, you gain a trusted partner for high-quality 
   imageGallery: [
     "/images/services/drydock1.jpg",
     "/images/services/drydock2.jpg",
-    "/images/services/drydock3.jpg"
+    "/images/services/drydock3.jpg",
+    "/images/services/drydock4.jpg"
   ]
 },
 
@@ -414,8 +424,6 @@ With Greek Lanka Maritime Services, your vessel’s security is managed by profe
   ],
   imageGallery: [
     "/images/services/security1.jpg",
-    "/images/services/security2.jpg",
-    "/images/services/security3.jpg"
   ]
 }
 ,
@@ -447,8 +455,6 @@ With Greek Lanka Maritime Services, you receive dependable pest control and fumi
   ],
   imageGallery: [
     "/images/services/fumigation1.jpg",
-    "/images/services/fumigation2.jpg",
-    "/images/services/fumigation3.jpg"
   ]
 }
 ,
@@ -520,8 +526,6 @@ With Greek Lanka Maritime Services, your offshore and OPL operations are support
   ],
   imageGallery: [
     "/images/services/offshore1.jpg",
-    "/images/services/offshore2.jpg",
-    "/images/services/offshore3.jpg"
   ]
 },
 
@@ -554,7 +558,7 @@ Partnering with Greek Lanka Maritime Services ensures peace of mind and regulato
   imageGallery: [
     "/images/services/compliance1.jpg",
     "/images/services/compliance2.jpg",
-    "/images/services/compliance3.jpg"
+
   ]
 },
 
@@ -585,7 +589,8 @@ With a commitment to professionalism, discretion, and care, Greek Lanka is your 
   imageGallery: [
     "/images/services/emergency1.jpg",
     "/images/services/emergency2.jpg",
-    "/images/services/emergency3.jpg"
+    "/images/services/emergency3.jpg",
+     "/images/services/emergency4.jpg"
   ]
 }
 
