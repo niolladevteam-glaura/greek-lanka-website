@@ -19,101 +19,8 @@ import {
   Banknote,
 } from "lucide-react";
 
-const jobOpenings = [
-  {
-    id: 1,
-    title: "Port Operations Manager",
-    location: "Port of Colombo",
-    type: "Full-time",
-    salary: "Competitive Package",
-    experience: "5+ years in port operations",
-    description:
-      "Lead and oversee all port operations ensuring efficiency and compliance with international standards.",
-    responsibilities: [
-      "Manage daily port operations",
-      "Coordinate with shipping agencies",
-      "Ensure safety regulations compliance",
-      "Optimize cargo handling processes",
-      "Lead operational team",
-    ],
-    requirements: [
-      "Degree in Maritime Operations or related field",
-      "Proven leadership experience",
-      "Knowledge of port management systems",
-      "Excellent problem-solving skills",
-    ],
-    posted: "2 days ago",
-  },
-  {
-    id: 2,
-    title: "Marine Engineer",
-    location: "Port of Hambantota",
-    type: "Full-time",
-    salary: "LKR 250,000 - 350,000",
-    experience: "3+ years in marine engineering",
-    description:
-      "Maintain and repair port machinery and equipment to ensure smooth operations.",
-    responsibilities: [
-      "Inspect and maintain port equipment",
-      "Troubleshoot mechanical issues",
-      "Implement preventive maintenance",
-      "Ensure compliance with safety standards",
-    ],
-    requirements: [
-      "Bachelor's in Mechanical/Marine Engineering",
-      "Relevant certifications",
-      "Experience with heavy machinery",
-      "Strong technical skills",
-    ],
-    posted: "1 week ago",
-  },
-  {
-    id: 3,
-    title: "Cargo Handling Supervisor",
-    location: "Port of Galle",
-    type: "Contract",
-    salary: "LKR 180,000 - 220,000",
-    experience: "2+ years in cargo operations",
-    description:
-      "Supervise cargo handling operations to ensure efficient loading/unloading of vessels.",
-    responsibilities: [
-      "Supervise cargo handling team",
-      "Coordinate with vessel crews",
-      "Maintain accurate records",
-      "Ensure safe handling procedures",
-    ],
-    requirements: [
-      "Diploma in Logistics or related field",
-      "Forklift certification preferred",
-      "Knowledge of cargo handling equipment",
-      "Leadership skills",
-    ],
-    posted: "3 days ago",
-  },
-  {
-    id: 4,
-    title: "Port Security Officer",
-    location: "Port of Trincomalee",
-    type: "Full-time",
-    salary: "LKR 200,000 - 250,000",
-    experience: "3+ years in security operations",
-    description:
-      "Ensure security of port facilities and compliance with ISPS code requirements.",
-    responsibilities: [
-      "Monitor port security systems",
-      "Conduct regular security checks",
-      "Implement security protocols",
-      "Coordinate with law enforcement",
-    ],
-    requirements: [
-      "Background in security/military/police",
-      "ISPS code knowledge",
-      "Security management training",
-      "First aid certification",
-    ],
-    posted: "5 days ago",
-  },
-];
+// No job openings yet
+const jobOpenings: any[] = [];
 
 export default function CareersPage() {
   return (
@@ -156,86 +63,121 @@ export default function CareersPage() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {jobOpenings.map((job, index) => (
-              <motion.div
-                key={job.id}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
+          {jobOpenings.length === 0 ? (
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="flex flex-col items-center justify-center py-16"
+            >
+              {/* You can replace this SVG with your own illustration */}
+              <svg
+                width="120"
+                height="120"
+                viewBox="0 0 120 120"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="mb-8"
               >
-                <Card className="hover:shadow-xl transition-shadow duration-300 h-full">
-                  <CardHeader className="pb-3">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <CardTitle className="text-2xl text-maritime-navy">
-                          {job.title}
-                        </CardTitle>
-                        <div className="flex items-center mt-2 text-maritime-blue">
-                          <MapPin className="h-4 w-4 mr-2" />
-                          <span>{job.location}</span>
+                <rect width="120" height="120" rx="24" fill="#E5E7EB" />
+                <path
+                  d="M60 40C56.6863 40 54 42.6863 54 46V74C54 77.3137 56.6863 80 60 80C63.3137 80 66 77.3137 66 74V46C66 42.6863 63.3137 40 60 40Z"
+                  fill="#93C5FD"
+                />
+                <path
+                  d="M60 36C53.3726 36 48 41.3726 48 48V74C48 80.6274 53.3726 86 60 86C66.6274 86 72 80.6274 72 74V48C72 41.3726 66.6274 36 60 36ZM70 74C70 79.5228 65.5228 84 60 84C54.4772 84 50 79.5228 50 74V48C50 42.4772 54.4772 38 60 38C65.5228 38 70 42.4772 70 48V74Z"
+                  fill="#60A5FA"
+                />
+              </svg>
+              <h3 className="text-2xl md:text-3xl font-semibold text-maritime-navy mb-4">
+                No job openings at the moment
+              </h3>
+              <p className="text-lg text-gray-600 max-w-xl text-center">
+                Please check back soon or submit your CV below so we can reach
+                out when an opportunity arises!
+              </p>
+            </motion.div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {jobOpenings.map((job, index) => (
+                <motion.div
+                  key={job.id}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <Card className="hover:shadow-xl transition-shadow duration-300 h-full">
+                    <CardHeader className="pb-3">
+                      <div className="flex justify-between items-start">
+                        <div>
+                          <CardTitle className="text-2xl text-maritime-navy">
+                            {job.title}
+                          </CardTitle>
+                          <div className="flex items-center mt-2 text-maritime-blue">
+                            <MapPin className="h-4 w-4 mr-2" />
+                            <span>{job.location}</span>
+                          </div>
+                        </div>
+                        <Badge
+                          variant="outline"
+                          className="border-maritime-blue text-maritime-blue"
+                        >
+                          {job.type}
+                        </Badge>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-4">
+                        <p className="text-gray-700">{job.description}</p>
+                        <div className="grid grid-cols-2 gap-4">
+                          <div className="flex items-center">
+                            <Banknote className="h-4 w-4 text-maritime-blue mr-2" />
+                            <span className="text-sm">{job.salary}</span>
+                          </div>
+                          <div className="flex items-center">
+                            <Clock className="h-4 w-4 text-maritime-blue mr-2" />
+                            <span className="text-sm">{job.experience}</span>
+                          </div>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-maritime-navy mb-2">
+                            Key Responsibilities:
+                          </h4>
+                          <ul className="list-disc pl-5 text-gray-700 space-y-1">
+                            {job.responsibilities.map(
+                              (item: string, i: number) => (
+                                <li key={i}>{item}</li>
+                              )
+                            )}
+                          </ul>
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-maritime-navy mb-2">
+                            Requirements:
+                          </h4>
+                          <ul className="list-disc pl-5 text-gray-700 space-y-1">
+                            {job.requirements.map((item: string, i: number) => (
+                              <li key={i}>{item}</li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div className="flex justify-between items-center pt-4 border-t">
+                          <span className="text-sm text-gray-500">
+                            Posted {job.posted}
+                          </span>
+                          <button className="bg-maritime-blue text-white px-4 py-2 rounded hover:bg-maritime-blue/90 transition-colors">
+                            Apply Now
+                          </button>
                         </div>
                       </div>
-                      <Badge
-                        variant="outline"
-                        className="border-maritime-blue text-maritime-blue"
-                      >
-                        {job.type}
-                      </Badge>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="space-y-4">
-                      <p className="text-gray-700">{job.description}</p>
-
-                      <div className="grid grid-cols-2 gap-4">
-                        <div className="flex items-center">
-                          <Banknote className="h-4 w-4 text-maritime-blue mr-2" />
-                          <span className="text-sm">{job.salary}</span>
-                        </div>
-                        <div className="flex items-center">
-                          <Clock className="h-4 w-4 text-maritime-blue mr-2" />
-                          <span className="text-sm">{job.experience}</span>
-                        </div>
-                      </div>
-
-                      <div>
-                        <h4 className="font-semibold text-maritime-navy mb-2">
-                          Key Responsibilities:
-                        </h4>
-                        <ul className="list-disc pl-5 text-gray-700 space-y-1">
-                          {job.responsibilities.map((item, i) => (
-                            <li key={i}>{item}</li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      <div>
-                        <h4 className="font-semibold text-maritime-navy mb-2">
-                          Requirements:
-                        </h4>
-                        <ul className="list-disc pl-5 text-gray-700 space-y-1">
-                          {job.requirements.map((item, i) => (
-                            <li key={i}>{item}</li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      <div className="flex justify-between items-center pt-4 border-t">
-                        <span className="text-sm text-gray-500">
-                          Posted {job.posted}
-                        </span>
-                        <button className="bg-maritime-blue text-white px-4 py-2 rounded hover:bg-maritime-blue/90 transition-colors">
-                          Apply Now
-                        </button>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -257,7 +199,6 @@ export default function CareersPage() {
               industry
             </p>
           </motion.div>
-
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {

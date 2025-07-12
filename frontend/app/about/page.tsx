@@ -91,8 +91,16 @@ export default function AboutPage() {
         />
       </section>
 
+      {/* Certification Note */}
+      <div className="px-4 pb-10 flex justify-center bg-white">
+        <div className="max-w-3xl mx-auto text-center text-sm text-gray-600 mt-2">
+          <strong>Note:</strong> Video shows our former ISO by DNV GL. We are
+          now ISO 9001:2015 certified by Scandinavian Business Certification AB.
+        </div>
+      </div>
+
       {/* Company Overview */}
-      <section className="py-20 px-4">
+      <section className="py-10 px-4">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -148,7 +156,7 @@ export default function AboutPage() {
       </section>
 
       {/* Vision & Mission */}
-      <section className="py-20 px-4 bg-gray-50">
+      <section className=" px-4 bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Vision */}

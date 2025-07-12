@@ -103,7 +103,7 @@ const services = [
     id: 3,
     title: "Ship Chandling Services",
     subtitle: "Ship Chandling Services",
-    description: "24/7 supply of goods and equipment.",
+    description: "24/7 Supply of Goods and Equipment",
     details: "Supplies provisions, bonded goods, and tools.",
     icon: Package,
     color: "bg-purple-500",
@@ -142,7 +142,7 @@ const services = [
   {
     id: 4,
     title: "Port agency for Cargo Operations",
-    subtitle: "Port agency for Cargo Operations",
+    subtitle: "Port Agency for Cargo Operations",
     description: "Expert cargo handling services.",
     details: "Coordination for various cargo types.",
     icon: ShoppingCart,
@@ -181,13 +181,13 @@ const services = [
   },
   {
     id: 5,
-    title: "Yacht/Cruise Agency",
-    subtitle: "Yacht/Cruise Agency",
-    description: "Complete yacht and cruise support.",
+    title: "Yacht / Cruise Vessel Agency",
+    subtitle: "Yacht / Cruise Vessel Agency",
+    description: "Complete Yacht and Cruise Support",
     details: "Arrival, tours, crew, and repairs handled.",
     icon: Fuel,
     color: "bg-red-500",
-    cardTitle: "Yacht/Cruise Agency",
+    cardTitle: "Yacht / Cruise Vessel Agency",
     activities: [
       {
         type: "Comprehensive Port Services",
@@ -221,13 +221,13 @@ const services = [
   },
   {
     id: 6,
-    title: "Port agency for dry dock /Afloat Repairs",
-    subtitle: "Port agency for dry dock /Afloat Repairs",
-    description: "Dry dock and afloat repair support.",
+    title: "Port Agency for Dry Dock / Afloat Repair Vessel",
+    subtitle: "Port Agency for Dry Dock / Afloat Repair Vessel",
+    description: "Dry Dock and Afloat Repair Support",
     details: "Repairs, assessments, and overhauls managed.",
     icon: DollarSign,
     color: "bg-yellow-500",
-    cardTitle: "Port agency for dry dock /Afloat Repairs",
+    cardTitle: "Port Agency for Dry Dock / Afloat Repair Vessel",
     activities: [
       {
         type: "Dry Docking Operations",

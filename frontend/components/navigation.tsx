@@ -14,54 +14,76 @@ const navigation = [
   {
     name: "About",
     href: "/about",
-    subItems: [
-      { name: "Blog", href: "/blog" },
-      //{ name: "Journey", href: "/journey" },
-    ],
+    // subItems: [
+    //   { name: "Blog", href: "/blog" },
+    //   { name: "Journey", href: "/journey" },
+    // ],
   },
   {
     name: "Services",
     href: "/services",
     subItems: [
-      { name: "Port Agency Services", href: "/services" },
+      { name: "Port Agency Services", href: "/services/port-agency-services" },
       { name: "Crew Change Services", href: "/services/crew-change-services" },
-      { name: "Ship Chandling Services", href: "/services" },
-      { name: "Port Agency for Cargo Operations", href: "/services" },
-      { name: "Owner's Protective Agency services", href: "/services" },
-      { name: "Port Agency for Bunker Vessels", href: "/services" },
+      {
+        name: "Ship Chandling Services",
+        href: "/services/ship-chandling-services",
+      },
+      {
+        name: "Port Agency for Cargo Operations",
+        href: "/services/cargo-handling-operations",
+      },
+      {
+        name: "Owner's Protective Agency services",
+        href: "/services/owners-protective-agency",
+      },
+      { name: "Husbandry Services", href: "/services/husbandry-services" },
+      {
+        name: "Port Agency for Bunker Vessels",
+        href: "/services/bunker-brokering-supply",
+      },
       { name: "Yacht/Cruise Agency", href: "/services" },
       {
         name: "Foreign Naval Ships Agency",
         href: "/services/foreign-naval-ships-agency-services",
       },
-      { name: "Port Agency for Dry Dock /Afloat Repairs", href: "/services" },
-      { name: "Marine Pest Control", href: "/services" },
-      { name: "Maritime Security", href: "/services" },
-      { name: "Offshore Support", href: "/services" },
-      { name: "Documentation Services", href: "/services" },
-      { name: "Emergency Services", href: "/services" },
+      {
+        name: "Port Agency for Dry Dock /Afloat Repairs",
+        href: "/services/bunker-brokering-supply",
+      },
+      { name: "Marine Pest Control", href: "/services/marine-pest-fumigation" },
+      {
+        name: "Maritime Security",
+        href: "/services/maritime-security-services",
+      },
+      { name: "Offshore Support", href: "/services/offshore-support-services" },
+      {
+        name: "Documentation Services",
+        href: "/services/documentation-compliance-services",
+      },
+      {
+        name: "Emergency Services",
+        href: "/services/emergency-contingency-services",
+      },
     ],
   },
   { name: "Ports", href: "/ports" },
   { name: "Accreditation", href: "/accreditation" },
-  {
-    name: "Contact",
-    href: "/contact",
-  },
+  { name: "Contact", href: "/contact" },
 ];
 
-export function Navigation() {
+export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+
   const pathname = usePathname();
   const router = useRouter();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -75,12 +97,13 @@ export function Navigation() {
     }
   };
 
-  const isActive = (href: string) => {
-    return (
-      pathname === href ||
-      (href === "/about" && (pathname === "/blog" || pathname === "/journey"))
-    );
-  };
+  const isActive = (href: string) =>
+    pathname === href ||
+    (href === "/about" && (pathname === "/blog" || pathname === "/journey"));
+
+  // Desktop Services dropdown handlers
+  const handleServicesMouseEnter = () => setServicesDropdownOpen(true);
+  const handleServicesMouseLeave = () => setServicesDropdownOpen(false);
 
   return (
     <motion.header
@@ -124,7 +147,7 @@ export function Navigation() {
 
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          {/* Logo */}
+          {/* Logo & ISO badge */}
           <div className="flex items-center space-x-4">
             <Link href="/" className="flex items-center">
               {isScrolled ? (
@@ -164,71 +187,145 @@ export function Navigation() {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
-            {navigation.map((item) => (
-              <div key={item.name} className="relative group">
-                <div className="flex items-center">
-                  <Link
-                    href={item.href}
-                    className={`relative px-3 py-2 text-sm font-medium transition-colors flex items-center ${
-                      isActive(item.href)
-                        ? isScrolled
-                          ? "text-maritime-blue"
-                          : "text-maritime-gold"
-                        : isScrolled
-                        ? "text-gray-700 hover:text-maritime-blue"
-                        : "text-white hover:text-maritime-gold"
-                    }`}
+            {navigation.map((item) => {
+              if (item.name === "Services" && item.subItems) {
+                return (
+                  <div
+                    key={item.name}
+                    className="relative group"
+                    onMouseEnter={handleServicesMouseEnter}
+                    onMouseLeave={handleServicesMouseLeave}
+                    tabIndex={0}
                   >
-                    {item.name}
-                    {item.subItems && (
-                      <ChevronDown
-                        size={16}
-                        className="ml-1 transition-transform group-hover:rotate-180"
-                      />
-                    )}
-                    {isActive(item.href) && (
-                      <motion.div
-                        className={`absolute bottom-0 left-0 right-0 h-0.5 ${
-                          isScrolled ? "bg-maritime-blue" : "bg-maritime-gold"
+                    <div className="flex items-center">
+                      <Link
+                        href={item.href}
+                        className={`relative px-3 py-2 text-sm font-medium transition-colors flex items-center ${
+                          isActive(item.href)
+                            ? isScrolled
+                              ? "text-maritime-blue"
+                              : "text-maritime-gold"
+                            : isScrolled
+                            ? "text-gray-700 hover:text-maritime-blue"
+                            : "text-white hover:text-maritime-gold"
                         }`}
-                        layoutId="activeTab"
-                      />
-                    )}
-                  </Link>
-                </div>
-
-                {item.subItems && (
-                  <div className="absolute left-0 top-full invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200">
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      className="mt-0 w-48 origin-top-left rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-50"
-                    >
-                      <div className="py-1">
-                        {item.subItems.map((subItem, idx) => (
-                          <Link
-                            key={`${subItem.name}-${subItem.href}-${idx}`}
-                            href={subItem.href}
-                            className={`block px-4 py-2 text-sm ${
-                              pathname === subItem.href
-                                ? "bg-gray-100 text-maritime-blue"
-                                : "text-gray-700 hover:bg-gray-100"
+                        aria-haspopup="true"
+                        aria-expanded={servicesDropdownOpen}
+                      >
+                        {item.name}
+                        <ChevronDown
+                          size={16}
+                          className="ml-1 transition-transform group-hover:rotate-180"
+                        />
+                        {isActive(item.href) && (
+                          <motion.div
+                            className={`absolute bottom-0 left-0 right-0 h-0.5 ${
+                              isScrolled
+                                ? "bg-maritime-blue"
+                                : "bg-maritime-gold"
                             }`}
-                          >
-                            {subItem.name}
-                          </Link>
-                        ))}
-                      </div>
-                    </motion.div>
+                            layoutId="activeTab"
+                          />
+                        )}
+                      </Link>
+                    </div>
+                    {servicesDropdownOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="absolute left-0 top-full mt-2 w-72 origin-top-left rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-50"
+                        style={{
+                          maxHeight: "320px",
+                          overflowY: "auto",
+                        }}
+                      >
+                        <div className="py-1">
+                          {item.subItems.map((subItem, idx) => (
+                            <Link
+                              key={`${subItem.name}-${subItem.href}-${idx}`}
+                              href={subItem.href}
+                              className={`block px-4 py-2 text-sm ${
+                                pathname === subItem.href
+                                  ? "bg-gray-100 text-maritime-blue"
+                                  : "text-gray-700 hover:bg-gray-100"
+                              }`}
+                            >
+                              {subItem.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
                   </div>
-                )}
-              </div>
-            ))}
+                );
+              }
+
+              // All other nav items (About dropdown, etc.)
+              return (
+                <div key={item.name} className="relative group">
+                  <div className="flex items-center">
+                    <Link
+                      href={item.href}
+                      className={`relative px-3 py-2 text-sm font-medium transition-colors flex items-center ${
+                        isActive(item.href)
+                          ? isScrolled
+                            ? "text-maritime-blue"
+                            : "text-maritime-gold"
+                          : isScrolled
+                          ? "text-gray-700 hover:text-maritime-blue"
+                          : "text-white hover:text-maritime-gold"
+                      }`}
+                    >
+                      {item.name}
+                      {item.subItems && (
+                        <ChevronDown
+                          size={16}
+                          className="ml-1 transition-transform group-hover:rotate-180"
+                        />
+                      )}
+                      {isActive(item.href) && (
+                        <motion.div
+                          className={`absolute bottom-0 left-0 right-0 h-0.5 ${
+                            isScrolled ? "bg-maritime-blue" : "bg-maritime-gold"
+                          }`}
+                          layoutId="activeTab"
+                        />
+                      )}
+                    </Link>
+                  </div>
+                  {/* Dropdown for About, etc. */}
+                  {item.subItems && (
+                    <div className="absolute left-0 top-full invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200">
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="mt-0 w-48 origin-top-left rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-50"
+                      >
+                        <div className="py-1">
+                          {item.subItems.map((subItem, idx) => (
+                            <Link
+                              key={`${subItem.name}-${subItem.href}-${idx}`}
+                              href={subItem.href}
+                              className={`block px-4 py-2 text-sm ${
+                                pathname === subItem.href
+                                  ? "bg-gray-100 text-maritime-blue"
+                                  : "text-gray-700 hover:bg-gray-100"
+                              }`}
+                            >
+                              {subItem.name}
+                            </Link>
+                          ))}
+                        </div>
+                      </motion.div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
 
           {/* Right Side Buttons */}
           <div className="hidden lg:flex items-center space-x-4">
-            {/* Search Button */}
             <button
               onClick={() => setIsSearchOpen(true)}
               className={`p-2 rounded-full ${
@@ -236,11 +333,10 @@ export function Navigation() {
                   ? "text-gray-700 hover:text-maritime-blue"
                   : "text-white hover:text-maritime-gold"
               }`}
+              aria-label="Open search"
             >
               <Search size={20} />
             </button>
-
-            {/* Login Button */}
             <Button
               size="sm"
               className={`${
@@ -278,7 +374,6 @@ export function Navigation() {
                     className="h-8 w-auto"
                   />
                 </div>
-
                 <nav className="flex-1">
                   <div className="space-y-2">
                     {navigation.map((item) => (
@@ -294,7 +389,33 @@ export function Navigation() {
                         >
                           {item.name}
                         </Link>
-                        {item.subItems && (
+                        {/* Scrollable Services subItems in mobile menu */}
+                        {item.name === "Services" && item.subItems && (
+                          <div
+                            className="ml-4 mt-1 space-y-1 rounded"
+                            style={{
+                              maxHeight: "220px",
+                              overflowY: "auto",
+                            }}
+                          >
+                            {item.subItems.map((subItem, idx) => (
+                              <Link
+                                key={`${subItem.name}-${subItem.href}-${idx}`}
+                                href={subItem.href}
+                                onClick={() => setIsMobileMenuOpen(false)}
+                                className={`block px-4 py-2 text-base font-medium rounded-lg transition-colors ${
+                                  pathname === subItem.href
+                                    ? "bg-maritime-blue/20 text-maritime-blue"
+                                    : "text-gray-600 hover:bg-gray-100"
+                                }`}
+                              >
+                                {subItem.name}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                        {/* Other subItems */}
+                        {item.name !== "Services" && item.subItems && (
                           <div className="ml-4 mt-1 space-y-1">
                             {item.subItems.map((subItem, idx) => (
                               <Link
@@ -316,7 +437,6 @@ export function Navigation() {
                     ))}
                   </div>
                 </nav>
-
                 <div className="mt-4">
                   <button
                     onClick={() => {
@@ -329,7 +449,6 @@ export function Navigation() {
                     Search
                   </button>
                 </div>
-
                 <div className="mt-4">
                   <Button className="w-full bg-maritime-blue hover:bg-maritime-blue/90">
                     <LogIn className="mr-2 h-4 w-4" />
