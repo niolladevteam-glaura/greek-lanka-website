@@ -17,25 +17,23 @@ const ports = [
       "This deep-water port is renowned for its modern infrastructure and efficiency, handling various cargo and vessel types. Its central location on global trade routes between Asia, Europe, and the Middle East makes it a pivotal hub for international shipping.",
     image: "/images/ports/port-colombo1.jpg?height=400&width=600",
     features: [
-      "Container Terminal",
-      "Bulk Cargo Handling",
-      "Cruise Terminal",
-      "Transhipment Hub",
-      "24/7 Operations",
-      "Modern Infrastructure",
+      "Dry Dock Facility",
+      "Afloat Repairs Facility",
+      "Bunkering",
+      "FW Supply",
     ],
     stats: {
-      depth: "15-18m",
-      berths: "30+",
+      depth: "13-18m",
+      berths: "50+",
       capacity: "7M TEU",
       area: "1,200 hectares",
+      gps: "Latitude: 6.9536° N, Longitude: 79.8478° E",
     },
     services: [
-      "Port Agency",
-      "Cargo Handling",
+      "Dry Dock Agency",
+      "Repairs",
       "Ship Chandling",
-      "Crew Change",
-      "Bunker Supply",
+      "Bunker Vessel Agency",
     ],
   },
   {
@@ -55,18 +53,13 @@ const ports = [
       "Cultural Significance",
     ],
     stats: {
-      depth: "8-12m",
-      berths: "8",
-      capacity: "500K TEU",
-      area: "200 hectares",
+      depth: "08-09m",
+      berths: "3",
+      capacity: "1.5M",
+      area: "",
+      gps: "Latitude: 6°02′08″ N, Longitude: 80°12′54″ E",
     },
-    services: [
-      "OPL Operations",
-      "Port Agency",
-      "Tourism Services",
-      "Fishing Support",
-      "Heritage Tours",
-    ],
+    services: ["Ship Repairs"],
   },
   {
     name: "Port of Hambantota",
@@ -76,27 +69,20 @@ const ports = [
     details:
       "This modern port features an adjacent industrial zone and logistics park. Strategically positioned to enhance its role in international trade, focusing on handling a wide range of cargo including bulk and containerized goods.",
     image: "/images/ports/hambantota-port.jpg?height=400&width=600",
-    features: [
-      "Deep Water Port",
-      "Industrial Zone",
-      "Logistics Park",
-      "Modern Facilities",
-      "Strategic Location",
-      "Expansion Plans",
-    ],
+    features: ["Afloat Repairs Facility", "Bunkering"],
     stats: {
       depth: "17m",
-      berths: "12",
-      capacity: "2M TEU",
+      berths: "11+",
+      capacity: [
+        "Container: 300,000 TEUs",
+        "Bulk Cargo: 2.5 Million Tons",
+        "Breakbulk: 3 Million Tons",
+        "RO-RO: 600,000 units",
+      ],
       area: "4,000 hectares",
+      gps: "Latitude: 6°07.339′ N, Longitude: 81°05.598′ E",
     },
-    services: [
-      "Port Agency",
-      "Industrial Support",
-      "Logistics Services",
-      "Bulk Cargo",
-      "Container Handling",
-    ],
+    services: ["Ship Repairs", " Bunker Vessel Agency"],
   },
   {
     name: "Port of Trincomalee",
@@ -106,27 +92,15 @@ const ports = [
     details:
       "Trincomalee's strategic positioning provides access to major trade routes, making it vital for commercial shipping and maritime operations. The port is undergoing significant development to expand cargo handling capacity.",
     image: "/images/ports/thrinko_port.jpg?height=400&width=600",
-    features: [
-      "Natural Harbor",
-      "Deep Water Access",
-      "Oil Terminal",
-      "Naval Facilities",
-      "Strategic Location",
-      "Development Projects",
-    ],
+    features: ["Bunkering"],
     stats: {
-      depth: "30m+",
-      berths: "15",
-      capacity: "1M TEU",
+      depth: "10-18m",
+      berths: "3+",
+      capacity: "2.5M",
       area: "2,600 hectares",
+      gps: "Latitude: 8.5666° N, Longitude: 81.2333° E",
     },
-    services: [
-      "Port Agency",
-      "Oil Terminal Services",
-      "Naval Support",
-      "Cargo Operations",
-      "Ship Repair",
-    ],
+    services: ["Ship Repairs", "Bunker Vessel Agency"],
   },
 ];
 
@@ -303,7 +277,8 @@ export default function PortsPage() {
 
                       {/* Port Statistics */}
                       <div className="grid grid-cols-2 gap-4 mb-6">
-                        <div className="bg-maritime-blue/10 p-4 rounded-lg">
+                        {/* Water Depth */}
+                        <div className="bg-maritime-blue/10 p-4 rounded-lg flex flex-col justify-between min-h-[100px]">
                           <div className="text-2xl font-bold text-maritime-navy">
                             {port.stats.depth}
                           </div>
@@ -311,28 +286,56 @@ export default function PortsPage() {
                             Water Depth
                           </div>
                         </div>
-                        <div className="bg-maritime-blue/10 p-4 rounded-lg">
+                        {/* Berths */}
+                        <div className="bg-maritime-blue/10 p-4 rounded-lg flex flex-col justify-between min-h-[100px]">
                           <div className="text-2xl font-bold text-maritime-navy">
                             {port.stats.berths}
                           </div>
                           <div className="text-sm text-gray-600">Berths</div>
                         </div>
-                        <div className="bg-maritime-blue/10 p-4 rounded-lg">
-                          <div className="text-2xl font-bold text-maritime-navy">
-                            {port.stats.capacity}
-                          </div>
-                          <div className="text-sm text-gray-600">
+                        {/* Capacity or GPS or Capacity List */}
+                        <div
+                          className={`bg-maritime-blue/10 p-4 rounded-lg flex flex-col justify-between min-h-[100px] ${
+                            port.stats.area ? "" : "col-span-2"
+                          }`}
+                        >
+                          <div className="text-sm text-gray-600 font-semibold mb-1">
                             Annual Capacity
                           </div>
+                          {Array.isArray(port.stats.capacity) ? (
+                            <ul className="text-maritime-navy font-bold text-base leading-tight list-disc pl-4">
+                              {port.stats.capacity.map((item, i) => (
+                                <li key={i}>{item}</li>
+                              ))}
+                            </ul>
+                          ) : (
+                            <div className="text-maritime-navy font-bold text-2xl">
+                              {port.stats.capacity}
+                            </div>
+                          )}
                         </div>
-                        <div className="bg-maritime-blue/10 p-4 rounded-lg">
-                          <div className="text-2xl font-bold text-maritime-navy">
-                            {port.stats.area}
+                        {/* Area */}
+                        {port.stats.area && (
+                          <div className="bg-maritime-blue/10 p-4 rounded-lg flex flex-col justify-between min-h-[100px]">
+                            <div className="text-2xl font-bold text-maritime-navy">
+                              {port.stats.area}
+                            </div>
+                            <div className="text-sm text-gray-600">
+                              Total Area
+                            </div>
                           </div>
-                          <div className="text-sm text-gray-600">
-                            Total Area
+                        )}
+                        {/* GPS Position */}
+                        {port.stats.gps && (
+                          <div className="bg-maritime-blue/10 p-4 rounded-lg flex flex-col justify-between min-h-[100px] col-span-2">
+                            <div className="text-sm text-gray-600 font-semibold mb-1">
+                              GPS Position
+                            </div>
+                            <div className="text-maritime-navy font-bold text-base whitespace-pre-line">
+                              {port.stats.gps}
+                            </div>
                           </div>
-                        </div>
+                        )}
                       </div>
 
                       {/* Features */}

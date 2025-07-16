@@ -1,9 +1,8 @@
-import React, { Suspense, useEffect } from "react";
+import React, { Suspense, useEffect, useMemo } from "react";
 import { Canvas, useThree } from "@react-three/fiber";
 import { OrbitControls, useGLTF, useAnimations, Html } from "@react-three/drei";
 import * as THREE from "three";
 
-// Recursive helper (case-insensitive) to find a camera by name
 function findCameraByNameRecursive(
   object: THREE.Object3D,
   name: string
@@ -24,58 +23,56 @@ function findCameraByNameRecursive(
 interface PortsModelProps {
   cameraName?: string;
   animationName?: string;
+  position?: [number, number, number]; // <--- Added this
 }
 
 function PortsModel({
   cameraName = "Cam",
   animationName = "Animation",
+  position = [0, 0, 0], // <--- Default position
 }: PortsModelProps) {
-  const { scene, animations } = useGLTF("/models/scene.gltf");
+  const { scene, animations } = useGLTF("/models/scene8.gltf");
   const { actions } = useAnimations(animations, scene);
   const { set } = useThree();
 
+  if (!scene || !animations) {
+    return (
+      <Html center>
+        <span>Loading 3D Model...</span>
+      </Html>
+    );
+  }
+
+  const customCamera = useMemo(
+    () =>
+      findCameraByNameRecursive(scene, cameraName) ||
+      scene.children.find((obj) => obj instanceof THREE.PerspectiveCamera),
+    [scene, cameraName]
+  );
+
+  const animName =
+    animations.find((a) => a.name === animationName)?.name ||
+    animations[0]?.name;
+  const animAction = actions[animName];
+
   useEffect(() => {
-    // Log all cameras for debugging
-    const cameras: string[] = [];
-    function collectCameras(obj: THREE.Object3D) {
-      if (obj instanceof THREE.PerspectiveCamera) cameras.push(obj.name);
-      obj.children.forEach(collectCameras);
-    }
-    collectCameras(scene);
-    console.log("Available cameras:", cameras);
-
-    const animationNames = animations.map((anim) => anim.name);
-    console.log("Available animations:", animationNames);
-  }, [scene, animations]);
-
-  const customCamera = findCameraByNameRecursive(scene, cameraName);
-
-  useEffect(() => {
-    const animAction = actions[animationName] || actions["Animation"];
     if (animAction) {
       animAction.reset().play();
-      console.log(`Playing animation: ${animationName}`);
-    } else {
-      console.warn(`Animation "${animationName}" not found!`);
+      console.log(`Playing animation: ${animName}`);
     }
     return () => {
-      if (animAction) {
-        animAction.stop();
-        console.log(`Stopped animation: ${animationName}`);
-      }
+      if (animAction) animAction.stop();
     };
-  }, [actions, animationName]);
+  }, [animAction, animName]);
 
   useEffect(() => {
-    if (customCamera) {
+    if (scene && customCamera) {
       set({ camera: customCamera });
       console.log(`Set camera: ${customCamera.name}`);
-    } else {
-      console.warn(`Camera "${cameraName}" not found!`);
     }
-  }, [customCamera, set, cameraName]);
+  }, [scene, customCamera, set]);
 
-  return <primitive object={scene} />;
+  return <primitive object={scene} position={position} />; // <--- Set position here
 }
 
 export default function PortsGLBViewer() {
@@ -95,7 +92,12 @@ export default function PortsGLBViewer() {
             </Html>
           }
         >
-          <PortsModel cameraName="Cam" animationName="Animation" />
+          {/* Pass desired X and Y position, e.g. [x, y, z] */}
+          <PortsModel
+            cameraName="Cam"
+            animationName="Animation"
+            position={[0.3, -0.6, 0]}
+          />
         </Suspense>
         <OrbitControls enablePan enableZoom enableRotate />
       </Canvas>
@@ -103,4 +105,4 @@ export default function PortsGLBViewer() {
   );
 }
 
-useGLTF.preload("/models/scene.gltf");
+useGLTF.preload("/models/scene8.gltf");
