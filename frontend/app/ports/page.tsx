@@ -237,7 +237,7 @@ export default function PortsPage() {
       </section>
 
       {/* Ports Details */}
-      <section className="px-4 bg-gray-50">
+      <section className="px-4 bg-gray-50 pb-20">
         <div className="max-w-7xl mx-auto">
           <div className="space-y-20">
             {ports.map((port, index) => (
@@ -249,7 +249,7 @@ export default function PortsPage() {
                 viewport={{ once: true }}
                 className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
                   index % 2 === 1 ? "lg:grid-flow-col-dense" : ""
-                }`}
+                } ${index === ports.length - 1 ? "pb-10" : ""}`}
               >
                 {/* Content */}
                 <div className={index % 2 === 1 ? "lg:col-start-2" : ""}>
