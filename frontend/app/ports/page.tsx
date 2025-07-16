@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Ship, Container, Fuel, Users } from "lucide-react";
+import WorldMap from "@/components/WorldMap";
 import Image from "next/image";
 
 const ports = [
@@ -180,14 +181,81 @@ export default function PortsPage() {
                   regional distribution, and value-added services.
                 </p>
               </div>
-              <div className="relative">
-                <Image
-                  src="/images/ports/srilanka_ports2.gif"
-                  alt="Sri Lanka Strategic Location"
-                  width={200}
-                  height={100}
-                  className="w-full h-auto"
-                />
+              <div>
+                <div className="flex items-center justify-center gap-8">
+                  <WorldMap />
+
+                  {/* Enhanced Logo Animation */}
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8, y: 100 }}
+                    whileInView={{
+                      opacity: 1,
+                      scale: 1,
+                      y: 0,
+                    }}
+                    animate={{
+                      y: [0, -15, 0],
+                      rotate: [0, -2, 0, 2, 0],
+                    }}
+                    transition={{
+                      opacity: { duration: 0.8, ease: "easeOut" },
+                      scale: { duration: 0.8, delay: 0.1 },
+                      y: {
+                        duration: 4,
+                        repeat: Infinity,
+                        repeatType: "reverse",
+                        ease: "easeInOut",
+                      },
+                      rotate: {
+                        duration: 6,
+                        repeat: Infinity,
+                        repeatType: "reverse",
+                        ease: "easeInOut",
+                      },
+                    }}
+                    viewport={{ once: true }}
+                    className="w-40 h-40 relative"
+                  >
+                    <div className="absolute -top-8 -left-8 w-12 h-12">
+                      <motion.div
+                        animate={{
+                          x: [0, 120, 0],
+                          y: [0, -10, 0],
+                          opacity: [0, 1, 0],
+                        }}
+                        transition={{
+                          x: {
+                            duration: 8,
+                            repeat: Infinity,
+                            ease: "linear",
+                          },
+                          y: {
+                            duration: 3,
+                            repeat: Infinity,
+                            repeatType: "reverse",
+                            ease: "easeInOut",
+                          },
+                          opacity: {
+                            duration: 3,
+                            repeat: Infinity,
+                            times: [0, 0.2, 1],
+                          },
+                        }}
+                        className="absolute"
+                      >
+                        <Ship className="w-8 h-8 text-maritime-blue" />
+                      </motion.div>
+                    </div>
+
+                    <Image
+                      src="/greek-lanka-logo.png"
+                      alt="Greek Lanka Logo"
+                      fill
+                      className="object-contain drop-shadow-lg"
+                      priority
+                    />
+                  </motion.div>
+                </div>
               </div>
             </div>
           </motion.div>

@@ -5,8 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Anchor } from "lucide-react";
 import { useState } from "react";
-
-import { CameraFlightScene } from "@/components/CameraFlightScene";
+import PortsGLBViewer from "@/components/PortsGLBViewer";
 
 const ports = [
   // ... unchanged port data ...
@@ -251,13 +250,7 @@ export function SriLankaMap() {
             viewport={{ once: true }}
             className="flex justify-center"
           >
-            <img
-              src="/images/Sri_lankan_ports_animation.gif"
-              alt="Sri Lanka Map"
-              className="w-full h-auto max-w-xs sm:max-w-md md:max-w-lg lg:max-w-[600px] aspect-square object-contain"
-              // aspect-square ensures image stays square on all screens
-            />
-            {/* <CameraFlightScene /> */}
+            <PortsGLBViewer />
           </motion.div>
         </div>
       </div>
