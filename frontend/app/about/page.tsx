@@ -84,7 +84,7 @@ export default function AboutPage() {
         <ReactPlayer
           src="https://www.youtube.com/watch?v=BY7mbrxpNEM"
           playing={true}
-          controls={true}
+          controls={false}
           width="100%"
           height="480px"
           className="max-w-3xl mx-auto rounded-lg shadow-lg"
