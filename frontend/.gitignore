@@ -27,3 +27,5 @@ yarn-error.log*
 next-env.d.ts
 
 /public/models/
+
+public/videos/*.mp4

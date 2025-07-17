@@ -250,7 +250,16 @@ export function SriLankaMap() {
             viewport={{ once: true }}
             className="flex justify-center"
           >
-            <PortsGLBViewer />
+            <div className="aspect-square w-full max-w-[600px] rounded-lg overflow-hidden shadow-lg border border-white/20">
+              <video
+                src="/videos/World1.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover"
+              />
+            </div>
           </motion.div>
         </div>
       </div>
