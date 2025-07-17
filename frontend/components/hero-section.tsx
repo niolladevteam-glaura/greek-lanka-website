@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Anchor } from "lucide-react";
 import Link from "next/link";
@@ -9,7 +8,6 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 export function HeroSection() {
-  const { t } = useTranslation();
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 

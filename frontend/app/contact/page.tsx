@@ -39,7 +39,7 @@ const departments = [
       },
       {
         name: "Yasith Kalupahana (Mr)",
-        phone: "+94 777 001 855",
+        phone: "+94 77 700 1855",
         availability: "24/7",
       },
       {
@@ -57,7 +57,7 @@ const departments = [
     contacts: [
       {
         name: "Yasith Kalupahana (Mr)",
-        phone: "+94 703 310 992",
+        phone: "+94 77 700 1855",
         availability: "24/7",
       },
     ],
@@ -125,7 +125,7 @@ const teamMembers = [
   {
     name: "Yasith Kalupahana",
     position: "Asst.Manager - Business Development",
-    phone: "+94 70 331 0992",
+    phone: "+94 77 700 1855",
     //email: "yasith@greeklanka.com",
     image: "/team/yasith.jpg",
   },
@@ -305,10 +305,10 @@ export default function ContactPage() {
                       +94 777 232 271
                     </a>
                     <a
-                      href="tel:+94777191114"
+                      href="tel:+94777001855"
                       className="block hover:text-blue-600 transition-colors font-medium"
                     >
-                      +94 777 191 114
+                      +94 77 700 1855
                     </a>
                   </div>
                 ),

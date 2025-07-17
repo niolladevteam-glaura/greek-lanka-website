@@ -42,14 +42,14 @@ const navigation = [
         name: "Port Agency for Bunker Vessels",
         href: "/services/bunker-brokering-supply",
       },
-      { name: "Yacht/Cruise Agency", href: "/services" },
+      { name: "Yacht/Cruise Agency", href: "/services/yacht-cruise-agency" },
       {
         name: "Foreign Naval Ships Agency",
         href: "/services/foreign-naval-ships-agency-services",
       },
       {
         name: "Port Agency for Dry Dock /Afloat Repairs",
-        href: "/services/bunker-brokering-supply",
+        href: "/services/dry-dock-technical-services",
       },
       { name: "Marine Pest Control", href: "/services/marine-pest-fumigation" },
       {

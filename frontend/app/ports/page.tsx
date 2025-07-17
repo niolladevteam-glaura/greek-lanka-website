@@ -21,6 +21,12 @@ const ports = [
       "Afloat Repairs Facility",
       "Bunkering",
       "FW Supply",
+      "Container Terminal",
+      "Bulk Cargo Handling",
+      "Cruise Terminal",
+      "Transhipment Hub",
+      "24/7 Operations",
+      "Modern Infrastructure",
     ],
     stats: {
       depth: "13-18m",
@@ -34,6 +40,10 @@ const ports = [
       "Repairs",
       "Ship Chandling",
       "Bunker Vessel Agency",
+      "Port Agency",
+      "Cargo Handling",
+      "Crew Change",
+      "Bunker Supply",
     ],
   },
   {
@@ -59,7 +69,14 @@ const ports = [
       area: "",
       gps: "Latitude: 6°02′08″ N, Longitude: 80°12′54″ E",
     },
-    services: ["Ship Repairs"],
+    services: [
+      "Ship Repairs",
+      "OPL Operations",
+      "Port Agency",
+      "Tourism Services",
+      "Fishing Support",
+      "Heritage Tours",
+    ],
   },
   {
     name: "Port of Hambantota",
@@ -69,7 +86,16 @@ const ports = [
     details:
       "This modern port features an adjacent industrial zone and logistics park. Strategically positioned to enhance its role in international trade, focusing on handling a wide range of cargo including bulk and containerized goods.",
     image: "/images/ports/hambantota-port.jpg?height=400&width=600",
-    features: ["Afloat Repairs Facility", "Bunkering"],
+    features: [
+      "Afloat Repairs Facility",
+      "Bunkering",
+      "Deep Water Port",
+      "Industrial Zone",
+      "Logistics Park",
+      "Modern Facilities",
+      "Strategic Location",
+      "Expansion Plans",
+    ],
     stats: {
       depth: "17m",
       berths: "11+",
@@ -82,7 +108,15 @@ const ports = [
       area: "4,000 hectares",
       gps: "Latitude: 6°07.339′ N, Longitude: 81°05.598′ E",
     },
-    services: ["Ship Repairs", " Bunker Vessel Agency"],
+    services: [
+      "Ship Repairs",
+      " Bunker Vessel Agency",
+      "Port Agency",
+      "Industrial Support",
+      "Logistics Services",
+      "Bulk Cargo",
+      "Container Handling",
+    ],
   },
   {
     name: "Port of Trincomalee",
@@ -92,7 +126,15 @@ const ports = [
     details:
       "Trincomalee's strategic positioning provides access to major trade routes, making it vital for commercial shipping and maritime operations. The port is undergoing significant development to expand cargo handling capacity.",
     image: "/images/ports/thrinko_port.jpg?height=400&width=600",
-    features: ["Bunkering"],
+    features: [
+      "Bunkering",
+      "Natural Harbor",
+      "Deep Water Access",
+      "Oil Terminal",
+      "Naval Facilities",
+      "Strategic Location",
+      "Development Projects",
+    ],
     stats: {
       depth: "10-18m",
       berths: "3+",
@@ -100,7 +142,14 @@ const ports = [
       area: "2,600 hectares",
       gps: "Latitude: 8.5666° N, Longitude: 81.2333° E",
     },
-    services: ["Ship Repairs", "Bunker Vessel Agency"],
+    services: [
+      "Ship Repairs",
+      "Bunker Vessel Agency",
+      "Port Agency",
+      "Oil Terminal Services",
+      "Naval Support",
+      "Cargo Operations",
+    ],
   },
 ];
 
@@ -275,63 +324,52 @@ export default function PortsPage() {
                         {port.details}
                       </p>
 
-                      {/* Port Statistics */}
-                      <div className="grid grid-cols-2 gap-4 mb-6">
+                      {/* Port Statistics - Neater grid, more compact spacing, even alignment */}
+                      <div className="grid grid-cols-2 gap-x-4 gap-y-3 mb-6">
                         {/* Water Depth */}
-                        <div className="bg-maritime-blue/10 p-4 rounded-lg flex flex-col justify-between min-h-[100px]">
+                        <div className="bg-maritime-blue/10 p-4 rounded-lg flex flex-col justify-center min-h-[90px] h-full">
                           <div className="text-2xl font-bold text-maritime-navy">
                             {port.stats.depth}
                           </div>
-                          <div className="text-sm text-gray-600">
+                          <div className="text-sm text-gray-600 mt-1">
                             Water Depth
                           </div>
                         </div>
                         {/* Berths */}
-                        <div className="bg-maritime-blue/10 p-4 rounded-lg flex flex-col justify-between min-h-[100px]">
+                        <div className="bg-maritime-blue/10 p-4 rounded-lg flex flex-col justify-center min-h-[90px] h-full">
                           <div className="text-2xl font-bold text-maritime-navy">
                             {port.stats.berths}
                           </div>
-                          <div className="text-sm text-gray-600">Berths</div>
+                          <div className="text-sm text-gray-600 mt-1">
+                            Berths
+                          </div>
                         </div>
                         {/* Capacity or GPS or Capacity List */}
                         <div
-                          className={`bg-maritime-blue/10 p-4 rounded-lg flex flex-col justify-between min-h-[100px] ${
-                            port.stats.area ? "" : "col-span-2"
-                          }`}
+                          className={`bg-maritime-blue/10 p-4 rounded-lg flex flex-col justify-center min-h-[90px] h-full col-span-2`}
                         >
                           <div className="text-sm text-gray-600 font-semibold mb-1">
                             Annual Capacity
                           </div>
                           {Array.isArray(port.stats.capacity) ? (
-                            <ul className="text-maritime-navy font-bold text-base leading-tight list-disc pl-4">
+                            <ul className="text-maritime-navy font-bold text-base leading-tight list-disc pl-4 mb-0">
                               {port.stats.capacity.map((item, i) => (
                                 <li key={i}>{item}</li>
                               ))}
                             </ul>
                           ) : (
-                            <div className="text-maritime-navy font-bold text-2xl">
+                            <div className="text-maritime-navy font-bold text-2xl mb-0">
                               {port.stats.capacity}
                             </div>
                           )}
                         </div>
-                        {/* Area */}
-                        {port.stats.area && (
-                          <div className="bg-maritime-blue/10 p-4 rounded-lg flex flex-col justify-between min-h-[100px]">
-                            <div className="text-2xl font-bold text-maritime-navy">
-                              {port.stats.area}
-                            </div>
-                            <div className="text-sm text-gray-600">
-                              Total Area
-                            </div>
-                          </div>
-                        )}
                         {/* GPS Position */}
                         {port.stats.gps && (
-                          <div className="bg-maritime-blue/10 p-4 rounded-lg flex flex-col justify-between min-h-[100px] col-span-2">
+                          <div className="bg-maritime-blue/10 p-4 rounded-lg flex flex-col justify-center min-h-[90px] h-full col-span-2">
                             <div className="text-sm text-gray-600 font-semibold mb-1">
                               GPS Position
                             </div>
-                            <div className="text-maritime-navy font-bold text-base whitespace-pre-line">
+                            <div className="text-maritime-navy font-bold text-base whitespace-pre-line mb-0">
                               {port.stats.gps}
                             </div>
                           </div>
@@ -339,8 +377,8 @@ export default function PortsPage() {
                       </div>
 
                       {/* Features */}
-                      <div className="mb-6">
-                        <h4 className="font-semibold text-maritime-navy mb-3">
+                      <div className="mb-4">
+                        <h4 className="font-semibold text-maritime-navy mb-2">
                           Key Features
                         </h4>
                         <div className="flex flex-wrap gap-2">
@@ -358,7 +396,7 @@ export default function PortsPage() {
 
                       {/* Services */}
                       <div>
-                        <h4 className="font-semibold text-maritime-navy mb-3">
+                        <h4 className="font-semibold text-maritime-navy mb-2">
                           Our Services
                         </h4>
                         <div className="flex flex-wrap gap-2">
