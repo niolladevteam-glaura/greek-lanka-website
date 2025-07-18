@@ -146,7 +146,7 @@ const services = [
     id: 4,
     title: "Port agency for Cargo Operations",
     subtitle: "Port Agency for Cargo Operations",
-    description: "Expert Cargo Operations Handling.",
+    description: "Expert Cargo Operations Handling",
     details: "Coordination for various cargo types.",
     icon: ShoppingCart,
     color: "bg-orange-500",

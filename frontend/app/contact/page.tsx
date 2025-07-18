@@ -695,7 +695,7 @@ export default function ContactPage() {
                 <div className="w-16 h-1 bg-maritime-blue mb-6"></div>
                 <p className="text-lg text-gray-600 mb-8">
                   Have questions or need a quote? Fill out the form and our
-                  maritime experts will get back to you within 24 hours.
+                  maritime experts will get back to you ASAP.
                 </p>
               </div>
 

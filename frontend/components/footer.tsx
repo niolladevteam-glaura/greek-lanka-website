@@ -81,60 +81,18 @@ export function Footer() {
     const isValidEmail = (email: string) =>
       /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-    const handleSubscribe = async (e: React.FormEvent) => {
-      e.preventDefault();
-      setStatus("idle");
-      setMessage(null);
+    if (!email) {
+      setStatus("error");
+      setMessage("Please enter your email.");
+      return;
+    }
+    if (!isValidEmail(email)) {
+      setStatus("error");
+      setMessage("Please enter a valid email address.");
+      return;
+    }
 
-      if (!email) {
-        setStatus("error");
-        setMessage("Please enter your email.");
-        return;
-      }
-      if (!isValidEmail(email)) {
-        setStatus("error");
-        setMessage("Please enter a valid email address.");
-        return;
-      }
-
-      setStatus("loading");
-
-      try {
-        const res = await fetch(
-          "http://localhost:4000/api/newsletter/subscribe",
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email }),
-          }
-        );
-
-        let data;
-        try {
-          data = await res.json();
-        } catch {
-          data = null;
-        }
-
-        if (res.ok) {
-          setStatus("success");
-          setMessage("Thank you for subscribing!");
-          setEmail("");
-        } else {
-          setStatus("error");
-          // Attempt to show backend error message, fallback to status text or generic message
-          setMessage(
-            data?.error ||
-              data?.message ||
-              res.statusText ||
-              "Subscription failed. Please try again."
-          );
-        }
-      } catch (e: any) {
-        setStatus("error");
-        setMessage("Network error. Please try again.");
-      }
-    };
+    setStatus("loading");
 
     try {
       const res = await fetch(
@@ -146,18 +104,29 @@ export function Footer() {
         }
       );
 
+      let data;
+      try {
+        data = await res.json();
+      } catch {
+        data = null;
+      }
+
       if (res.ok) {
         setStatus("success");
         setMessage("Thank you for subscribing!");
         setEmail("");
       } else {
-        const data = await res.json();
         setStatus("error");
-        setMessage(data?.error || "Subscription failed. Please try again.");
+        setMessage(
+          data?.error ||
+            data?.message ||
+            res.statusText ||
+            "Subscription failed. Please try again."
+        );
       }
-    } catch {
+    } catch (e: any) {
       setStatus("error");
-      setMessage("Something went wrong. Please try again.");
+      setMessage("Network error. Please try again.");
     }
   };
 
@@ -187,6 +156,11 @@ export function Footer() {
               Sri Lanka’s #1 Ship Agent is here <br />
               Let’s get things moving!
             </p>
+
+            {/* Add "Follow us on" above social links */}
+            <div className="mb-2 text-maritime-gold font-medium text-sm">
+              Follow us on
+            </div>
             <div className="flex space-x-4">
               {socialLinks.map((social) => (
                 <Link
@@ -281,7 +255,7 @@ export function Footer() {
                     href="tel:+94777191114"
                     className="text-white hover:text-maritime-gold transition-colors block"
                   >
-                    +94-777-191-114
+                    +94-777-001-855
                   </Link>
                 </div>
               </div>

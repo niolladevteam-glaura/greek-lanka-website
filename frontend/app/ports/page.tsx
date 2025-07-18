@@ -106,7 +106,7 @@ const ports = [
         "RO-RO: 600,000 units",
       ],
       area: "4,000 hectares",
-      gps: "Latitude: 6°07.339′ N, Longitude: 81°05.598′ E",
+      gps: "Latitude: 6°07.339′ N\nLongitude: 81°05.598′ E",
     },
     services: [
       "Ship Repairs",
@@ -140,7 +140,7 @@ const ports = [
       berths: "3+",
       capacity: "2.5M",
       area: "2,600 hectares",
-      gps: "Latitude: 8.5666° N, Longitude: 81.2333° E",
+      gps: "Latitude: 8.5666° N\nLongitude: 81.2333° E",
     },
     services: [
       "Ship Repairs",
@@ -152,6 +152,34 @@ const ports = [
     ],
   },
 ];
+
+// StatCard for uniform statistics display
+function StatCard({
+  value,
+  label,
+  isVertical = false,
+}: {
+  value: React.ReactNode;
+  label: string;
+  isVertical?: boolean;
+}) {
+  return (
+    <div
+      className="bg-gray-200 p-6 rounded-xl flex flex-col justify-center min-h-[110px] h-full"
+      style={isVertical ? { alignItems: "flex-start" } : {}}
+    >
+      <div
+        className={`font-bold text-maritime-navy ${
+          isVertical ? "text-base mb-1" : "text-2xl"
+        }`}
+        style={isVertical ? { whiteSpace: "pre-line" } : {}}
+      >
+        {value}
+      </div>
+      <div className="text-sm text-gray-600 mt-1">{label}</div>
+    </div>
+  );
+}
 
 export default function PortsPage() {
   return (
@@ -286,7 +314,7 @@ export default function PortsPage() {
       </section>
 
       {/* Ports Details */}
-      <section className="px-4 bg-gray-50 pb-20">
+      <section className="px-4 py-0 bg-gray-50 pb-20">
         <div className="max-w-7xl mx-auto">
           <div className="space-y-20">
             {ports.map((port, index) => (
@@ -324,56 +352,46 @@ export default function PortsPage() {
                         {port.details}
                       </p>
 
-                      {/* Port Statistics - Neater grid, more compact spacing, even alignment */}
+                      {/* Port Statistics - 2 columns, all cards like ![image2](image2) */}
                       <div className="grid grid-cols-2 gap-x-4 gap-y-3 mb-6">
-                        {/* Water Depth */}
-                        <div className="bg-maritime-blue/10 p-4 rounded-lg flex flex-col justify-center min-h-[90px] h-full">
-                          <div className="text-2xl font-bold text-maritime-navy">
-                            {port.stats.depth}
-                          </div>
-                          <div className="text-sm text-gray-600 mt-1">
-                            Water Depth
-                          </div>
-                        </div>
-                        {/* Berths */}
-                        <div className="bg-maritime-blue/10 p-4 rounded-lg flex flex-col justify-center min-h-[90px] h-full">
-                          <div className="text-2xl font-bold text-maritime-navy">
-                            {port.stats.berths}
-                          </div>
-                          <div className="text-sm text-gray-600 mt-1">
-                            Berths
-                          </div>
-                        </div>
-                        {/* Capacity or GPS or Capacity List */}
-                        <div
-                          className={`bg-maritime-blue/10 p-4 rounded-lg flex flex-col justify-center min-h-[90px] h-full col-span-2`}
-                        >
-                          <div className="text-sm text-gray-600 font-semibold mb-1">
-                            Annual Capacity
-                          </div>
-                          {Array.isArray(port.stats.capacity) ? (
-                            <ul className="text-maritime-navy font-bold text-base leading-tight list-disc pl-4 mb-0">
-                              {port.stats.capacity.map((item, i) => (
-                                <li key={i}>{item}</li>
-                              ))}
-                            </ul>
-                          ) : (
-                            <div className="text-maritime-navy font-bold text-2xl mb-0">
-                              {port.stats.capacity}
-                            </div>
-                          )}
-                        </div>
-                        {/* GPS Position */}
-                        {port.stats.gps && (
-                          <div className="bg-maritime-blue/10 p-4 rounded-lg flex flex-col justify-center min-h-[90px] h-full col-span-2">
-                            <div className="text-sm text-gray-600 font-semibold mb-1">
-                              GPS Position
-                            </div>
-                            <div className="text-maritime-navy font-bold text-base whitespace-pre-line mb-0">
-                              {port.stats.gps}
-                            </div>
-                          </div>
-                        )}
+                        <StatCard
+                          value={port.stats.depth}
+                          label="Water Depth"
+                        />
+                        <StatCard value={port.stats.berths} label="Berths" />
+
+                        {/* Annual Capacity - same style as above, left column */}
+                        <StatCard
+                          value={
+                            Array.isArray(port.stats.capacity) ? (
+                              <ul className="list-disc pl-4 m-0">
+                                {port.stats.capacity.map((item, i) => (
+                                  <li key={i} className="text-base">
+                                    {item}
+                                  </li>
+                                ))}
+                              </ul>
+                            ) : (
+                              port.stats.capacity
+                            )
+                          }
+                          label="Annual Capacity"
+                        />
+
+                        {/* GPS Position - same style as above, right column, vertical */}
+                        <StatCard
+                          value={
+                            port.stats.gps.includes("\n")
+                              ? port.stats.gps
+                              : port.stats.gps
+                                  .split(",")
+                                  .map((line, i) => (
+                                    <div key={i}>{line.trim()}</div>
+                                  ))
+                          }
+                          label="GPS Position"
+                          isVertical
+                        />
                       </div>
 
                       {/* Features */}

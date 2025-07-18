@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -78,6 +78,7 @@ export default function Navigation() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+  const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   const pathname = usePathname();
   const router = useRouter();
@@ -101,9 +102,23 @@ export default function Navigation() {
     pathname === href ||
     (href === "/about" && (pathname === "/blog" || pathname === "/journey"));
 
-  // Desktop Services dropdown handlers
-  const handleServicesMouseEnter = () => setServicesDropdownOpen(true);
-  const handleServicesMouseLeave = () => setServicesDropdownOpen(false);
+  // Desktop Services dropdown handlers with delay to prevent flicker
+  const handleServicesMouseEnter = () => {
+    if (dropdownTimeoutRef.current) {
+      clearTimeout(dropdownTimeoutRef.current);
+    }
+    setServicesDropdownOpen(true);
+  };
+  const handleServicesMouseLeave = () => {
+    dropdownTimeoutRef.current = setTimeout(() => {
+      setServicesDropdownOpen(false);
+    }, 120); // Slight delay prevents accidental close
+  };
+
+  // Also close dropdown on navigation change
+  useEffect(() => {
+    setServicesDropdownOpen(false);
+  }, [pathname]);
 
   return (
     <motion.header
@@ -229,33 +244,39 @@ export default function Navigation() {
                         )}
                       </Link>
                     </div>
-                    {servicesDropdownOpen && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="absolute left-0 top-full mt-2 w-72 origin-top-left rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-50"
-                        style={{
-                          maxHeight: "320px",
-                          overflowY: "auto",
-                        }}
-                      >
-                        <div className="py-1">
-                          {item.subItems.map((subItem, idx) => (
-                            <Link
-                              key={`${subItem.name}-${subItem.href}-${idx}`}
-                              href={subItem.href}
-                              className={`block px-4 py-2 text-sm ${
-                                pathname === subItem.href
-                                  ? "bg-gray-100 text-maritime-blue"
-                                  : "text-gray-700 hover:bg-gray-100"
-                              }`}
-                            >
-                              {subItem.name}
-                            </Link>
-                          ))}
-                        </div>
-                      </motion.div>
-                    )}
+                    {/* Dropdown content with pointer events for smooth hover */}
+                    <motion.div
+                      initial={false}
+                      animate={
+                        servicesDropdownOpen
+                          ? { opacity: 1, y: 0, pointerEvents: "auto" }
+                          : { opacity: 0, y: 10, pointerEvents: "none" }
+                      }
+                      transition={{ duration: 0.15 }}
+                      className="absolute left-0 top-full mt-2 w-72 origin-top-left rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none z-50"
+                      style={{
+                        maxHeight: "320px",
+                        overflowY: "auto",
+                      }}
+                      onMouseEnter={handleServicesMouseEnter}
+                      onMouseLeave={handleServicesMouseLeave}
+                    >
+                      <div className="py-1">
+                        {item.subItems.map((subItem, idx) => (
+                          <Link
+                            key={`${subItem.name}-${subItem.href}-${idx}`}
+                            href={subItem.href}
+                            className={`block px-4 py-2 text-sm ${
+                              pathname === subItem.href
+                                ? "bg-gray-100 text-maritime-blue"
+                                : "text-gray-700 hover:bg-gray-100"
+                            }`}
+                          >
+                            {subItem.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </motion.div>
                   </div>
                 );
               }
