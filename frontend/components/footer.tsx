@@ -255,7 +255,7 @@ export function Footer() {
                     href="tel:+94777191114"
                     className="text-white hover:text-maritime-gold transition-colors block"
                   >
-                    +94-777-001-855
+                    +94-777-191-114
                   </Link>
                 </div>
               </div>
