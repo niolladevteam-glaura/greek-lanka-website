@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Ship, Phone, Clock, MapPin, Globe2 } from "lucide-react";
 import Link from "next/link";
+import Script from "next/script";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { HeroSection } from "@/components/hero-section";
@@ -18,6 +19,22 @@ import { PrivacyPolicyBar } from "@/components/PrivacyPolicyBar";
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-slate-50 to-white cursor-maritime">
+      {/* Tawk.to Live Chat Script */}
+      <Script id="tawkto" strategy="afterInteractive">
+        {`
+          var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+          (function() {
+            var s1 = document.createElement("script"),
+              s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/687d0cd31786aa1911e6e448/1j0k7k6o7';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+          })();
+        `}
+      </Script>
+
       <PrivacyPolicyBar />
       <HeroSection />
 
