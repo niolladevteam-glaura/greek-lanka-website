@@ -27,10 +27,10 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 
+// --- Data ---
 const departments = [
   {
     name: "Operations Department",
-    //email: "operations@greeklanka.com",
     contacts: [
       {
         name: "Udith Kalupahana (Mr)",
@@ -53,7 +53,6 @@ const departments = [
   },
   {
     name: "Disbursement Department",
-    //email: "disbursement@greeklanka.com",
     contacts: [
       {
         name: "Yasith Kalupahana (Mr)",
@@ -67,7 +66,6 @@ const departments = [
   },
   {
     name: "Career Opportunities",
-    //email: "admin@greeklanka.com",
     contacts: [
       {
         name: "Amal Pathirana (Mr)",
@@ -119,28 +117,24 @@ const teamMembers = [
     name: "Udith Kalupahana",
     position: "Managing Director",
     phone: "+94 77 723 2271",
-    //email: "udith@greeklanka.com",
     image: "/team/udith.jpg",
   },
   {
     name: "Yasith Kalupahana",
     position: "Asst.Manager - Business Development",
     phone: "+94 77 700 1855",
-    //email: "yasith@greeklanka.com",
     image: "/team/yasith.jpg",
   },
   {
     name: "Sajith Madushan",
     position: "Asst.Manager - Operations",
     phone: "+94 777 828 161",
-    //email: "sajith@greeklanka.com",
     image: "/team/sajith.jpg",
   },
   {
     name: "Amal Pathirana",
     position: "Financial Controller",
     phone: "+94 777 844 214",
-    //email: "amal@greeklanka.com",
     image: "/team/nimali.jpg",
   },
 ];
@@ -154,6 +148,9 @@ function splitName(fullName: string) {
     lastName: parts.at(-1) || "",
   };
 }
+
+// --- WEB3Forms API Key ---
+const WEB3FORMS_API_KEY = "9dbf1f19-3f76-4547-ab19-3dd6130d74f4";
 
 export default function ContactPage() {
   // ---- State for form fields ----
@@ -185,7 +182,7 @@ export default function ContactPage() {
     }));
   }
 
-  // ---- Form Submit Handler ----
+  // ---- Form Submit Handler: WEB3Forms integration ----
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setSubmitting(true);
@@ -195,8 +192,10 @@ export default function ContactPage() {
     // Split name
     const { firstName, lastName } = splitName(form.name);
 
-    // Prepare contact body
-    const contactBody = {
+    // Prepare contact body for WEB3Forms
+    const contactBody: Record<string, any> = {
+      access_key: WEB3FORMS_API_KEY,
+      name: form.name,
       firstName,
       lastName,
       email: form.email,
@@ -204,24 +203,19 @@ export default function ContactPage() {
       phone: form.phone,
       company: form.company,
       message: form.message,
+      "Subscribe to Newsletter": form.subscribeNewsletter ? "Yes" : "No",
     };
 
     try {
-      // Send contact message
-      const res = await fetch("http://localhost:4000/contact", {
+      // Send contact message via WEB3Forms
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(contactBody),
       });
-      if (!res.ok) throw new Error("Failed to send message");
-
-      // Optionally subscribe to newsletter
-      if (form.subscribeNewsletter && form.email) {
-        await fetch("http://localhost:4000/api/newsletter/subscribe", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: form.email }),
-        });
+      const data = await res.json();
+      if (!res.ok || data.success !== true) {
+        throw new Error(data.message || "Failed to send message");
       }
 
       setSuccess(
@@ -244,6 +238,7 @@ export default function ContactPage() {
       setSubmitting(false);
     }
   }
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       {/* Hero Section */}
@@ -361,7 +356,6 @@ export default function ContactPage() {
                 <div
                   className={`p-1 rounded-2xl ${item.ring} transition-all hover:ring-4 h-full`}
                 >
-                  {" "}
                   <div className="h-full bg-white rounded-xl shadow-sm p-6 flex flex-col">
                     <div
                       className={`h-14 w-14 ${item.bg} rounded-xl flex items-center justify-center text-white mb-6`}
@@ -372,7 +366,6 @@ export default function ContactPage() {
                       {item.title}
                     </h3>
                     <div className="text-gray-600 text-sm mt-auto">
-                      {" "}
                       {item.content}
                     </div>
                   </div>
@@ -427,15 +420,6 @@ export default function ContactPage() {
                           {member.phone}
                         </a>
                       </div>
-                      {/* <div className="flex items-center">
-                        <Mail className="h-4 w-4 mr-2 text-gray-500" />
-                        <a
-                          href={`mailto:${member.email}`}
-                          className="text-sm hover:text-maritime-blue"
-                        >
-                          {member.email}
-                        </a>
-                      </div> */}
                     </div>
                   </CardContent>
                 </Card>
@@ -487,30 +471,8 @@ export default function ContactPage() {
                       <h3 className="text-xl font-bold text-gray-900 mb-2">
                         {dept.name}
                       </h3>
-
                       <div className="mt-6 space-y-4">
-                        <div>
-                          {/* <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
-                            Email
-                          </h4>
-                          <a
-                            href={`mailto:${dept.email}`}
-                            className="text-blue-600 hover:underline flex items-center font-medium"
-                          >
-                            <Mail className="h-4 w-4 mr-2" />
-                            {dept.email}
-                          </a> */}
-                          {/* {dept.additionalEmail && (
-                            <a
-                              href={`mailto:${dept.additionalEmail}`}
-                              className="text-blue-600 hover:underline flex items-center mt-1 font-medium"
-                            >
-                              <Mail className="h-4 w-4 mr-2" />
-                              {dept.additionalEmail}
-                            </a>
-                          )} */}
-                        </div>
-
+                        <div>{/* Emails hidden */}</div>
                         <div>
                           <h4 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
                             Contacts
@@ -536,19 +498,12 @@ export default function ContactPage() {
                         </div>
                       </div>
                     </div>
-
                     <div className="mt-auto p-6 pt-0">
-                      {/* <Button
-                        variant="outline"
-                        className="w-full border-gray-300 hover:border-blue-300"
-                      >
+                      {/* <Button variant="outline" className="w-full border-gray-300 hover:border-blue-300">
                         Contact Department
                       </Button> */}
                     </div>
                   </div>
-
-                  {/* Decorative element */}
-                  {/* <div className="absolute bottom-0 right-0 h-32 w-32 bg-blue-50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-x-1/2 translate-y-1/2"></div> */}
                 </div>
               </motion.div>
             ))}
@@ -612,7 +567,6 @@ export default function ContactPage() {
                           {office.address}
                         </a>
                       </div>
-
                       <div>
                         <h4 className="text-sm font-semibold text-gray-500 mb-2">
                           CONTACT
@@ -622,7 +576,7 @@ export default function ContactPage() {
                           className="text-gray-600 hover:text-maritime-blue flex items-center"
                         >
                           <Phone className="h-4 w-4 mr-2" />
-                          {office.phone}{" "}
+                          {office.phone}
                           <span className="text-sm ml-2">
                             ({office.phoneLabel})
                           </span>
@@ -636,7 +590,7 @@ export default function ContactPage() {
                             className="text-gray-600 hover:text-maritime-blue flex items-center mt-1"
                           >
                             <Phone className="h-4 w-4 mr-2" />
-                            {office.alternatePhone}{" "}
+                            {office.alternatePhone}
                             <span className="text-sm ml-2">
                               ({office.alternatePhoneLabel})
                             </span>
@@ -659,7 +613,6 @@ export default function ContactPage() {
                     </div>
                   </CardContent>
                 </Card>
-
                 <div className="h-full rounded-lg overflow-hidden shadow-md">
                   <iframe
                     src={office.mapUrl}
@@ -698,7 +651,6 @@ export default function ContactPage() {
                   maritime experts will get back to you ASAP.
                 </p>
               </div>
-
               <div className="space-y-6">
                 {[
                   {
@@ -732,7 +684,6 @@ export default function ContactPage() {
                   </div>
                 ))}
               </div>
-
               <Card className="bg-maritime-navy text-white">
                 <CardContent className="p-6">
                   <h4 className="text-xl font-bold mb-4 text-maritime-gold">
@@ -752,8 +703,7 @@ export default function ContactPage() {
                 </CardContent>
               </Card>
             </motion.div>
-
-            {/* ---- Updated Contact Form ---- */}
+            {/* Contact Form */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -767,6 +717,11 @@ export default function ContactPage() {
                     onSubmit={handleSubmit}
                     autoComplete="off"
                   >
+                    <input
+                      type="hidden"
+                      name="access_key"
+                      value={WEB3FORMS_API_KEY}
+                    />
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <label
@@ -806,7 +761,6 @@ export default function ContactPage() {
                         />
                       </div>
                     </div>
-
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <label
@@ -843,7 +797,6 @@ export default function ContactPage() {
                         />
                       </div>
                     </div>
-
                     <div>
                       <label
                         htmlFor="subject"
@@ -862,7 +815,6 @@ export default function ContactPage() {
                         disabled={submitting}
                       />
                     </div>
-
                     <div>
                       <label
                         htmlFor="message"
@@ -881,7 +833,6 @@ export default function ContactPage() {
                         disabled={submitting}
                       />
                     </div>
-
                     <div className="flex items-center">
                       <input
                         type="checkbox"
@@ -899,7 +850,6 @@ export default function ContactPage() {
                         Subscribe to our newsletter
                       </label>
                     </div>
-
                     {success && (
                       <div className="p-3 bg-green-100 text-green-800 rounded-md text-sm text-center">
                         {success}
@@ -910,7 +860,6 @@ export default function ContactPage() {
                         {error}
                       </div>
                     )}
-
                     <Button
                       size="lg"
                       className="w-full bg-maritime-blue hover:bg-maritime-blue/90 text-white"

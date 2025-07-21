@@ -314,45 +314,15 @@ export function Footer() {
               Stay Updated
             </h3>
             <p className="text-gray-300 mb-6">
-              Get the latest maritime industry news and updates
+              Ready to discuss your maritime service needs?
             </p>
-            <form
-              className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto"
-              onSubmit={handleSubscribe}
-              noValidate
-            >
-              <Input
-                placeholder="Enter your email"
-                className="bg-white/10 border-gray-600 text-white placeholder:text-gray-400"
-                value={email}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setEmail(e.target.value)
-                }
-                type="email"
-                required
-                disabled={status === "loading"}
-              />
-              <Button
-                className="bg-maritime-gold hover:bg-maritime-gold/90 text-maritime-navy"
-                type="submit"
-                disabled={status === "loading"}
-              >
-                {status === "loading" ? "Subscribing..." : "Subscribe"}
-              </Button>
-            </form>
-            {message && (
-              <div
-                className={`mt-4 text-sm ${
-                  status === "success"
-                    ? "text-green-400"
-                    : status === "error"
-                    ? "text-red-400"
-                    : ""
-                }`}
-              >
-                {message}
-              </div>
-            )}
+            <div className="flex flex-col items-center gap-4 max-w-md mx-auto">
+              <Link href="/contact">
+                <Button className="bg-maritime-gold hover:bg-maritime-gold/90 text-maritime-navy">
+                  Contact Us
+                </Button>
+              </Link>
+            </div>
           </motion.div>
         </div>
       </div>
@@ -365,14 +335,7 @@ export function Footer() {
               © 2025 Greek Lanka Maritime Services. All rights reserved
             </p>
             <p className="text-gray-400 text-sm mt-2 md:mt-0">
-              Designed and Developed by{" "}
-              <a
-                href="https://www.niolla.lk/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Niolla
-              </a>
+              Designed and Developed by Greek Lanka Media Unit
             </p>
           </div>
         </div>
