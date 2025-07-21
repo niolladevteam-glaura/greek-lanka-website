@@ -10,16 +10,16 @@ import { useState } from "react";
 
 const blogPosts = [
   {
-    id: 1,
+    id: "making-a-difference-one-smile",
     date: "09 Mar 2025",
-    title: "𝐌𝐚𝐤𝐢𝐧𝐠 𝐚 𝐃𝐢𝐟𝐟𝐞𝐫𝐞𝐧𝐜𝐞, 𝐎𝐧𝐞 𝐒𝐦𝐢𝐥𝐞 𝐚𝐭 𝐚 𝐓𝐢𝐦𝐞!",
+    title: "Making a Different One Smile at a Time!",
     excerpt:
       "We're excited to share the heart-warming journey of Harbour of Smiles' recent CSR initiative at Ibulgolla Primary...",
     content: "Full content of the blog post...",
     category: "CSR",
   },
   {
-    id: 2,
+    id: "greek-lanka-dry-docking-support",
     date: "22 Aug 2024",
     title:
       "Greek Lanka offers comprehensive Dry Docking support for the vessels calling at Colombo Dockyard PLC",
@@ -29,7 +29,7 @@ const blogPosts = [
     category: "Services",
   },
   {
-    id: 3,
+    id: "discover-sri-lanka-seas",
     date: "22 Aug 2024",
     title:
       "Discover the Splendor of Sri Lanka's Seas: Unleashing Our Maritime Services across All Four Majestic Ports!",
@@ -39,13 +39,49 @@ const blogPosts = [
     category: "Ports",
   },
   {
-    id: 4,
+    id: "ship-spares-logistics-guarantee",
     date: "22 Aug 2024",
     title: "We guarantee the best solution for your ship's spare logistics.",
     excerpt:
       "Professional ship spares logistics and supply chain management solutions.",
     content: "Full content of the blog post...",
     category: "Logistics",
+  },
+  {
+    id: "crew-change-services",
+    date: "22 Aug 2024",
+    title: "Crew Change",
+    excerpt:
+      "Expert port agency crew change solutions for seamless transitions in Sri Lankan ports.",
+    content: "Full content of the blog post...",
+    category: "Services",
+  },
+  {
+    id: "underwater-services-repairs",
+    date: "22 Aug 2024",
+    title: "Under Water Services & Repairs",
+    excerpt:
+      "Comprehensive underwater inspection and marine repair services for vessels at all major Sri Lankan ports.",
+    content: "Full content of the blog post...",
+    category: "Services",
+  },
+  {
+    id: "emergency-medical-assistance",
+    date: "22 Aug 2024",
+    title: "Emergency Medical Assistance",
+    excerpt:
+      "Reliable emergency medical assistance for vessels and crew in Sri Lankan waters, with swift response and expert care.",
+    content: "Full content of the blog post...",
+    category: "Services",
+  },
+  {
+    id: "bunkering-services-south-asia",
+    date: "22 Aug 2024",
+    title: "Looking for Bunkering Services in the Heart of South Asia?",
+    excerpt:
+      "World-class vessel bunkering solutions at Sri Lanka's premier maritime facility, offering quality fuel, expert support, and competitive rates.",
+    content: "Full content of the blog post...",
+    category: "Services",
   },
 ];
 

@@ -26,14 +26,22 @@ const quickLinks = [
 ];
 
 const importantLinks = [
-  { name: "Merchant Shipping Secretariat", href: "#" },
-  { name: "Sri Lanka Ports Authority", href: "#" },
-  { name: "Hambantota International Port", href: "#" },
-  { name: "Department of Immigration and Emigration", href: "#" },
-  { name: "Sri Lanka Customs", href: "#" },
-  { name: "Department of Meteorology", href: "#" },
-  { name: "Central Bank of Sri Lanka", href: "#" },
-  { name: "Board of Investment of Sri Lanka", href: "#" },
+  {
+    name: "Merchant Shipping Secretariat",
+    href: "http://www.dgshipping.gov.lk/",
+  },
+  { name: "Sri Lanka Ports Authority", href: "https://www.slpa.lk/" },
+  {
+    name: "Department of Immigration and Emigration",
+    href: "https://www.immigration.gov.lk/",
+  },
+  { name: "Sri Lanka Customs", href: "https://www.customs.gov.lk/" },
+  { name: "Department of Meteorology", href: "https://meteo.gov.lk/" },
+  { name: "Central Bank of Sri Lanka", href: "https://www.cbsl.gov.lk/" },
+  {
+    name: "Board of Investment of Sri Lanka",
+    href: "https://investsrilanka.com/",
+  },
 ];
 
 const socialLinks = [

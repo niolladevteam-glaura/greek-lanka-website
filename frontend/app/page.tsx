@@ -137,7 +137,7 @@ export default function HomePage() {
       <ServicesShowcase />
       <TrustSection />
       {/* <TestimonialsSection /> */}
-      {/* <BlogSection /> */}
+      <BlogSection />
       <ContactSection />
     </main>
   );
