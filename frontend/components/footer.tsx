@@ -357,7 +357,14 @@ export function Footer() {
               © 2025 Greek Lanka Maritime Services. All rights reserved
             </p>
             <p className="text-gray-400 text-sm mt-2 md:mt-0">
-              Designed with excellence for maritime industry
+              Designed and Developed by{" "}
+              <a
+                href="https://www.niolla.lk/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Niolla
+              </a>
             </p>
           </div>
         </div>
