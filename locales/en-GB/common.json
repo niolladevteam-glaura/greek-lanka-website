@@ -1,0 +1,13 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "contact": "Contact"
+  },
+  "footer": {
+    "copyright": "© 2025 Your Company"
+  },
+  "language": {
+    "select": "Select Language"
+  }
+}
