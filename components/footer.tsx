@@ -214,7 +214,7 @@ export function Footer() {
             </ul>
           </motion.div>
 
-          {/* Important Links */}
+          {/* Important Links - external links open in new tab */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -227,12 +227,14 @@ export function Footer() {
             <ul className="space-y-3">
               {importantLinks.slice(0, 6).map((link) => (
                 <li key={link.name}>
-                  <Link
+                  <a
                     href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-gray-300 hover:text-maritime-gold transition-colors text-sm"
                   >
                     {link.name}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>

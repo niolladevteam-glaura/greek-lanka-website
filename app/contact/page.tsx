@@ -219,7 +219,7 @@ export default function ContactPage() {
       }
 
       setSuccess(
-        "Thank you for contacting us! Our maritime experts will get back to you within 24 hours."
+        "Thank you for contacting us! Our maritime experts will get back to you ASAP."
       );
       setForm({
         name: "",
