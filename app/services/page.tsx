@@ -262,111 +262,115 @@ const services = [
 
 export default function ServicesPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 px-4 bg-maritime-gradient text-white">
-        <div className="max-w-7xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              Our Services
-            </h1>
-            <p className="text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed">
-              Comprehensive maritime solutions tailored to meet all your
-              shipping and logistics needs across Sri Lanka's strategic ports
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Unified Services Grid */}
-      <section className="py-20 px-4">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
+    <main>
+      <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+        {/* Hero Section */}
+        <section className="pt-32 pb-20 px-4 bg-maritime-gradient text-white">
+          <div className="max-w-7xl mx-auto text-center">
             <motion.div
-              key={index}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <h1 className="text-5xl md:text-7xl font-bold mb-6">
+                Our Services
+              </h1>
+              <p className="text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed">
+                Comprehensive maritime solutions tailored to meet all your
+                shipping and logistics needs across Sri Lanka's strategic ports
+              </p>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Unified Services Grid */}
+        <section className="py-20 px-4">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map((service, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group overflow-hidden">
+                  <div className="relative h-48 overflow-hidden">
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-maritime-navy/20 group-hover:bg-maritime-navy/10 transition-colors duration-300" />
+                    <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full p-3 group-hover:bg-maritime-blue group-hover:text-white transition-all duration-300">
+                      <service.icon className="h-6 w-6 text-maritime-blue group-hover:text-white" />
+                    </div>
+                  </div>
+                  <CardHeader>
+                    <CardTitle className="text-maritime-navy group-hover:text-maritime-blue transition-colors">
+                      {service.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-600 leading-relaxed mb-4">
+                      {service.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {service.features.map((feature) => (
+                        <Badge
+                          key={feature}
+                          variant="secondary"
+                          className="text-xs"
+                        >
+                          {feature}
+                        </Badge>
+                      ))}
+                    </div>
+                    <Link href={`/services/${service.slug}`}>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="w-full group-hover:bg-maritime-blue group-hover:text-white"
+                      >
+                        Learn More
+                      </Button>
+                    </Link>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="py-20 px-4 bg-maritime-navy text-white">
+          <div className="max-w-7xl mx-auto text-center">
+            <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <Card className="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group overflow-hidden">
-                <div className="relative h-48 overflow-hidden">
-                  <Image
-                    src={service.image}
-                    alt={service.title}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-maritime-navy/20 group-hover:bg-maritime-navy/10 transition-colors duration-300" />
-                  <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full p-3 group-hover:bg-maritime-blue group-hover:text-white transition-all duration-300">
-                    <service.icon className="h-6 w-6 text-maritime-blue group-hover:text-white" />
-                  </div>
-                </div>
-                <CardHeader>
-                  <CardTitle className="text-maritime-navy group-hover:text-maritime-blue transition-colors">
-                    {service.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600 leading-relaxed mb-4">
-                    {service.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {service.features.map((feature) => (
-                      <Badge
-                        key={feature}
-                        variant="secondary"
-                        className="text-xs"
-                      >
-                        {feature}
-                      </Badge>
-                    ))}
-                  </div>
-                  <Link href={`/services/${service.slug}`}>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="w-full group-hover:bg-maritime-blue group-hover:text-white"
-                    >
-                      Learn More
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
+              <h2 className="text-4xl font-bold mb-6">
+                Need a Custom Solution?
+              </h2>
+              <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+                Our expert team can design tailored maritime solutions to meet
+                your specific operational requirements. Contact us to discuss
+                your unique needs.
+              </p>
+              <Button
+                size="lg"
+                className="bg-maritime-gold hover:bg-maritime-gold/90 text-maritime-navy"
+                asChild
+              >
+                <Link href="/contact">Get Custom Quote</Link>
+              </Button>
             </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 px-4 bg-maritime-navy text-white">
-        <div className="max-w-7xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold mb-6">Need a Custom Solution?</h2>
-            <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-              Our expert team can design tailored maritime solutions to meet
-              your specific operational requirements. Contact us to discuss your
-              unique needs.
-            </p>
-            <Button
-              size="lg"
-              className="bg-maritime-gold hover:bg-maritime-gold/90 text-maritime-navy"
-              asChild
-            >
-              <Link href="/contact">Get Custom Quote</Link>
-            </Button>
-          </motion.div>
-        </div>
-      </section>
-    </div>
+          </div>
+        </section>
+      </div>
+    </main>
   );
 }

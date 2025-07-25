@@ -116,8 +116,22 @@ export function ContactSection() {
                       <h4 className="font-semibold text-maritime-navy mb-2">
                         24/7 Operations
                       </h4>
-                      <p className="text-gray-600">+94-777-232-271</p>
-                      <p className="text-gray-600">+94-777-191-114</p>
+                      <p>
+                        <a
+                          href="tel:+94777232271"
+                          className="text-gray-600 hover:underline"
+                        >
+                          +94-777-232-271
+                        </a>
+                      </p>
+                      <p>
+                        <a
+                          href="tel:+94777001855"
+                          className="text-gray-600 hover:underline"
+                        >
+                          +94-777-001-855
+                        </a>
+                      </p>
                     </div>
                   </div>
                 </CardContent>

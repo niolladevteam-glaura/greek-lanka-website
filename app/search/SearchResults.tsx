@@ -5,48 +5,140 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Search } from "lucide-react";
 
-// Mock search function - replace with your actual search implementation
-async function searchContent(query: string) {
-  const allPages = [
-    {
-      id: 1,
-      title: "Home",
-      url: "/",
-      excerpt: "Welcome to our maritime services company",
-    },
-    {
-      id: 2,
-      title: "About Us",
-      url: "/about",
-      excerpt: "Learn about our company history and mission",
-    },
-    {
-      id: 3,
-      title: "Services",
-      url: "/services",
-      excerpt: "Explore our comprehensive maritime services",
-    },
-    {
-      id: 4,
-      title: "Port Services",
-      url: "/ports",
-      excerpt: "Information about ports we operate in",
-    },
-    {
-      id: 5,
-      title: "Careers",
-      url: "/careers",
-      excerpt: "Join our team of maritime professionals",
-    },
-    {
-      id: 6,
-      title: "Accreditation",
-      url: "/accreditation",
-      excerpt: "Our industry certifications and standards",
-    },
-  ];
+// Static data outside the function so it's not recreated on every search
+const allPages = [
+  {
+    id: 1,
+    title: "Home",
+    url: "/",
+    excerpt: "Welcome to our maritime services company",
+  },
+  {
+    id: 2,
+    title: "About Us",
+    url: "/about",
+    excerpt: "Learn about our company history and mission",
+  },
+  {
+    id: 3,
+    title: "Services",
+    url: "/services",
+    excerpt: "Explore our comprehensive maritime services",
+  },
+  {
+    id: 4,
+    title: "Port Agency Services",
+    url: "/services/port-agency",
+    excerpt:
+      "Full port agency support including cargo, bunkering, dry dock and more at all Sri Lankan ports.",
+  },
+  {
+    id: 5,
+    title: "Crew Change Services",
+    url: "/services/crew-change",
+    excerpt:
+      "Fast, secure, and compliant crew change services with 24/7 coordination.",
+  },
+  {
+    id: 6,
+    title: "Ship Spares Logistics",
+    url: "/services/ship-spares-logistics",
+    excerpt:
+      "Customs-cleared, port-delivered logistics for all ship spare parts.",
+  },
+  {
+    id: 7,
+    title: "Ship Chandling Services",
+    url: "/services/ship-chandling",
+    excerpt:
+      "In-house chandling with quality supplies and transparent pricing.",
+  },
+  {
+    id: 8,
+    title: "Owner's Protective Agency",
+    url: "/services/owners-protective-agency",
+    excerpt: "We represent owners' interests during port calls and operations.",
+  },
+  {
+    id: 9,
+    title: "Husbandry Services",
+    url: "/services/husbandry-services",
+    excerpt:
+      "Efficient husbandry support for documentation, provisioning, and coordination.",
+  },
+  {
+    id: 10,
+    title: "Yacht and Cruise Agency",
+    url: "/services/yacht-cruise-agency",
+    excerpt:
+      "Agency services for private yachts and cruise liners in Sri Lanka.",
+  },
+  {
+    id: 11,
+    title: "Foreign Naval Ships Agency",
+    url: "/services/naval-ship-agency",
+    excerpt: "Experienced port handling for visiting naval vessels.",
+  },
+  {
+    id: 12,
+    title: "Dry Dock / Afloat Repairs",
+    url: "/services/dry-dock-repairs",
+    excerpt: "Repair coordination for dry dock and afloat vessel services.",
+  },
+  {
+    id: 13,
+    title: "Marine Pest Control",
+    url: "/services/marine-pest-control",
+    excerpt: "Certified fumigation and pest control services for ships.",
+  },
+  {
+    id: 14,
+    title: "Maritime Security",
+    url: "/services/maritime-security",
+    excerpt: "Security coordination for vessels, cargo, and crew in port.",
+  },
+  {
+    id: 15,
+    title: "Offshore Support",
+    url: "/services/offshore-support",
+    excerpt: "Comprehensive offshore marine support and logistics.",
+  },
+  {
+    id: 16,
+    title: "Documentation Services",
+    url: "/services/documentation",
+    excerpt:
+      "Customs clearance, permits, and all vessel-related documentation.",
+  },
+  {
+    id: 17,
+    title: "Emergency Services",
+    url: "/services/emergency-services",
+    excerpt:
+      "24/7 emergency support including medevac, towage, and provisioning.",
+  },
+  {
+    id: 18,
+    title: "Port Services",
+    url: "/ports",
+    excerpt: "Information about ports we operate in",
+  },
+  {
+    id: 19,
+    title: "Careers",
+    url: "/careers",
+    excerpt: "Join our team of maritime professionals",
+  },
+  {
+    id: 20,
+    title: "Accreditation",
+    url: "/accreditation",
+    excerpt: "Our industry certifications and standards",
+  },
+];
 
-  // Simple case-insensitive search
+// Simple case-insensitive search
+async function searchContent(query: string) {
   return allPages.filter(
     (page) =>
       page.title.toLowerCase().includes(query.toLowerCase()) ||

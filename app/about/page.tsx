@@ -71,6 +71,32 @@ export default function AboutPage() {
             className="text-center"
           >
             <h1 className="text-5xl md:text-7xl font-bold mb-6">About Us</h1>
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify({
+                  "@context": "https://schema.org",
+                  "@type": "Organization",
+                  name: "Greek Lanka Maritime Services",
+                  url: "https://greeklanka.com",
+                  logo: "https://greeklanka.com/logo.png",
+                  description:
+                    "Greek Lanka Maritime Services is a locally trusted and globally recognized maritime agency offering 24/7 port support, crew change, ship chandling, and logistics services across all Sri Lankan ports.",
+                  address: {
+                    "@type": "PostalAddress",
+                    addressLocality: "Colombo",
+                    addressCountry: "LK",
+                  },
+                  contactPoint: {
+                    "@type": "ContactPoint",
+                    contactType: "Customer Service",
+                    telephone: "+94-XXX-XXXXXXX",
+                    availableLanguage: ["English", "Sinhala", "Tamil"],
+                  },
+                }),
+              }}
+            />
+
             <p className="text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed">
               More than just a Ship Agency - Your dedicated partner in global
               maritime logistics
