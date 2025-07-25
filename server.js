@@ -28,6 +28,6 @@ app.prepare().then(() => {
       res.end('internal server error');
     }
   }).listen(port, hostname, () => {
-    console.log(> Ready on http://${hostname}:${port});
+    console.log(`Ready on http: ${hostname}:${port}`);
   });
 });
