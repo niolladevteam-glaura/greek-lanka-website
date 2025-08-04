@@ -105,6 +105,21 @@ export default function RootLayout({
             }),
           }}
         />
+
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-10903885001"
+        ></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){window.dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-10903885001');
+    `,
+          }}
+        />
       </head>
       <body
         className={`${inter.className} antialiased min-h-screen flex flex-col`}
