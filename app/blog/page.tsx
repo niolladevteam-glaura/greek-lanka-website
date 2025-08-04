@@ -10,6 +10,15 @@ import { useState } from "react";
 
 const blogPosts = [
   {
+    id: "greek-lanka-5th-anniversary",
+    date: "04 Aug 2025",
+    title: "Greek Lanka 5th Year Anniversary Celebration",
+    excerpt:
+      "On July 19th, 2025, Greek Lanka Maritime Services celebrated five years of unwavering commitment to Sri Lanka’s maritime industry. Our team, partners, and friends gathered aboard a yacht off Colombo to honor our journey, achievements, and the values that guide us.",
+    content: "Full content of the blog post...",
+    category: "Milestone",
+  },
+  {
     id: "making-a-difference-one-smile",
     date: "09 Mar 2025",
     title: "Making a Different One Smile at a Time!",

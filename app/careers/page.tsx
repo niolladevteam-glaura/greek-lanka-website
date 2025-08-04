@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   Card,
@@ -18,11 +19,119 @@ import {
   User,
   Banknote,
 } from "lucide-react";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Mail } from "lucide-react";
 
-// No job openings yet
-const jobOpenings: any[] = [];
+// Modal Component (simple, can use a library like @radix-ui/react-dialog for production)
+function Modal({ open, onClose, children }: any) {
+  if (!open) return null;
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+      <div className="bg-white rounded-xl shadow-xl w-full max-w-md p-6 relative">
+        <button
+          onClick={onClose}
+          className="absolute top-2 right-3 text-gray-400 hover:text-maritime-blue text-2xl"
+        >
+          ×
+        </button>
+        {children}
+      </div>
+    </div>
+  );
+}
+
+const WEB3FORMS_API_KEY = "9dbf1f19-3f76-4547-ab19-3dd6130d74f4";
+
+// SVG Illustration as a React Component
+function MaritimeSVG() {
+  return (
+    <svg
+      width="120"
+      height="120"
+      viewBox="0 0 120 120"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="mb-4"
+    >
+      <rect width="120" height="120" rx="24" fill="#E5E7EB" />
+      <path
+        d="M60 40C56.6863 40 54 42.6863 54 46V74C54 77.3137 56.6863 80 60 80C63.3137 80 66 77.3137 66 74V46C66 42.6863 63.3137 40 60 40Z"
+        fill="#93C5FD"
+      />
+      <path
+        d="M60 36C53.3726 36 48 41.3726 48 48V74C48 80.6274 53.3726 86 60 86C66.6274 86 72 80.6274 72 74V48C72 41.3726 66.6274 36 60 36ZM70 74C70 79.5228 65.5228 84 60 84C54.4772 84 50 79.5228 50 74V48C50 42.4772 54.4772 38 60 38C65.5228 38 70 42.4772 70 48V74Z"
+        fill="#60A5FA"
+      />
+    </svg>
+  );
+}
+
+const jobOpenings: any[] = [
+  {
+    id: 1,
+    title: "Trainee Operations Executive (Male)",
+    image: "/Trainee-Operations-Executive-(Male).jpg",
+  },
+];
 
 export default function CareersPage() {
+  const [cvModal, setCvModal] = useState(false);
+  const [cvForm, setCvForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    file: null as File | null,
+  });
+  const [submitting, setSubmitting] = useState(false);
+  const [success, setSuccess] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  // Handle input changes
+  function handleCvChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const { name, value, files } = e.target;
+    if (name === "file" && files && files.length > 0) {
+      setCvForm((f) => ({ ...f, file: files[0] }));
+    } else {
+      setCvForm((f) => ({ ...f, [name]: value }));
+    }
+  }
+
+  // Handle form submit
+  async function handleCvSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setSubmitting(true);
+    setSuccess(null);
+    setError(null);
+
+    // Prepare form data for WEB3Forms
+    const data = new FormData();
+    data.append("access_key", WEB3FORMS_API_KEY);
+    data.append("subject", "Career Application via Website");
+    data.append("name", cvForm.name);
+    data.append("email", cvForm.email);
+    data.append("phone", cvForm.phone);
+    if (cvForm.file) data.append("attachment", cvForm.file);
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: data,
+      });
+      const result = await res.json();
+      if (result.success !== true) throw new Error(result.message);
+      setSuccess(
+        "CV submitted successfully! We'll get in touch if there is a match."
+      );
+      setCvForm({ name: "", email: "", phone: "", file: null });
+    } catch (err: any) {
+      setError("Failed to submit CV. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
       {/* Hero Section */}
@@ -64,40 +173,7 @@ export default function CareersPage() {
           </motion.div>
 
           {jobOpenings.length === 0 ? (
-            <motion.div
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="flex flex-col items-center justify-center py-16"
-            >
-              {/* You can replace this SVG with your own illustration */}
-              <svg
-                width="120"
-                height="120"
-                viewBox="0 0 120 120"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="mb-8"
-              >
-                <rect width="120" height="120" rx="24" fill="#E5E7EB" />
-                <path
-                  d="M60 40C56.6863 40 54 42.6863 54 46V74C54 77.3137 56.6863 80 60 80C63.3137 80 66 77.3137 66 74V46C66 42.6863 63.3137 40 60 40Z"
-                  fill="#93C5FD"
-                />
-                <path
-                  d="M60 36C53.3726 36 48 41.3726 48 48V74C48 80.6274 53.3726 86 60 86C66.6274 86 72 80.6274 72 74V48C72 41.3726 66.6274 36 60 36ZM70 74C70 79.5228 65.5228 84 60 84C54.4772 84 50 79.5228 50 74V48C50 42.4772 54.4772 38 60 38C65.5228 38 70 42.4772 70 48V74Z"
-                  fill="#60A5FA"
-                />
-              </svg>
-              <h3 className="text-2xl md:text-3xl font-semibold text-maritime-navy mb-4">
-                No job openings at the moment
-              </h3>
-              <p className="text-lg text-gray-600 max-w-xl text-center">
-                Please check back soon or submit your CV below so we can reach
-                out when an opportunity arises!
-              </p>
-            </motion.div>
+            <></>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {jobOpenings.map((job, index) => (
@@ -108,70 +184,38 @@ export default function CareersPage() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <Card className="hover:shadow-xl transition-shadow duration-300 h-full">
-                    <CardHeader className="pb-3">
-                      <div className="flex justify-between items-start">
-                        <div>
-                          <CardTitle className="text-2xl text-maritime-navy">
-                            {job.title}
-                          </CardTitle>
-                          <div className="flex items-center mt-2 text-maritime-blue">
-                            <MapPin className="h-4 w-4 mr-2" />
-                            <span>{job.location}</span>
-                          </div>
-                        </div>
-                        <Badge
-                          variant="outline"
-                          className="border-maritime-blue text-maritime-blue"
-                        >
-                          {job.type}
-                        </Badge>
-                      </div>
+                  <Card className="hover:shadow-2xl transition-shadow duration-300 h-full flex flex-col items-center justify-center bg-white border border-gray-200">
+                    <CardHeader className="w-full">
+                      <CardTitle className="text-center text-maritime-navy text-xl">
+                        {job.title}
+                      </CardTitle>
                     </CardHeader>
-                    <CardContent>
-                      <div className="space-y-4">
-                        <p className="text-gray-700">{job.description}</p>
-                        <div className="grid grid-cols-2 gap-4">
-                          <div className="flex items-center">
-                            <Banknote className="h-4 w-4 text-maritime-blue mr-2" />
-                            <span className="text-sm">{job.salary}</span>
-                          </div>
-                          <div className="flex items-center">
-                            <Clock className="h-4 w-4 text-maritime-blue mr-2" />
-                            <span className="text-sm">{job.experience}</span>
-                          </div>
+                    <CardContent className="w-full flex justify-center items-center p-6">
+                      {job.image && (
+                        <div className="flex flex-col items-center w-full">
+                          <Image
+                            src={job.image}
+                            alt={job.title}
+                            width={500}
+                            height={700}
+                            className="rounded-lg object-contain border border-gray-200 shadow-lg bg-white"
+                            style={{
+                              maxHeight: 700,
+                              width: "auto",
+                              height: "auto",
+                              maxWidth: "100%",
+                            }}
+                            priority
+                          />
+                          <a
+                            href={job.image}
+                            download
+                            className="mt-4 inline-block bg-maritime-blue text-white px-4 py-2 rounded hover:bg-maritime-blue/90 transition-colors text-sm"
+                          >
+                            Download Image
+                          </a>
                         </div>
-                        <div>
-                          <h4 className="font-semibold text-maritime-navy mb-2">
-                            Key Responsibilities:
-                          </h4>
-                          <ul className="list-disc pl-5 text-gray-700 space-y-1">
-                            {job.responsibilities.map(
-                              (item: string, i: number) => (
-                                <li key={i}>{item}</li>
-                              )
-                            )}
-                          </ul>
-                        </div>
-                        <div>
-                          <h4 className="font-semibold text-maritime-navy mb-2">
-                            Requirements:
-                          </h4>
-                          <ul className="list-disc pl-5 text-gray-700 space-y-1">
-                            {job.requirements.map((item: string, i: number) => (
-                              <li key={i}>{item}</li>
-                            ))}
-                          </ul>
-                        </div>
-                        <div className="flex justify-between items-center pt-4 border-t">
-                          <span className="text-sm text-gray-500">
-                            Posted {job.posted}
-                          </span>
-                          <button className="bg-maritime-blue text-white px-4 py-2 rounded hover:bg-maritime-blue/90 transition-colors">
-                            Apply Now
-                          </button>
-                        </div>
-                      </div>
+                      )}
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -260,12 +304,86 @@ export default function CareersPage() {
               Even if you don't see the perfect role now, we're always
               interested in meeting talented professionals.
             </p>
-            <button className="bg-maritime-gold text-maritime-navy px-8 py-4 rounded-lg text-lg font-semibold hover:bg-maritime-gold/90 transition-colors">
+            <Button
+              className="bg-maritime-gold text-maritime-navy px-8 py-4 rounded-lg text-lg font-semibold hover:bg-maritime-gold/90 transition-colors"
+              onClick={() => setCvModal(true)}
+            >
               Submit Your CV
-            </button>
+            </Button>
           </motion.div>
         </div>
       </section>
+      {/* CV Submit Modal */}
+      <Modal open={cvModal} onClose={() => setCvModal(false)}>
+        <h2 className="text-2xl font-bold mb-4 text-maritime-navy">
+          Submit Your CV
+        </h2>
+        <form className="space-y-4" onSubmit={handleCvSubmit}>
+          <div>
+            <label className="block text-gray-700 mb-1">Full Name</label>
+            <Input
+              name="name"
+              value={cvForm.name}
+              onChange={handleCvChange}
+              required
+              disabled={submitting}
+              placeholder="Your Name"
+            />
+          </div>
+          <div>
+            <label className="block text-gray-700 mb-1">Email</label>
+            <Input
+              name="email"
+              type="email"
+              value={cvForm.email}
+              onChange={handleCvChange}
+              required
+              disabled={submitting}
+              placeholder="Your Email"
+            />
+          </div>
+          <div>
+            <label className="block text-gray-700 mb-1">Phone (optional)</label>
+            <Input
+              name="phone"
+              value={cvForm.phone}
+              onChange={handleCvChange}
+              disabled={submitting}
+              placeholder="Your Phone Number"
+            />
+          </div>
+          <div>
+            <label className="block text-gray-700 mb-1">
+              CV / Resume (PDF, DOC, DOCX)
+            </label>
+            <Input
+              name="file"
+              type="file"
+              accept=".pdf,.doc,.docx"
+              onChange={handleCvChange}
+              required
+              disabled={submitting}
+            />
+          </div>
+          {success && (
+            <div className="p-3 bg-green-100 text-green-800 rounded-md text-sm text-center">
+              {success}
+            </div>
+          )}
+          {error && (
+            <div className="p-3 bg-red-100 text-red-800 rounded-md text-sm text-center">
+              {error}
+            </div>
+          )}
+          <Button
+            type="submit"
+            className="w-full bg-maritime-blue hover:bg-maritime-blue/90 text-white"
+            disabled={submitting}
+          >
+            {submitting ? "Submitting..." : "Submit CV"}
+          </Button>
+        </form>
+      </Modal>
     </div>
   );
 }
