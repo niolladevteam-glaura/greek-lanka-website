@@ -10,6 +10,15 @@ import { useState } from "react";
 
 const blogPosts = [
   {
+    id: "iso-awareness-strengthening-foundations",
+    date: "14 Oct 2025",
+    title: "Strengthening Our Foundations with ISO Awareness!",
+    excerpt:
+      "Our team at Greek Lanka completed a full ISO awareness program to ensure every service we deliver is safe, compliant & world-class.",
+    content: "Full content of the blog post...",
+    category: "Company News",
+  },
+  {
     id: "greek-lanka-5th-anniversary",
     date: "04 Aug 2025",
     title: "Greek Lanka 5th Year Anniversary Celebration",
