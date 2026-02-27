@@ -82,7 +82,7 @@ const offices = [
   {
     name: "Head Office",
     address:
-      "Level 5D, 46/7, Valiant Towers, Nawam Mawatha, Colombo 02, Sri Lanka. 00200",
+      "Level 9, East Wing, Ceylinco House, Janadhipathi Mw, Colombo 01, Sri Lanka.",
     phone: "+94 777 232 271",
     phoneLabel: "24/7",
     alternatePhone: "+94 777 828 161",
@@ -169,7 +169,7 @@ export default function ContactPage() {
 
   // ---- Handle input for all fields ----
   function handleChange(
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) {
     const target = e.target as HTMLInputElement | HTMLTextAreaElement;
     const { name, value, type } = target;
@@ -219,7 +219,7 @@ export default function ContactPage() {
       }
 
       setSuccess(
-        "Thank you for contacting us! Our maritime experts will get back to you ASAP."
+        "Thank you for contacting us! Our maritime experts will get back to you ASAP.",
       );
       setForm({
         name: "",
@@ -232,7 +232,7 @@ export default function ContactPage() {
       });
     } catch (err: any) {
       setError(
-        "Sorry, there was a problem sending your message. Please try again or contact us via phone/email."
+        "Sorry, there was a problem sending your message. Please try again or contact us via phone/email.",
       );
     } finally {
       setSubmitting(false);
@@ -557,7 +557,7 @@ export default function ContactPage() {
                         </h4>
                         <a
                           href={`https://maps.google.com/?q=${encodeURIComponent(
-                            office.address
+                            office.address,
                           )}`}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -585,7 +585,7 @@ export default function ContactPage() {
                           <a
                             href={`tel:${office.alternatePhone.replace(
                               /\D/g,
-                              ""
+                              "",
                             )}`}
                             className="text-gray-600 hover:text-maritime-blue flex items-center mt-1"
                           >

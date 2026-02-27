@@ -502,8 +502,8 @@ export default function PrivacyPolicyPage() {
                       <p>
                         Address:{" "}
                         <span className="text-maritime-blue">
-                          Level 5D, Valiant Towers, Nawam Mawatha, Colombo 02,
-                          Sri Lanka
+                          Level 9, East Wing, Ceylinco House, Janadhipathi Mw,
+                          Colombo 01, Sri Lanka.
                         </span>
                       </p>
                     </div>

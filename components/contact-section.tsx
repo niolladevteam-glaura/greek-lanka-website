@@ -24,7 +24,7 @@ export function ContactSection() {
   const [error, setError] = useState<string | null>(null);
 
   function handleChange(
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) {
     const { name, value } = e.target;
     setForm((f) => ({
@@ -69,7 +69,7 @@ export function ContactSection() {
       });
     } catch (err: any) {
       setError(
-        "Sorry, there was a problem sending your message. Please try again."
+        "Sorry, there was a problem sending your message. Please try again.",
       );
     } finally {
       setSubmitting(false);
@@ -160,11 +160,11 @@ export function ContactSection() {
                         Head Office
                       </h4>
                       <p className="text-gray-600">
-                        Level 5D, 46/7, Valiant Towers,
+                        Level 9, East Wing, Ceylinco House,
                         <br />
-                        Nawam Mawatha, Colombo 02,
+                        Janadhipathi Mw, Colombo 01,
                         <br />
-                        Sri Lanka. 00200
+                        Sri Lanka.
                       </p>
                     </div>
                   </div>

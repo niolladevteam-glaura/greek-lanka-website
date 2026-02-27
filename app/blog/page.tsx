@@ -10,6 +10,15 @@ import { useState } from "react";
 
 const blogPosts = [
   {
+    id: "people-development-session-who-am-i",
+    date: "14 Feb 2026",
+    title: 'People Development Session: "Who Am I?"',
+    excerpt:
+      "In today’s business world, companies cannot be built to depend on individuals. They must be built on strong systems run by skilled people. Over the past months, we have been strengthening that foundation through process thinking and our first People Development Session, “Who Am I?”—a step toward ownership, clarity, and sustainable growth.",
+    content: "Full content of the blog post...",
+    category: "People Development",
+  },
+  {
     id: "iso-awareness-strengthening-foundations",
     date: "14 Oct 2025",
     title: "Strengthening Our Foundations with ISO Awareness!",

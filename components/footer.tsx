@@ -289,11 +289,11 @@ export function Footer() {
                     rel="noopener noreferrer"
                     className="text-gray-300 hover:text-maritime-gold transition-colors text-sm"
                   >
-                    Level 5D, 46/7, Valiant Towers,
+                    Level 9, East Wing, Ceylinco House,
                     <br />
-                    Nawam Mawatha, Colombo 02,
+                    Janadhipathi Mw, Colombo 01,
                     <br />
-                    Sri Lanka. 00200
+                    Sri Lanka.
                   </Link>
                 </div>
               </div>

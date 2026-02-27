@@ -9,6 +9,24 @@ import Link from "next/link";
 
 const blogPosts = [
   {
+    id: "people-development-session-who-am-i",
+    date: "14 Feb 2026",
+    title: 'People Development Session: "Who Am I?"',
+    excerpt:
+      "In today’s business world, companies cannot be built to depend on individuals. They must be built on strong systems run by skilled people. Over the past months, we have been strengthening that foundation through process thinking and our first People Development Session, “Who Am I?”—a step toward ownership, clarity, and sustainable growth.",
+    content: "Full content of the blog post...",
+    category: "People Development",
+  },
+  {
+    id: "iso-awareness-strengthening-foundations",
+    date: "14 Oct 2025",
+    title: "Strengthening Our Foundations with ISO Awareness!",
+    excerpt:
+      "Our team at Greek Lanka completed a full ISO awareness program to ensure every service we deliver is safe, compliant & world-class.",
+    content: "Full content of the blog post...",
+    category: "Company News",
+  },
+  {
     id: "greek-lanka-5th-anniversary",
     date: "04 Aug 2025",
     title: "Greek Lanka 5th Year Anniversary Celebration",
@@ -25,26 +43,6 @@ const blogPosts = [
       "We're excited to share the heart-warming journey of Harbour of Smiles' recent CSR initiative at Ibulgolla Primary...",
     content: "Full content of the blog post...",
     category: "CSR",
-  },
-  {
-    id: "greek-lanka-dry-docking-support",
-    date: "22 Aug 2024",
-    title:
-      "Greek Lanka offers comprehensive Dry Docking support for the vessels calling at Colombo Dockyard PLC",
-    excerpt:
-      "Comprehensive dry docking services and technical support for maritime vessels.",
-    content: "Full content of the blog post...",
-    category: "Services",
-  },
-  {
-    id: "discover-sri-lanka-seas",
-    date: "22 Aug 2024",
-    title:
-      "Discover the Splendor of Sri Lanka's Seas: Unleashing Our Maritime Services across All Four Majestic Ports!",
-    excerpt:
-      "Exploring our comprehensive maritime services across Colombo, Galle, Hambantota, and Trincomalee ports.",
-    content: "Full content of the blog post...",
-    category: "Ports",
   },
 ];
 

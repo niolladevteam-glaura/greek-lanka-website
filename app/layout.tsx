@@ -79,8 +79,9 @@ export default function RootLayout({
               logo: "https://www.greeklanka.com/logo.png",
               address: {
                 "@type": "PostalAddress",
-                streetAddress: "Level 5D, 46/7, Valiant Towers,Nawam Mawatha",
-                addressLocality: "Colombo 02",
+                streetAddress:
+                  "Level 9, East Wing, Ceylinco House, Janadhipathi Mw,",
+                addressLocality: "Colombo 01",
                 addressRegion: "Western Province",
                 postalCode: "00200",
                 addressCountry: "LK",
