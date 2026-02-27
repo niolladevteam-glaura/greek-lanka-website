@@ -109,7 +109,7 @@ export function Footer() {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email }),
-        }
+        },
       );
 
       let data;
@@ -129,7 +129,7 @@ export function Footer() {
           data?.error ||
             data?.message ||
             res.statusText ||
-            "Subscription failed. Please try again."
+            "Subscription failed. Please try again.",
         );
       }
     } catch (e: any) {
@@ -334,7 +334,7 @@ export function Footer() {
         <div className="max-w-7xl mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm">
-              © 2025 Greek Lanka Maritime Services. All rights reserved
+              © 2026 Greek Lanka Maritime Services. All rights reserved
             </p>
             <p className="text-gray-400 text-sm mt-2 md:mt-0">
               Designed and Developed by Greek Lanka Media Unit
