@@ -10,6 +10,16 @@ import { useState } from "react";
 
 const blogPosts = [
   {
+    id: "posidonia-2026-thank-you-athens",
+    date: "Jun 2026",
+    title: "Posidonia 2026 | What a Week in Athens!",
+    excerpt:
+      "Posidonia 2026 was an incredible opportunity to reconnect with valued partners, meet new friends across the maritime industry, and explore exciting opportunities for the future. The event reinforced the importance of trust, relationships, and collaboration in an industry that remains driven by people.",
+    content:
+      "Posidonia 2026 is now behind us, and what a week it has been. Over the past few days, I had the opportunity to reconnect with long-standing partners, meet new friends from across the maritime industry, and discuss exciting opportunities for the future. On behalf of Greek Lanka Maritime Services, Oceanic Ship Chandlers, and Navigator Crew Management, I would like to sincerely thank everyone who took the time to visit us, meet with us, and share their thoughts and experiences. Seeing familiar faces, strengthening existing relationships, and building new connections reminded me once again that shipping remains a people-driven industry, where trust and partnerships matter above all else. A special thank you to our clients, partners, suppliers, and friends for your continued support and confidence in us. We truly value every relationship and look forward to turning many of our discussions in Athens into successful collaborations. Thank you, Athens. Thank you, Posidonia. Thank you to Christos Sideris, DynaRep Shipping Consultants, and the entire team. Now it's time to get back to work.",
+    category: "Events & Networking",
+  },
+  {
     id: "people-development-session-who-am-i",
     date: "14 Feb 2026",
     title: 'People Development Session: "Who Am I?"',
