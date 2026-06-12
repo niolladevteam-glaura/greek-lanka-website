@@ -9,6 +9,9 @@ headerImage: "/blog-images/posidonia-2026.jpg"
 images:
   - "/blog-images/posidonia-2026-1.jpeg"
   - "/blog-images/posidonia-2026-2.jpeg"
+  - "/blog-images/posidonia-2026-3.jpeg"
+  - "/blog-images/posidonia-2026-4.jpeg"
+  - "/blog-images/posidonia-2026-5.jpeg"
 ---
 
 ## Posidonia 2026 | What a Week in Athens!
