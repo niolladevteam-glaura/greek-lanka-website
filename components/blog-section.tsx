@@ -9,6 +9,16 @@ import Link from "next/link";
 
 const blogPosts = [
   {
+    id: "from-alexanders-legacy-to-greek-lanka",
+    date: "24 Jul 2026",
+    title: "From Alexander’s Legacy to Greek Lanka: Greece in Sri Lanka",
+    excerpt:
+      "We are honored to share an article by Billy Cotsis, published in Neos Kosmos, exploring the historical ties between Greece and Sri Lanka while highlighting his visit to Greek Lanka Maritime Services and our commitment to the global maritime industry.",
+    content:
+      "We are honored to feature this article written by Billy Cotsis following his visit to Greek Lanka Maritime Services (Pvt) Ltd. in Colombo, Sri Lanka. The article offers a unique Greek perspective on the long-standing historical connections between Greece and Sri Lanka while sharing the author's personal experience visiting our company, meeting our Managing Director, Mr. Udith Kalupahana, and learning about our commitment to serving the global maritime industry. We sincerely thank Billy Cotsis for capturing our story and the shared values that continue to strengthen the relationship between Greece and Sri Lanka. Read the full article here: https://neoskosmos.com/en/2026/07/17/life/from-alexanders-legacy-to-greek-lanka-greece-in-sri-lanka/. Originally published by Neos Kosmos: https://neoskosmos.com/en/.",
+    category: "Media & Press",
+  },
+  {
     id: "posidonia-2026-thank-you-athens",
     date: "Jun 2026",
     title: "Posidonia 2026 | What a Week in Athens!",
@@ -35,15 +45,6 @@ const blogPosts = [
       "Our team at Greek Lanka completed a full ISO awareness program to ensure every service we deliver is safe, compliant & world-class.",
     content: "Full content of the blog post...",
     category: "Company News",
-  },
-  {
-    id: "greek-lanka-5th-anniversary",
-    date: "04 Aug 2025",
-    title: "Greek Lanka 5th Year Anniversary Celebration",
-    excerpt:
-      "On July 19th, 2025, Greek Lanka Maritime Services celebrated five years of unwavering commitment to Sri Lanka’s maritime industry. Our team, partners, and friends gathered aboard a yacht off Colombo to honor our journey, achievements, and the values that guide us.",
-    content: "Full content of the blog post...",
-    category: "Milestone",
   },
 ];
 

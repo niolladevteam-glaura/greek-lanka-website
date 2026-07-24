@@ -10,6 +10,16 @@ import { useState } from "react";
 
 const blogPosts = [
   {
+    id: "from-alexanders-legacy-to-greek-lanka",
+    date: "24 Jul 2026",
+    title: "From Alexander’s Legacy to Greek Lanka: Greece in Sri Lanka",
+    excerpt:
+      "We are honored to share an article by Billy Cotsis, published in Neos Kosmos, exploring the historical ties between Greece and Sri Lanka while highlighting his visit to Greek Lanka Maritime Services and our commitment to the global maritime industry.",
+    content:
+      "We are honored to feature this article written by Billy Cotsis following his visit to Greek Lanka Maritime Services (Pvt) Ltd. in Colombo, Sri Lanka. The article offers a unique Greek perspective on the long-standing historical connections between Greece and Sri Lanka while sharing the author's personal experience visiting our company, meeting our Managing Director, Mr. Udith Kalupahana, and learning about our commitment to serving the global maritime industry. We sincerely thank Billy Cotsis for capturing our story and the shared values that continue to strengthen the relationship between Greece and Sri Lanka. Read the full article here: https://neoskosmos.com/en/2026/07/17/life/from-alexanders-legacy-to-greek-lanka-greece-in-sri-lanka/. Originally published by Neos Kosmos: https://neoskosmos.com/en/.",
+    category: "Media & Press",
+  },
+  {
     id: "posidonia-2026-thank-you-athens",
     date: "Jun 2026",
     title: "Posidonia 2026 | What a Week in Athens!",
